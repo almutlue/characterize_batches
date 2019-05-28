@@ -1,0 +1,278 @@
+---
+title: "pbmc_media_storage"
+author: "almutlue"
+date: "2019-05-28"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+# Different media conditions
+
+Pbmc - media storage
+
+**PBMC dataset** from Roche that has been collected to test the influence of media storage on sequencing. It includes 11045 human PBMCs from the same sample, split into 4 batches. All batches have been sequenced together and libraries have been prepared together, but 3 batches have been stored in different media DMSO, CSF and PSC and frozen for 7 days before sequencing. The last batch contains PBMCs from freshly collected blood. Differences between these batches should all derive from media storage, so conditional sources.
+
+```{r libs}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(CellMixS)
+  library(scater)
+  library(scran)
+  library(variancePartition)
+  library(here)
+  library(jcolors)
+  library(magrittr)
+  library(purrr)
+  library(diffcyt)
+  library(tidyr)
+})
+```
+
+
+```{r data}
+# data 
+data_path <- here::here("data")
+out_path <- here::here("output")
+
+# raw data 
+#For preprocessing and quality control please check: /code/pbmc_media.rmd
+sce <- readRDS(paste0(data_path, "/pbmc_media.rds"))
+
+cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
+names(cols) <- c()
+
+```
+
+# Visualize batch effect
+```{r vis batch}
+feature_list <- c("sample_type", "cluster.merged", "cluster.main")
+
+lapply(feature_list, function(feature_name){
+  visGroup(sce, feature_name, dim_red= "tsne")
+})
+```
+
+# Size/Strength of the batch effcet
+How much of the variance within data can be attributed to the batch effect?
+
+## VariancePartitioning
+```{r variance part}
+expr <- as.matrix(assays(sce)$logcounts)
+meta_sub <- as.data.frame(colData(sce)[, c("cluster.merged", "dataset")])
+form <- ~ (1|cluster.merged) + (1|dataset)
+
+#varPart <- fitExtractVarPartModel(expr, form, meta_sub) 
+
+#Sort variables (i.e. columns) by median fraction# of variance explained
+#vp <- sortCols(varPart)
+vp <- readRDS(paste0(out_path,"/vp_pbmc.rds"))
+vp_names <- rownames(vp)
+vp <-vp  %>% dplyr::mutate(gene= vp_names) %>% dplyr::arrange(-dataset)
+vp_sub <- vp[1:3] %>% set_rownames(vp$gene)
+
+#plot 
+plotPercentBars( vp_sub[1:10,] )
+plotVarPart( vp_sub )
+
+```
+
+
+
+Summarize variance partitioning
+```{r summarize}
+#How many genes have a variance component affected by the batch variable with more than 1%
+n_batch_gene <- as_tibble(vp) %>%  dplyr::filter(dataset > 0.01) %>% nrow()
+n_batch_gene10 <- as_tibble(vp) %>%  dplyr::filter(dataset > 0.1) %>% nrow()
+n_celltype_gene <- as_tibble(vp) %>%  dplyr::filter(cluster.merged> 0.01) %>% nrow()
+n_rel <- n_batch_gene/n_celltype_gene
+
+#The mean percentage of the variance that is explained by the batch effect independent from the celltype
+m_batch <- mean(vp$dataset)
+m_celltype <- mean(vp$cluster.merged)
+m_rel <- m_batch/m_celltype
+
+
+#The median percentage of the variance that is explained by the batch effect independent from the celltype
+me_batch <- median(vp$dataset)
+me_celltype <- median(vp$cluster.merged)
+me_rel <- me_batch/me_celltype
+```
+
+
+# Celltype specificity
+
+## Celltype abundance
+```{r celltype abundance}
+meta_tib <- as_tibble(colData(sce)) %>% group_by(sample_type, cluster.merged) %>% summarize(n = n()) %>% dplyr::mutate(cell_freq = n / sum(n))
+
+
+plot_abundance <- function(cluster_var, tib, x_var){
+  meta_df <- as.data.frame(eval(tib))
+  p <-ggplot(data=meta_df, aes_string(x=x_var, y="cell_freq", fill = cluster_var)) +
+  geom_bar(stat="identity") + scale_fill_manual(values=cols)
+  p + coord_flip() + theme_minimal()
+}
+
+plot_abundance(cluster_var = "cluster.merged", tib = meta_tib, x_var = "sample_type")
+```
+
+Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)
+```{r sum}
+
+#colData
+colData(sce)$sample_id <- colData(sce)$dataset
+sce$media <- ifelse(grepl("Fresh PBMCs", sce$sample_type), "fresh", "frozen")
+
+col_dat <-  data.frame("sample_id" = levels(sce$sample_id), "group_id" = c("fresh", rep("frozen", 3))) %>% set_rownames(levels(sce$sample_id)) 
+
+
+#create desing matrix
+design_ <- createDesignMatrix(
+  col_dat, cols_design = c("group_id")
+)
+
+#create contrast
+contrast <- createContrast(c(0, 1))
+
+#create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
+cluster_counts <- as_tibble(colData(sce)) %>% group_by(cluster.merged, sample_id) %>% summarize(n=n()) %>%  spread(sample_id, n) 
+cluster_count <- as.matrix(cluster_counts[,2:5])
+rownames(cluster_count) <- cluster_counts$cluster.merged
+
+#rowData
+row_dat <- as_tibble(colData(sce)) %>% group_by(cluster.merged) %>% summarize(n=n()) %>% set_colnames(c("cluster_id", "n_cells"))
+
+
+
+se <- SummarizedExperiment(list("counts" = cluster_count), rowData= as.data.frame(row_dat), colData= col_dat)
+
+
+#differential abundance
+res_DA <- testDA_edgeR(se, design_, contrast)
+
+#summarize - number of differential abundance cluster
+n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.1))
+
+```
+
+# Count distribution
+Do the overall counts distribution vary between batches? Clusterwise ploting?
+
+```{r count distributions, fig.width = 7, fig.height = 6}
+#sample an cluster ids
+sids <- levels(as.factor(sce$sample_type))
+names(sids) <- sids
+cids <- levels(as.factor(sce$cluster.merged))
+names(cids) <- cids
+
+#mean gene expression by sample and cluster
+mean_list <- lapply(sids, function(batch){
+  mean_cluster <- lapply(cids, function(cluster){
+    counts_sc <- as.matrix(logcounts(
+        sce[,sce$sample_type %in% batch & sce$cluster.merged %in% cluster]))
+  })
+  mean_c <- mean_cluster %>% map(rowMeans) %>% bind_rows %>%
+    dplyr::mutate(gene=rownames(sce)) %>% gather(cluster, counts, "0":"6") 
+  })
+
+mean_expr <- mean_list %>% bind_rows(.id= "sample") 
+
+ggplot(mean_expr, aes(x=counts, colour=sample)) + geom_density(alpha=.3) + 
+    theme_classic() +
+    facet_wrap( ~ cluster, ncol = 3) +
+    scale_colour_manual(values = cols[c(1:3,7)]) +
+    scale_x_continuous(limits =  c(0, 0.4))
+
+#number of cluster with differnt batch distributions
+n_dist <- 1
+```
+
+
+Mean expression counts media vs fresh
+```{r mean expression, fig.height=6}
+  
+#mean expression
+sids <- levels(as.factor(sce$sample_type))
+names(sids) <- sids
+cids <- levels(as.factor(sce$cluster.merged))
+names(cids) <- cids
+  
+mean_list <- lapply(sids, function(batch){
+      mean_cluster <- lapply(cids, function(cluster){
+        counts_sc <- as.matrix(logcounts(
+          sce[,sce$sample_type %in% batch & sce$cluster.merged %in% cluster]))
+      })
+    mean_c <- mean_cluster %>% map(rowMeans) %>% bind_rows %>% dplyr::mutate(gene=rownames(sce)) %>% gather(cluster, counts, "0":"6") 
+  })
+  
+  mean_expr <- mean_list %>% bind_rows(.id = "sample" ) %>% spread(sample, counts)
+  colnames(mean_expr) <- c("gene", "cluster", "fresh", "CS10", "DMSO", "PSC7")
+  
+  lapply(c("CS10", "DMSO", "PSC7"), function(media){
+    ggplot(mean_expr, aes_string(x="fresh", y=media)) + 
+      geom_point(alpha=.3, aes(color=cluster)) + 
+    ggtitle(media) + geom_abline(slope = 1) + coord_fixed() +
+    facet_wrap( ~ cluster, ncol = 3) +
+    scale_color_manual(values=cols)
+  })
+  
+  
+
+  
+```
+
+# Cellspecific mixing score
+Calculate cms
+```{r cms}
+#sce <- cms(sce, group = "sample_type", k = 200, k_min = 60, cell_min = 20)
+#saveRDS(sce, paste0(out_path, "/pbmc_media_cms.rds"))
+sce <- readRDS(paste0(out_path, "/pbmc_media_cms.rds"))
+
+visHist(sce, n_col = 2)
+visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+
+#summarize
+mean_cms <- mean(sce$cms)
+n_cms_0.01 <- length(which(sce$cms < 0.01))
+cluster_mean_cms <- as_tibble(colData(sce)) %>% group_by(cluster.merged) %>% summarize(cms_mean = mean(cms))
+
+var_cms <- sd(cluster_mean_cms$cms_mean)
+
+```
+
+
+# Summarize results
+```{r summary}
+#Size? How much of the variance can be attributed to the batch effect?
+size <- data.frame("batch_genes_1per" = n_batch_gene,  
+                   "batch_genes_10per" = n_batch_gene10,
+                   "celltype_gene_1per" = n_celltype_gene,
+                   "relative_batch_celltype" = n_rel,
+                   "mean_var_batch" = m_batch,
+                   "mean_var_celltype" = m_celltype,
+                   "median_var_batch" = me_batch,
+                   "median_var_celltype" = me_celltype)
+
+
+#Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
+celltype <- data.frame("DA_celltypes" = n_da_cluster,
+                       "n_count_dist" = n_dist,
+                       "mean_cms" = mean_cms,
+                       "celltype_var_cms" = var_cms,
+                       "n_cells_cms_0.01" = n_cms_0.01)
+
+#Gene-specificity? How do they effect genes? Single genes? All genes? Which genes?
+#gene <- data.frame("mean_n_de_genes" = mean_n_de,
+#                   "n_genes_lfc2" = n_genes_lfc2,
+#                   "DE_overlap" = de_overlap,
+#                   "DE_overlap50" = de_overlap50,
+#                   "rel_cluster_specific_DE" = rel_spec
+#                   )
+# Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
+
+summary <- cbind(size, celltype )#, gene) %>% set_rownames("pbmc_media_storage")
+saveRDS(summary, paste0(out_path, "/summary_pbmc_media_storage.rds"))
+
+```
+

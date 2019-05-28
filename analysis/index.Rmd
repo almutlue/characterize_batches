@@ -8,4 +8,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+A systematic analysis of different kinds of unwanted varaition in single cell RNAseq datasets.
+
+# Analysis
+
+## Datasets
+
++ [cellranger_versions](cellranger_data.html)
+
+## Batch effects
+
++ [media_storage](pbmc_media_storage.html) 
++ [cellranger_versions](cellranger_versions.html)
