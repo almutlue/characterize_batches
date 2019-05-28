@@ -1,7 +1,7 @@
-name: "characterize_batches"
+name: characterize_batches
 output_dir: ../docs
 navbar:
-  title: "characterize_batches"
+  title: characterize_batches
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/almutlue/characterize_batches
 output:
   workflowr::wflow_html:
     toc: yes
