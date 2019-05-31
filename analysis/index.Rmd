@@ -19,4 +19,5 @@ A systematic analysis of different kinds of unwanted varaition in single cell RN
 ## Batch effects
 
 + [media_storage](pbmc_media_storage.html) 
++ [cell_bench](cellbench_seq_protocols.html)
 + [cellranger_versions](cellranger_versions.html)
