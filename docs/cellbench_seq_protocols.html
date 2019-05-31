@@ -445,7 +445,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-05-29
+<strong>Last updated:</strong> 2019-05-31
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -524,10 +524,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree77d6b4b15f13a9faad65b3624ebe0ce9b451bac0targetblank77d6b4ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/77d6b4b15f13a9faad65b3624ebe0ce9b451bac0" target="_blank">77d6b4b</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree671e865d1ef07994e1f1e4d4885b2a29098a8ce3targetblank671e865a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/671e865d1ef07994e1f1e4d4885b2a29098a8ce3" target="_blank">671e865</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree77d6b4b15f13a9faad65b3624ebe0ce9b451bac0targetblank77d6b4ba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree671e865d1ef07994e1f1e4d4885b2a29098a8ce3targetblank671e865a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -541,6 +541,7 @@ Untracked files:
     Untracked:  data/pbmc_media.rds
     Untracked:  output/pbmc_media_cms.rds
     Untracked:  output/summary_pbmc_media_storage.rds
+    Untracked:  output/vp_cellBench.rds
     Untracked:  output/vp_pbmc.rds
 
 </code></pre>
@@ -585,6 +586,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/671e865d1ef07994e1f1e4d4885b2a29098a8ce3/analysis/cellbench_seq_protocols.Rmd" target="_blank">671e865</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-05-31
+</td>
+<td>
+add cellbench
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/2e83d0490e1384fc7b9b0fba35687367924e045b/docs/cellbench_seq_protocols.html" target="_blank">2e83d04</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-05-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/77d6b4b15f13a9faad65b3624ebe0ce9b451bac0/analysis/cellbench_seq_protocols.Rmd" target="_blank">77d6b4b</a>
 </td>
 <td>
@@ -604,8 +639,298 @@ wflow_publish(“analysis/cellbench_seq_protocols.Rmd”)
 </div>
 </div>
 </div>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
+<div id="technical-batch-effects" class="section level1">
+<h1>Technical batch effects</h1>
+<p><strong>Cellbench data</strong>, test batch effect from different protocols. Using the same three celllines sequenced by sequencing methods. This represents a technical batch effect.</p>
+<p>libraries</p>
+<pre class="r"><code>suppressPackageStartupMessages({
+    library(CellBench)
+    library(scater)
+    library(jcolors)
+    library(CellMixS)
+    library(gridExtra)
+    library(purrr)
+    library(jcolors)
+    library(here)
+    library(tidyr)
+    library(dplyr)
+    library(stringr)
+    library(variancePartition)
+    library(diffcyt)
+})</code></pre>
+<p>Dataset</p>
+<pre class="r"><code># data 
+out_path &lt;- here::here(&quot;output&quot;)
+dataset_name &lt;- &quot;cellBench&quot;
+
+#Mixology dataset
+sc_data &lt;- load_sc_data()
+colData(sc_data[[1]])$protocol &lt;- rep(names(sc_data)[1], ncol(sc_data[[1]]))
+sce &lt;- sc_data[[1]]
+
+for(i in 2:length(sc_data)){
+  colData(sc_data[[i]])$protocol &lt;- rep(names(sc_data)[i], ncol(sc_data[[i]]))
+  gene_overlap &lt;- intersect(rownames(sce), rownames(sc_data[[i]]))
+  coldata_overlap &lt;- intersect(names(colData(sce)), names(colData(sc_data[[i]]))) 
+  sc_data[[i]] &lt;- sc_data[[i]][gene_overlap,]
+  colData(sc_data[[i]]) &lt;- colData(sc_data[[i]])[, coldata_overlap]
+  colData(sce) &lt;- colData(sce)[, coldata_overlap]
+  sce &lt;- sce[gene_overlap,]
+  sce &lt;- cbind(sce, sc_data[[i]])
+}
+
+colnames(sce) &lt;- paste0(colnames(sce), &quot;_&quot;, sce$protocol)
+
+sce &lt;- runPCA(sce, ncomponents = 20)
+sce &lt;- runTSNE(sce)
+sce &lt;- runUMAP(sce)
+
+#colors
+cols &lt;-c(c(jcolors(&#39;pal6&#39;),jcolors(&#39;pal8&#39;))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors(&#39;pal4&#39;))
+names(cols) &lt;- c()
+
+#param
+MultiSample = FALSE
+
+#variables
+batch &lt;- &quot;protocol&quot;
+celltype &lt;- &quot;cell_line&quot;
+sample &lt;- NA</code></pre>
+</div>
+<div id="visualize-batch-effect" class="section level1">
+<h1>Visualize batch effect</h1>
+<pre class="r"><code>feature_list &lt;- c(batch, &quot;number_of_genes&quot;, celltype)
+
+lapply(feature_list, function(feature_name){
+  visGroup(sce, feature_name, dim_red= &quot;UMAP&quot;)
+})</code></pre>
+<pre><code>[[1]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[2]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[3]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/vis%20batch-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sizestrength-of-the-batch-effcet" class="section level1">
+<h1>Size/Strength of the batch effcet</h1>
+<p>How much of the variance within data can be attributed to the batch effect?</p>
+<div id="variancepartitioning" class="section level2">
+<h2>VariancePartitioning</h2>
+<pre class="r"><code>expr &lt;- as.matrix(assays(sce)$logcounts)
+meta_sub &lt;- as.data.frame(colData(sce)[, c(celltype, batch)])
+form &lt;- as.formula(paste0(&quot;~ (1|&quot;, celltype, &quot;) + (1|&quot;, batch, &quot;)&quot;))
+#varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub) 
+
+#Sort variables (i.e. columns) by median fraction# of variance explained
+#vp &lt;- sortCols(varPart)
+#saveRDS(vp, paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
+vp &lt;- readRDS(paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
+
+vp_names &lt;- rownames(vp)
+vp &lt;-vp  %&gt;% dplyr::mutate(gene= vp_names) %&gt;% dplyr::arrange(-!! rlang::parse_expr(batch))</code></pre>
+<pre><code>Warning in class(x) &lt;- c(subclass, tibble_class): Setze class(x) auf
+mehrere Zeichenketten(&quot;tbl_df&quot;, &quot;tbl&quot;, ...); das Ergebnis ist kein S4
+Objekt mehr</code></pre>
+<pre class="r"><code>vp_sub &lt;- vp[1:3] %&gt;% set_rownames(vp$gene)
+
+#plot 
+plotPercentBars( vp_sub[1:10,] )</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plotVarPart( vp_sub )</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Summarize variance partitioning</p>
+<pre class="r"><code>#How many genes have a variance component affected by the batch variable with more than 1%
+n_batch_gene &lt;- as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.01) %&gt;% nrow()
+n_batch_gene10 &lt;- as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.1) %&gt;% nrow()
+n_celltype_gene &lt;- as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(celltype)&gt; 0.01) %&gt;% nrow()
+n_rel &lt;- n_batch_gene/n_celltype_gene
+
+#The mean percentage of the variance that is explained by the batch effect independent from the celltype
+m_batch &lt;- mean(vp[,batch])
+m_celltype &lt;- mean(vp[,celltype])
+m_rel &lt;- m_batch/m_celltype
+
+
+#The median percentage of the variance that is explained by the batch effect independent from the celltype
+me_batch &lt;- median(vp[, batch])
+me_celltype &lt;- median(vp[, celltype])
+me_rel &lt;- me_batch/me_celltype</code></pre>
+</div>
+</div>
+<div id="celltype-specificity" class="section level1">
+<h1>Celltype specificity</h1>
+<div id="celltype-abundance" class="section level2">
+<h2>Celltype abundance</h2>
+<pre class="r"><code>meta_tib &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(batch, celltype)) %&gt;% summarize(n = n()) %&gt;% dplyr::mutate(cell_freq = n / sum(n))
+
+
+plot_abundance &lt;- function(cluster_var, tib, x_var){
+  meta_df &lt;- as.data.frame(eval(tib))
+  p &lt;-ggplot(data=meta_df, aes_string(x=x_var, y=&quot;cell_freq&quot;, fill = cluster_var)) +
+  geom_bar(stat=&quot;identity&quot;) + scale_fill_manual(values=cols)
+  p + coord_flip() + theme_minimal()
+}
+
+plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)</p>
+<pre class="r"><code>if(MultiSample){
+  #colData
+
+col_dat &lt;-  data.frame(&quot;sample_id&quot; = levels(colData(sce)[,sample]), &quot;group_id&quot; = levels(colData(sce)[,batch])) %&gt;% set_rownames(levels(colData(sce)[,sample])) 
+
+
+#create desing matrix
+design_ &lt;- createDesignMatrix(
+  col_dat, cols_design = c(&quot;group_id&quot;)
+)
+
+#create contrast
+contrast &lt;- createContrast(c(0, 1))
+
+#create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
+cluster_counts &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(sample, batch)) %&gt;% summarize(n=n()) %&gt;%  spread(sample_id, n) 
+cluster_count &lt;- as.matrix(cluster_counts[,-1])
+rownames(cluster_count) &lt;- cluster_counts[, celltype]
+
+#rowData
+row_dat &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(celltype) %&gt;% summarize(n=n()) %&gt;% set_colnames(c(&quot;cluster_id&quot;, &quot;n_cells&quot;))
+
+
+
+se &lt;- SummarizedExperiment(list(&quot;counts&quot; = cluster_count), rowData= as.data.frame(row_dat), colData= col_dat)
+
+
+#differential abundance
+res_DA &lt;- testDA_edgeR(se, design_, contrast)
+
+#summarize - number of differential abundance cluster
+n_da_cluster &lt;- length(which(rowData(res_DA)$p_adj &lt; 0.1))
+
+}else{
+  n_da_cluster &lt;- NA
+}</code></pre>
+</div>
+</div>
+<div id="count-distribution" class="section level1">
+<h1>Count distribution</h1>
+<p>Do the overall counts distribution vary between batches? Clusterwise ploting?</p>
+<pre class="r"><code>#sample an cluster ids
+sids &lt;- levels(as.factor(colData(sce)[, batch]))
+names(sids) &lt;- sids
+cids &lt;- levels(as.factor(colData(sce)[, celltype]))
+names(cids) &lt;- cids
+
+#mean gene expression by sample and cluster
+mean_list &lt;- lapply(sids, function(batch_var){
+  mean_cluster &lt;- lapply(cids, function(cluster_var){
+    counts_sc &lt;- as.matrix(logcounts(
+        sce[, colData(sce)[, batch] %in% batch_var &amp; colData(sce)[, celltype] %in% cluster_var]))
+  })
+  mean_c &lt;- mean_cluster %&gt;% map(rowMeans) %&gt;% bind_rows %&gt;%
+    dplyr::mutate(gene=rownames(sce)) %&gt;% gather(cluster, logcounts, levels(as.factor(colData(sce)[,celltype]))) 
+  })
+
+mean_expr &lt;- mean_list %&gt;% bind_rows(.id= &quot;sample&quot;) 
+
+ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) + 
+    theme_classic() +
+    facet_wrap( ~ cluster, ncol = 3) +
+    scale_colour_manual(values = cols[c(1:3,7)]) +
+    scale_x_continuous(limits =  c(0, 7))</code></pre>
+<pre><code>Warning: Removed 491 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#number of cluster with differnt batch distributions
+per_dist &lt;- 1</code></pre>
+<p>Mean expression protocols vs each other</p>
+<pre class="r"><code>#mean expression
+mean_expr &lt;- mean_list %&gt;% bind_rows(.id = &quot;sample&quot; ) %&gt;% spread(sample, logcounts)
+batch_all &lt;- levels(as.factor(colData(sce)[,batch]))
+  
+lapply(batch_all, function(batch_var){
+  batch_var_2 &lt;- batch_all[-which(batch_all %in% batch_var)]
+  lapply(batch_var_2, function(batch_var_3){
+      ggplot(mean_expr, aes_string(x=batch_var, y=batch_var_3)) + 
+      geom_point(alpha=.3, aes(color=cluster)) + 
+      ggtitle(batch_var) + geom_abline(slope = 1) + coord_fixed() +
+      facet_wrap( ~ cluster, ncol = 3) +
+      scale_color_manual(values=cols)
+  })
+})</code></pre>
+<pre><code>[[1]]
+[[1]][[1]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[1]][[2]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+
+[[2]]
+[[2]][[1]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/mean%20expression-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[2]][[2]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/mean%20expression-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+
+[[3]]
+[[3]][[1]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/mean%20expression-5.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>
+[[3]][[2]]</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/mean%20expression-6.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cellspecific-mixing-score" class="section level1">
+<h1>Cellspecific mixing score</h1>
+<p>Calculate cms</p>
+<pre class="r"><code>sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
+#saveRDS(sce, paste0(out_path, &quot;/cms_&quot;, dataset_name, &quot;.rds&quot;))
+#sce &lt;- readRDS(paste0(out_path, &quot;/pbmc_media_cms.rds&quot;))
+
+visHist(sce, n_col = 2)</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/cms-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
+<p><img src="figure/cellbench_seq_protocols.Rmd/cms-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#summarize
+mean_cms &lt;- mean(sce$cms)
+n_cms_0.01 &lt;- length(which(sce$cms &lt; 0.01))
+cluster_mean_cms &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(celltype) %&gt;% summarize(cms_mean = mean(cms))
+
+var_cms &lt;- sd(cluster_mean_cms$cms_mean)</code></pre>
+</div>
+<div id="summarize-results" class="section level1">
+<h1>Summarize results</h1>
+<pre class="r"><code>#Size? How much of the variance can be attributed to the batch effect?
+size &lt;- data.frame(&quot;batch_genes_1per&quot; = n_batch_gene,  
+                   &quot;batch_genes_10per&quot; = n_batch_gene10,
+                   &quot;celltype_gene_1per&quot; = n_celltype_gene,
+                   &quot;relative_batch_celltype&quot; = n_rel,
+                   &quot;mean_var_batch&quot; = m_batch,
+                   &quot;mean_var_celltype&quot; = m_celltype,
+                   &quot;median_var_batch&quot; = me_batch,
+                   &quot;median_var_celltype&quot; = me_celltype)
+
+
+#Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
+celltype &lt;- data.frame(&quot;DA_celltypes&quot; = n_da_cluster,
+                       &quot;per_count_dist&quot; = per_dist,
+                       &quot;mean_cms&quot; = mean_cms,
+                       &quot;celltype_var_cms&quot; = var_cms,
+                       &quot;n_cells_cms_0.01&quot; = n_cms_0.01)
+
+#Gene-specificity? How do they effect genes? Single genes? All genes? Which genes?
+#gene &lt;- data.frame(&quot;mean_n_de_genes&quot; = mean_n_de,
+#                   &quot;n_genes_lfc2&quot; = n_genes_lfc2,
+#                   &quot;DE_overlap&quot; = de_overlap,
+#                   &quot;DE_overlap50&quot; = de_overlap50,
+#                   &quot;rel_cluster_specific_DE&quot; = rel_spec
+#                   )
+# Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
+
+summary &lt;- cbind(size, celltype )#, gene) %&gt;% set_rownames(&quot;pbmc_media_storage&quot;)
+saveRDS(summary, paste0(out_path, &quot;/summary_pbmc_media_storage.rds&quot;))</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -631,14 +956,88 @@ locale:
 [11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] diffcyt_1.4.3               variancePartition_1.14.0   
+ [3] scales_1.0.0                foreach_1.4.4              
+ [5] limma_3.40.2                stringr_1.4.0              
+ [7] dplyr_0.8.1                 tidyr_0.8.3                
+ [9] here_0.1                    purrr_0.3.2                
+[11] gridExtra_2.3               CellMixS_1.1.0             
+[13] kSamples_1.2-9              SuppDists_1.1-9.4          
+[15] jcolors_0.0.4               scater_1.12.2              
+[17] ggplot2_3.1.1               CellBench_1.0.0            
+[19] tibble_2.1.2                magrittr_1.5               
+[21] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
+[23] DelayedArray_0.10.0         BiocParallel_1.18.0        
+[25] matrixStats_0.54.0          Biobase_2.44.0             
+[27] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
+[29] IRanges_2.18.0              S4Vectors_0.22.0           
+[31] BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
- [1] workflowr_1.3.0 Rcpp_1.0.1      digest_0.6.19   rprojroot_1.3-2
- [5] backports_1.1.4 git2r_0.25.2    magrittr_1.5    evaluate_0.13  
- [9] stringi_1.4.3   fs_1.3.1        whisker_0.3-2   rmarkdown_1.13 
-[13] tools_3.6.0     stringr_1.4.0   glue_1.3.1      xfun_0.7       
-[17] yaml_2.2.0      compiler_3.6.0  htmltools_0.3.6 knitr_1.23     </code></pre>
+  [1] backports_1.1.4             circlize_0.4.6             
+  [3] workflowr_1.3.0             BiocFileCache_1.8.0        
+  [5] plyr_1.8.4                  igraph_1.2.4.1             
+  [7] ConsensusClusterPlus_1.48.0 lazyeval_0.2.2             
+  [9] splines_3.6.0               flowCore_1.50.0            
+ [11] TH.data_1.0-10              digest_0.6.19              
+ [13] htmltools_0.3.6             viridis_0.5.1              
+ [15] gdata_2.18.0                memoise_1.1.0              
+ [17] cluster_2.0.9               doParallel_1.0.14          
+ [19] ComplexHeatmap_2.0.0        RcppParallel_4.4.3         
+ [21] sandwich_2.5-1              prettyunits_1.0.2          
+ [23] colorspace_1.4-1            blob_1.1.1                 
+ [25] rappdirs_0.3.1              rrcov_1.4-7                
+ [27] xfun_0.7                    crayon_1.3.4               
+ [29] RCurl_1.95-4.12             graph_1.62.0               
+ [31] lme4_1.1-21                 survival_2.44-1.1          
+ [33] zoo_1.8-6                   iterators_1.0.10           
+ [35] glue_1.3.1                  gtable_0.3.0               
+ [37] zlibbioc_1.30.0             XVector_0.24.0             
+ [39] listarrays_0.2.0            GetoptLong_0.1.7           
+ [41] BiocSingular_1.0.0          shape_1.4.4                
+ [43] DEoptimR_1.0-8              mvtnorm_1.0-10             
+ [45] DBI_1.0.0                   edgeR_3.26.4               
+ [47] Rcpp_1.0.1                  viridisLite_0.3.0          
+ [49] progress_1.2.2              clue_0.3-57                
+ [51] bit_1.1-14                  rsvd_1.0.0                 
+ [53] FlowSOM_1.16.0              tsne_0.1-3                 
+ [55] httr_1.4.0                  FNN_1.1.3                  
+ [57] gplots_3.0.1.1              RColorBrewer_1.1-2         
+ [59] pkgconfig_2.0.2             XML_3.98-1.19              
+ [61] uwot_0.1.3                  dbplyr_1.4.0               
+ [63] locfit_1.5-9.1              labeling_0.3               
+ [65] tidyselect_0.2.5            rlang_0.3.4                
+ [67] reshape2_1.4.3              munsell_0.5.0              
+ [69] tools_3.6.0                 RSQLite_2.1.1              
+ [71] ggridges_0.5.1              evaluate_0.14              
+ [73] yaml_2.2.0                  knitr_1.23                 
+ [75] bit64_0.9-7                 fs_1.3.1                   
+ [77] robustbase_0.93-5           caTools_1.17.1.2           
+ [79] nlme_3.1-140                whisker_0.3-2              
+ [81] compiler_3.6.0              pbkrtest_0.4-7             
+ [83] beeswarm_0.2.3              curl_3.3                   
+ [85] png_0.1-7                   pcaPP_1.9-73               
+ [87] stringi_1.4.3               lattice_0.20-38            
+ [89] Matrix_1.2-17               nloptr_1.2.1               
+ [91] pillar_1.4.1                GlobalOptions_0.1.0        
+ [93] BiocNeighbors_1.2.0         cowplot_0.9.4              
+ [95] bitops_1.0-6                irlba_2.3.3                
+ [97] corpcor_1.6.9               colorRamps_2.3             
+ [99] R6_2.4.0                    KernSmooth_2.23-15         
+[101] vipor_0.4.5                 codetools_0.2-16           
+[103] boot_1.3-22                 MASS_7.3-51.4              
+[105] gtools_3.8.1                assertthat_0.2.1           
+[107] rprojroot_1.3-2             rjson_0.2.20               
+[109] withr_2.1.2                 multcomp_1.4-10            
+[111] GenomeInfoDbData_1.2.1      hms_0.4.2                  
+[113] grid_3.6.0                  minqa_1.2.4                
+[115] rmarkdown_1.13              DelayedMatrixStats_1.6.0   
+[117] Rtsne_0.15                  git2r_0.25.2               
+[119] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
 </div>
 </div>
 
