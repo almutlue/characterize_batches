@@ -185,7 +185,7 @@ ggplot(mean_expr, aes(x=counts, colour=sample)) + geom_density(alpha=.3) +
     scale_x_continuous(limits =  c(0, 0.4))
 
 #number of cluster with differnt batch distributions
-n_dist <- 1
+per_dist <- 1/7
 ```
 
 
@@ -257,7 +257,7 @@ size <- data.frame("batch_genes_1per" = n_batch_gene,
 
 #Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
 celltype <- data.frame("DA_celltypes" = n_da_cluster,
-                       "n_count_dist" = n_dist,
+                       "per_count_dist" = per_dist,
                        "mean_cms" = mean_cms,
                        "celltype_var_cms" = var_cms,
                        "n_cells_cms_0.01" = n_cms_0.01)
