@@ -26,6 +26,7 @@ suppressPackageStartupMessages({
   library(purrr)
   library(diffcyt)
   library(tidyr)
+  library(ComplexHeatmap)
 })
 ```
 
@@ -34,6 +35,7 @@ suppressPackageStartupMessages({
 # data 
 data_path <- here::here("data")
 out_path <- here::here("output")
+code_path <- here::here("code")
 
 # raw data 
 #For preprocessing and quality control please check: /code/pbmc_media.rmd
@@ -227,19 +229,145 @@ Calculate cms
 ```{r cms}
 #sce <- cms(sce, group = "sample_type", k = 200, k_min = 60, cell_min = 20)
 #saveRDS(sce, paste0(out_path, "/pbmc_media_cms.rds"))
-sce <- readRDS(paste0(out_path, "/pbmc_media_cms.rds"))
-
-visHist(sce, n_col = 2)
-visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
-
-#summarize
-mean_cms <- mean(sce$cms)
-n_cms_0.01 <- length(which(sce$cms < 0.01))
-cluster_mean_cms <- as_tibble(colData(sce)) %>% group_by(cluster.merged) %>% summarize(cms_mean = mean(cms))
-
-var_cms <- sd(cluster_mean_cms$cms_mean)
+# sce <- readRDS(paste0(out_path, "/pbmc_media_cms.rds"))
+# 
+# visHist(sce, n_col = 2)
+# visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+# 
+# #summarize
+# mean_cms <- mean(sce$cms)
+# n_cms_0.01 <- length(which(sce$cms < 0.01))
+# cluster_mean_cms <- as_tibble(colData(sce)) %>% group_by(cluster.merged) %>% summarize(cms_mean = mean(cms))
+# 
+# var_cms <- sd(cluster_mean_cms$cms_mean)
 
 ```
+
+# DE analysis
+Calculate DEG
+```{r deg}
+x<-sce
+clust <- as.factor(x@colData$cluster.merged)
+n_cells <- table(clust, x@colData$sample_type)
+kids<-levels(clust)
+names(kids) <- kids
+group<-as.factor(x$media)
+cont<-list("fresh-frozen" = c(1,-1))
+cs <- names(cont)
+names(cs) <- cs
+es<- as.matrix(x@assays$data$logcounts)
+ctype <- "contrast"
+res_df <- function(k, tt, ct, c) {
+  df <- data.frame(
+    gene = rownames(tt), cluster_id = k, tt,
+    row.names = NULL, stringsAsFactors = FALSE)
+  df[[ct]] <- c
+  return(df)
+}
+doDE <- function(x,lfc_cutoff=log2(1.1)){
+  res<-lapply(kids, function (k) {
+    cat(k, "..", sep = "")
+    n <- clust==k
+    es_tmp <- es[,n]
+    grp <- group[n]
+    design <- model.matrix(~0+grp)
+    colnames(design)<-levels(group)
+    k1 <- rowSums(es_tmp > 0) >= .2*min(table(grp))
+    es_tmp <- es_tmp[k1,]
+    f <- lmFit(es_tmp, design)
+    f <- eBayes(f, trend = TRUE)
+    tt <- lapply(cont, function(c) {
+      cc<-names(c)
+      fc <- contrasts.fit(f, contrasts = c)
+      tr <- treat(fc, lfc=lfc_cutoff)
+      tt <- topTreat(tr, n=Inf)
+      res_df(k, tt, ctype,cc)
+    })
+    return(list(tt = tt, data = es_tmp))
+  })
+  # remove empty clusters
+  skipped <- vapply(res, is.null, logical(1))
+  if (any(skipped))
+    message(paste("Cluster(s)", dQuote(kids[skipped]), "skipped due to an",
+                  "insufficient number of cells in at least 2 samples per group."))
+  res <- res[!skipped]
+  kids <- kids[names(res)]
+  
+  # re-organize by contrast & 
+  # do global p-value adjustment
+  tt <- lapply(res, "[[", "tt")
+  tt <- lapply(cs, function(c) map(tt, c))
+  
+  # return results
+  data <- lapply(res, "[[", "data")
+  list(table = tt, 
+       data = data, 
+       design = design, 
+       coef = coef)
+}
+# res<-doDE(x,lfc_cutoff=log2(1.1))
+# save(res, file=paste0(out_path, "/pbmc_media_limma_results.RData"))
+```
+
+## Some diagnostics plot of DEG
+
+# Upset plot
+```{r upset, fig.height=6}
+
+load(file=paste0(out_path, "/pbmc_media_limma_results.RData"))
+# count nb. of DE genes by cluster
+vapply(res[[1]]$`fresh-frozen`, function(x) sum(x$adj.P.Val < 0.05), numeric(1))
+
+FilterDEGs<-function (degDF=df, filter=c(FDR=5)) 
+{
+  rownames(degDF)<-degDF$gene
+  pval <- degDF[, grep("adj.P.Val$", colnames(degDF)), drop = FALSE]
+  pf <- pval <= filter["FDR"]/100 
+  pf[is.na(pf)] <- FALSE
+  DEGlistUPorDOWN <- sapply(colnames(pf), function(x) rownames(pf[pf[, x, drop = FALSE], , drop = FALSE]), simplify = FALSE)
+}
+
+  result<-sapply(res[[1]]$`fresh-frozen`, function(x) FilterDEGs(x))
+  names(result)<-kids
+# m2 = make_comb_mat(result, mode = "intersect")
+# save(m2, file=paste0(out_path, "/pbmc_media_upset_data.RData"))
+  load(paste0(out_path, "/pbmc_media_upset_data.RData"))
+  UpSet(m2)
+  
+```
+# Histograms of p-values
+
+```{r histograms, fig.height=6}
+source(paste0(code_path, "/diagnostic_plots.R"))
+histogram.gg(res)
+baloonplot.gg(result)
+```
+
+# ratio specific cluster of DEG
+```{r ratio_cluster_specific, fig.height=6}
+# mean number of DEG
+mean_n_de<-mean(vapply(res[[1]]$`fresh-frozen`, function(x) sum(x$adj.P.Val < 0.05), numeric(1)))
+
+# number of genes lfc > 1
+n_genes_lfc1<-sum(vapply(res[[1]]$`fresh-frozen`, function(x) sum(abs(x$logFC) > 1), numeric(1)))
+# shared genes for all cluster
+which.Null<-lapply(result,function(x) is.null(x))
+ind<-which.Null=='FALSE'
+result1<-result[ind]
+de_overlap<-length(Reduce(intersect, result1))
+# shared genes for 50% of cluster
+nb<-.5*sum(vapply(res[[1]]$`fresh-frozen`, function(x) sum(x$adj.P.Val < 0.05), numeric(1)))
+Deg<-vapply(res[[1]]$`fresh-frozen`, function(x) sum(x$adj.P.Val < 0.05), numeric(1))
+result1<-Deg[which(Deg>mean(Deg))]
+# de_overlap50<-
+  
+unique_genes<-numeric()
+# Unique genes for each cluster
+for(i in 1:length(names(result))) unique_genes[i]<-as.numeric(length(setdiff(unlist(result[i]),unlist(result[-i]))))
+ifelse(de_overlap==0,rel_spec<- c('zero overlap'),rel_spec<-unique_genes/de_overlap)
+rel_spec
+```
+
 
 
 # Summarize results
@@ -256,11 +384,11 @@ size <- data.frame("batch_genes_1per" = n_batch_gene,
 
 
 #Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
-celltype <- data.frame("DA_celltypes" = n_da_cluster,
-                       "per_count_dist" = per_dist,
-                       "mean_cms" = mean_cms,
-                       "celltype_var_cms" = var_cms,
-                       "n_cells_cms_0.01" = n_cms_0.01)
+# celltype <- data.frame("DA_celltypes" = n_da_cluster,
+#                        "per_count_dist" = per_dist,
+#                        "mean_cms" = mean_cms,
+#                        "celltype_var_cms" = var_cms,
+#                        "n_cells_cms_0.01" = n_cms_0.01)
 
 #Gene-specificity? How do they effect genes? Single genes? All genes? Which genes?
 #gene <- data.frame("mean_n_de_genes" = mean_n_de,
@@ -271,8 +399,8 @@ celltype <- data.frame("DA_celltypes" = n_da_cluster,
 #                   )
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
-summary <- cbind(size, celltype )#, gene) %>% set_rownames("pbmc_media_storage")
-saveRDS(summary, paste0(out_path, "/summary_pbmc_media_storage.rds"))
+# summary <- cbind(size, celltype )#, gene) %>% set_rownames("pbmc_media_storage")
+# saveRDS(summary, paste0(out_path, "/summary_pbmc_media_storage.rds"))
 
 ```
 
