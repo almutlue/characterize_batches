@@ -72,6 +72,8 @@ batch <- "protocol"
 celltype <- "cell_line"
 sample <- NA
 
+table(colData(sce)[, batch])
+
 #contrast
 cont<-list("sc_10x-sc_celseq" = c(1,-1,0),
            "sc_10x-sc_dropseq" = c(1,0,-1),
@@ -394,7 +396,7 @@ min_n_genes_lfc1<-min(unlist(n_genes_lfc1))
 max_n_genes_lfc1<-max(unlist(n_genes_lfc1))
 
 unique_genes<-numeric()
-cb<-length(names(result))
+
 de_overlap<-lapply(result,function(x){
   which.Null<-lapply(x,function(y) is.null(y))
   ind<-which.Null=='FALSE'
@@ -407,6 +409,7 @@ min_de_overlap<-min(unlist(de_overlap))
 max_de_overlap<-max(unlist(de_overlap))
 unique_genes_matrix<-NULL
 unique_genes<-NULL
+cb<-length(names(result[[1]]))
 unique_genes<-lapply(result,function(x){
   for(i in 1:cb){
     unique_genes[i]<-as.numeric(length(setdiff(unlist(x[i]),unlist(x[-i]))))
@@ -467,8 +470,9 @@ gene <- data.frame("mean_mean_n_de_genes" = mean_mean_n_de,
                   )
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
-summary <- cbind(size, celltype )#, gene) %>% set_rownames("pbmc_media_storage")
-saveRDS(summary, paste0(out_path, "/summary_pbmc_media_storage.rds"))
+summary <- cbind(size, celltype, gene) %>% set_rownames(dataset_name)
+saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))
 
 ```
+
 
