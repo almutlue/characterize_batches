@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree6b8e153ed67b2d46f3a99c02a6b94d572d8b56a7targetblank6b8e153a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/6b8e153ed67b2d46f3a99c02a6b94d572d8b56a7" target="_blank">6b8e153</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreea5247bd1a0bcccbd13d5ec017709893fd43f2abctargetblanka5247bda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/a5247bd1a0bcccbd13d5ec017709893fd43f2abc" target="_blank">a5247bd</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree6b8e153ed67b2d46f3a99c02a6b94d572d8b56a7targetblank6b8e153a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreea5247bd1a0bcccbd13d5ec017709893fd43f2abctargetblanka5247bda" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -541,20 +541,28 @@ Ignored files:
     Ignored:    .Rproj.user/
 
 Untracked files:
+    Untracked:  analysis/csf_media.Rmd
     Untracked:  code/diagnostic_plots.R
     Untracked:  data/PBMC_media_merged_clusters_seurat.rds
+    Untracked:  data/csf_media.rds
     Untracked:  data/pbmc_media.rds
+    Untracked:  docs/figure/csf_media.Rmd/
     Untracked:  output/cms_cellBench.rds
+    Untracked:  output/cms_csf_media_storage.rds
     Untracked:  output/cms_pbmc_media_storage.rds
     Untracked:  output/limma_cellBench.rds
+    Untracked:  output/limma_csf_media_storage.rds
     Untracked:  output/limma_pbmc_media_storage.rds
     Untracked:  output/pbmc_media_limma_results.RData
     Untracked:  output/pbmc_media_upset_data.RData
     Untracked:  output/summary_cellBench.rds
+    Untracked:  output/summary_csf_media_storage.rds
     Untracked:  output/summary_pbmc_media_storage.rds
     Untracked:  output/upset_cellBench.rds
+    Untracked:  output/upset_csf_media_storage.rds
     Untracked:  output/upset_pbmc_media_storage.rds
     Untracked:  output/vp_cellBench.rds
+    Untracked:  output/vp_csf_media_storage.rds
     Untracked:  output/vp_pbmc_media_storage.rds
 
 Unstaged changes:
@@ -597,6 +605,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/a5247bd1a0bcccbd13d5ec017709893fd43f2abc/analysis/cellbench_seq_protocols.Rmd" target="_blank">a5247bd</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-05
+</td>
+<td>
+wflow_publish(“analysis/cellbench_seq_protocols.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/c452376aab9073aee5ce52fe4699f0353b1ea7bc/docs/cellbench_seq_protocols.html" target="_blank">c452376</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1719,7 +1761,6 @@ var_cms &lt;- sd(cluster_mean_cms$cms_mean)</code></pre>
 <h1>DE analysis</h1>
 <p>Calculate DEG</p>
 <pre class="r"><code>x&lt;-sce
-
 clust &lt;- as.factor(colData(sce)[,celltype])
 # n_cells &lt;- table(clust,colData(sce)[,sample])
 kids&lt;-levels(clust)
@@ -1967,6 +2008,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c452376aab9073aee5ce52fe4699f0353b1ea7bc/docs/figure/cellbench_seq_protocols.Rmd/histograms-1.png" target="_blank">c452376</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/aa780bb096f85ff7ecfba4d89b1cc89b2a8e722b/docs/figure/cellbench_seq_protocols.Rmd/histograms-1.png" target="_blank">aa780bb</a>
