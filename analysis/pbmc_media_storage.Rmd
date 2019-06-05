@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
   
-  # Different media conditions
+# Different media conditions
   
   Pbmc - media storage
 
@@ -48,7 +48,7 @@ colData(sce)[,'sample_type'] <- gsub(" 7 ?days","",
                                      colData(sce)[,'sample_type'])
 colData(sce)[,'sample_type'] <- gsub(" PBMCs","",
                                      colData(sce)[,'sample_type'])
-# sce <- runUMAP(sce)
+sce <- runUMAP(sce)
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
 names(cols) <- c()
 #param
@@ -75,7 +75,7 @@ cont <- list("DMSO-Fresh" = c(0,1,-1,0),
 feature_list <- c("sample_type", "cluster.merged", "cluster.main")
 
 lapply(feature_list, function(feature_name){
-  visGroup(sce, feature_name, dim_red= "tsne")
+  visGroup(sce, feature_name, dim_red= "UMAP")
 })
 ```
 
@@ -264,11 +264,12 @@ var_cms <- sd(cluster_mean_cms$cms_mean)
 # DE analysis
 Calculate DEG
 ```{r deg}
-x<-sce
-clust <- colData(sce)[,'cluster.merged']
+
+clust <- as.factor(colData(sce)[,celltype])
+# n_cells <- table(clust,colData(sce)[,sample])
 kids<-levels(clust)
 names(kids) <- kids
-group<-as.factor(colData(sce)[,'sample_type'])
+group<-as.factor(colData(sce)[,batch])
 cs <- names(cont)
 names(cs) <- cs
 es<- expr
