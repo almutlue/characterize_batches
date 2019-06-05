@@ -275,7 +275,6 @@ var_cms <- sd(cluster_mean_cms$cms_mean)
 Calculate DEG
 ```{r deg}
 x<-sce
-
 clust <- as.factor(colData(sce)[,celltype])
 # n_cells <- table(clust,colData(sce)[,sample])
 kids<-levels(clust)
