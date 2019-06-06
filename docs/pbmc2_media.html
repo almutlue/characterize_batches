@@ -341,8 +341,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -526,23 +524,21 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreea320089660625551196b5e52d90e62ac10997b5btargetblanka320089a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/a320089660625551196b5e52d90e62ac10997b5b" target="_blank">a320089</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree4bf1e354ff2d659270b08044fc6d82cc7ffcaf9etargetblank4bf1e35a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/4bf1e354ff2d659270b08044fc6d82cc7ffcaf9e" target="_blank">4bf1e35</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreea320089660625551196b5e52d90e62ac10997b5btargetblanka320089a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree4bf1e354ff2d659270b08044fc6d82cc7ffcaf9etargetblank4bf1e35a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
 
 Untracked files:
-    Untracked:  analysis/pbmc2_patient.Rmd
+    Untracked:  analysis/summarize_batch_characteristics.Rmd
     Untracked:  code/diagnostic_plots.R
     Untracked:  data/PBMC_media_merged_clusters_seurat.rds
     Untracked:  data/csf_media.rds
@@ -556,11 +552,13 @@ Untracked files:
     Untracked:  output/limma_csf_media_storage.rds
     Untracked:  output/limma_pbmc2_media_storage.rds
     Untracked:  output/limma_pbmc_media_storage.rds
+    Untracked:  output/pbmc_media_cms.rds
     Untracked:  output/pbmc_media_limma_results.RData
     Untracked:  output/pbmc_media_upset_data.RData
     Untracked:  output/summary_cellBench.rds
     Untracked:  output/summary_csf_media_storage.rds
     Untracked:  output/summary_pbmc2_media_storage.rds
+    Untracked:  output/summary_pbmc_media.rds
     Untracked:  output/summary_pbmc_media_storage.rds
     Untracked:  output/upset_cellBench.rds
     Untracked:  output/upset_csf_media_storage.rds
@@ -568,6 +566,7 @@ Untracked files:
     Untracked:  output/upset_pbmc_media_storage.rds
     Untracked:  output/vp_cellBench.rds
     Untracked:  output/vp_csf_media_storage.rds
+    Untracked:  output/vp_pbmc.rds
     Untracked:  output/vp_pbmc2_media_storage.rds
     Untracked:  output/vp_pbmc_media_storage.rds
 
@@ -608,6 +607,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/4bf1e354ff2d659270b08044fc6d82cc7ffcaf9e/analysis/pbmc2_media.Rmd" target="_blank">4bf1e35</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-06
+</td>
+<td>
+add DA test
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/88c29e1c2af306dc1b28464df75dc16e2a2fd02f/docs/pbmc2_media.html" target="_blank">88c29e1</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -720,7 +753,7 @@ names(colData(sce))[50]&lt;-&#39;cluster.merged&#39;
 cols &lt;-c(c(jcolors(&#39;pal6&#39;),jcolors(&#39;pal8&#39;))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors(&#39;pal4&#39;))
 names(cols) &lt;- c()
 #param
-MultiSample = FALSE
+MultiSample = TRUE
 
 #variables
 batch &lt;- &quot;media&quot;
@@ -868,69 +901,102 @@ zjanna
 <p>How much of the variance within data can be attributed to the batch effect?</p>
 <div id="variancepartitioning" class="section level2">
 <h2>VariancePartitioning</h2>
-<p>```r expr &lt;- as.matrix(assays(sce)$logcounts) meta_sub &lt;- as.data.frame(colData(sce)[, c(celltype, batch)]) form &lt;- as.formula(paste0(“~ (1|”, celltype, “) + (1|”, batch, “)”)) #varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub)</p>
-<p>#Sort variables (i.e. columns) by median fraction# of variance explained #vp &lt;- varPart #saveRDS(vp, paste0(out_path,“/vp_”, dataset_name, “.rds”)) vp &lt;- readRDS(paste0(out_path,“/vp_”, dataset_name, “.rds”))</p>
-<p>vp_names &lt;- rownames(vp) vp &lt;-vp %&gt;% dplyr::mutate(gene= vp_names) %&gt;% dplyr::arrange(-!! rlang::parse_expr(batch)) ```</p>
-<p><code>Warning in class(x) &lt;- c(subclass, tibble_class): Setting class(x) to   multiple strings (&quot;tbl_df&quot;, &quot;tbl&quot;, ...); result will no longer be an S4   object</code></p>
-<p>```r vp_sub &lt;- vp[1:3] %&gt;% set_rownames(vp$gene)</p>
-<p>#plot plotPercentBars( vp_sub[1:10,] ) ```</p>
+<pre class="r"><code>expr &lt;- as.matrix(assays(sce)$logcounts)
+meta_sub &lt;- as.data.frame(colData(sce)[, c(celltype, batch)])
+form &lt;- as.formula(paste0(&quot;~ (1|&quot;, celltype, &quot;) + (1|&quot;, batch, &quot;)&quot;))
+#varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub)
+
+#Sort variables (i.e. columns) by median fraction# of variance explained
+#vp &lt;- varPart
+#saveRDS(vp, paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
+vp &lt;- readRDS(paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
+
+vp_names &lt;- rownames(vp)
+vp &lt;-vp  %&gt;% dplyr::mutate(gene= vp_names) %&gt;% dplyr::arrange(-!! rlang::parse_expr(batch))</code></pre>
+<pre><code>Warning in class(x) &lt;- c(subclass, tibble_class): Setze class(x) auf
+mehrere Zeichenketten(&quot;tbl_df&quot;, &quot;tbl&quot;, ...); das Ergebnis ist kein S4
+Objekt mehr</code></pre>
+<pre class="r"><code>vp_sub &lt;- vp[1:3] %&gt;% set_rownames(vp$gene)
+
+#plot
+plotPercentBars( vp_sub[1:10,] )</code></pre>
 <p><img src="figure/pbmc2_media.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>&lt;p&gt;
-&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-xs btn-workflowr btn-workflowr-fig&quot;
-data-toggle=&quot;collapse&quot; data-target=&quot;#fig-variance part-1&quot;&gt;
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-1">
 Past versions of variance part-1.png
-&lt;/button&gt;
-&lt;/p&gt;
-
-&lt;div id=&quot;fig-variance part-1&quot; class=&quot;collapse&quot;&gt;
-&lt;div class=&quot;table-responsive&quot;&gt;
-&lt;table class=&quot;table table-condensed table-hover&quot;&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Version&lt;/th&gt;
-&lt;th&gt;Author&lt;/th&gt;
-&lt;th&gt;Date&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&quot;https://github.com/almutlue/characterize_batches/blob/bef8ee1a0ab45ba0032f25f9634ae6410d6184ab/docs/figure/pbmc2_media.Rmd/variance part-1.png&quot; target=&quot;_blank&quot;&gt;bef8ee1&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;zjanna&lt;/td&gt;
-&lt;td&gt;2019-06-05&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<p><code>r   plotVarPart( vp_sub )</code></p>
+</button>
+</p>
+<div id="fig-variance part-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/bef8ee1a0ab45ba0032f25f9634ae6410d6184ab/docs/figure/pbmc2_media.Rmd/variance part-1.png" target="_blank">bef8ee1</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plotVarPart( vp_sub )</code></pre>
 <p><img src="figure/pbmc2_media.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>&lt;p&gt;
-&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-xs btn-workflowr btn-workflowr-fig&quot;
-data-toggle=&quot;collapse&quot; data-target=&quot;#fig-variance part-2&quot;&gt;
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-2">
 Past versions of variance part-2.png
-&lt;/button&gt;
-&lt;/p&gt;
-
-&lt;div id=&quot;fig-variance part-2&quot; class=&quot;collapse&quot;&gt;
-&lt;div class=&quot;table-responsive&quot;&gt;
-&lt;table class=&quot;table table-condensed table-hover&quot;&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Version&lt;/th&gt;
-&lt;th&gt;Author&lt;/th&gt;
-&lt;th&gt;Date&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&quot;https://github.com/almutlue/characterize_batches/blob/bef8ee1a0ab45ba0032f25f9634ae6410d6184ab/docs/figure/pbmc2_media.Rmd/variance part-2.png&quot; target=&quot;_blank&quot;&gt;bef8ee1&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;zjanna&lt;/td&gt;
-&lt;td&gt;2019-06-05&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+</button>
+</p>
+<div id="fig-variance part-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/bef8ee1a0ab45ba0032f25f9634ae6410d6184ab/docs/figure/pbmc2_media.Rmd/variance part-2.png" target="_blank">bef8ee1</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Summarize variance partitioning</p>
 <pre class="r"><code>#How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene &lt;- as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.01) %&gt;% nrow()
@@ -1006,22 +1072,23 @@ zjanna
 <p>Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)</p>
 <pre class="r"><code>if(MultiSample){
   #colData
-  
-  col_dat &lt;-  data.frame(&quot;sample_id&quot; = levels(colData(sce)[,sample]), &quot;group_id&quot; = levels(colData(sce)[,batch])) %&gt;% set_rownames(levels(colData(sce)[,sample]))
-  
+  col_tib &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(sample, batch)) %&gt;% summarize()
+  col_dat &lt;- data.frame(&quot;sample_id&quot; = col_tib[,sample], &quot;group_id&quot; = col_tib[,batch]) %&gt;%
+    set_rownames(levels(as.factor(colData(sce)[,sample])))
   
   #create desing matrix
-  design_ &lt;- createDesignMatrix(
-    col_dat, cols_design = c(&quot;group_id&quot;)
+  design &lt;- createDesignMatrix(
+    col_dat, cols_design = c(batch)
   )
   
-  #create contrast
-  contrast &lt;- createContrast(c(0, 1))
+ #create contrast
+  n_contrast &lt;- length(levels(as.factor(colData(sce)[,batch])))
+  contrast &lt;- diag(n_contrast)
   
   #create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
-  cluster_counts &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(sample, batch)) %&gt;% summarize(n=n()) %&gt;%  spread(sample_id, n)
+  cluster_counts &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(sample, celltype)) %&gt;% summarize(n=n()) %&gt;%  spread_(sample, &quot;n&quot;)
   cluster_count &lt;- as.matrix(cluster_counts[,-1])
-  rownames(cluster_count) &lt;- cluster_counts[, celltype]
+  rownames(cluster_count) &lt;- unlist(cluster_counts[, celltype])
   
   #rowData
   row_dat &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(celltype) %&gt;% summarize(n=n()) %&gt;% set_colnames(c(&quot;cluster_id&quot;, &quot;n_cells&quot;))
@@ -1032,10 +1099,10 @@ zjanna
   
   
   #differential abundance
-  res_DA &lt;- testDA_edgeR(se, design_, contrast)
+  res_DA &lt;- testDA_edgeR(se, design, contrast)
   
   #summarize - number of differential abundance cluster
-  n_da_cluster &lt;- length(which(rowData(res_DA)$p_adj &lt; 0.1))
+  n_da_cluster &lt;- length(which(rowData(res_DA)$p_adj &lt; 0.01))
   
 }else{
   n_da_cluster &lt;- NA
@@ -1045,39 +1112,69 @@ zjanna
 <div id="count-distribution" class="section level1">
 <h1>Count distribution</h1>
 <p>Do the overall counts distribution vary between batches? Clusterwise ploting?</p>
-<p>```r #sample an cluster ids sids &lt;- levels(as.factor(colData(sce)[, batch])) names(sids) &lt;- sids cids &lt;- levels(as.factor(colData(sce)[, celltype])) names(cids) &lt;- cids</p>
-<p>#mean gene expression by sample and cluster mean_list &lt;- lapply(sids, function(batch_var){ mean_cluster &lt;- lapply(cids, function(cluster_var){ counts_sc &lt;- as.matrix(logcounts( sce[, colData(sce)[, batch] %in% batch_var &amp; colData(sce)[, celltype] %in% cluster_var])) }) mean_c &lt;- mean_cluster %&gt;% map(rowMeans) %&gt;% bind_rows %&gt;% dplyr::mutate(gene=rownames(sce)) %&gt;% gather(cluster, logcounts, levels(as.factor(colData(sce)[,celltype]))) })</p>
-<p>mean_expr &lt;- mean_list %&gt;% bind_rows(.id= “sample”)</p>
-<p>ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) + theme_classic() + facet_wrap( ~ cluster, ncol = 3) + scale_colour_manual(values = cols[c(1:3,7)]) + scale_x_continuous(limits = c(0, 7)) ```</p>
-<p><img src="figure/pbmc2_media.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>&lt;p&gt;
-&lt;button type=&quot;button&quot; class=&quot;btn btn-default btn-xs btn-workflowr btn-workflowr-fig&quot;
-data-toggle=&quot;collapse&quot; data-target=&quot;#fig-count distributions-1&quot;&gt;
-Past versions of count distributions-1.png
-&lt;/button&gt;
-&lt;/p&gt;
+<pre class="r"><code>#sample an cluster ids
+sids &lt;- levels(as.factor(colData(sce)[, batch]))
+names(sids) &lt;- sids
+cids &lt;- levels(as.factor(colData(sce)[, celltype]))
+names(cids) &lt;- cids
 
-&lt;div id=&quot;fig-count distributions-1&quot; class=&quot;collapse&quot;&gt;
-&lt;div class=&quot;table-responsive&quot;&gt;
-&lt;table class=&quot;table table-condensed table-hover&quot;&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Version&lt;/th&gt;
-&lt;th&gt;Author&lt;/th&gt;
-&lt;th&gt;Date&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&quot;https://github.com/almutlue/characterize_batches/blob/bef8ee1a0ab45ba0032f25f9634ae6410d6184ab/docs/figure/pbmc2_media.Rmd/count distributions-1.png&quot; target=&quot;_blank&quot;&gt;bef8ee1&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;zjanna&lt;/td&gt;
-&lt;td&gt;2019-06-05&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-<p><code>r   #number of cluster with differnt batch distributions   per_dist &lt;- 1</code></p>
+#mean gene expression by sample and cluster
+mean_list &lt;- lapply(sids, function(batch_var){
+  mean_cluster &lt;- lapply(cids, function(cluster_var){
+    counts_sc &lt;- as.matrix(logcounts(
+      sce[, colData(sce)[, batch] %in% batch_var &amp; colData(sce)[, celltype] %in% cluster_var]))
+  })
+  mean_c &lt;- mean_cluster %&gt;% map(rowMeans) %&gt;% bind_rows %&gt;%
+    dplyr::mutate(gene=rownames(sce)) %&gt;% gather(cluster, logcounts, levels(as.factor(colData(sce)[,celltype])))
+})
+
+mean_expr &lt;- mean_list %&gt;% bind_rows(.id= &quot;sample&quot;)
+
+ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
+  theme_classic() +
+  facet_wrap( ~ cluster, ncol = 3) +
+  scale_colour_manual(values = cols[c(1:3,7)]) +
+  scale_x_continuous(limits =  c(0, 7))</code></pre>
+<p><img src="figure/pbmc2_media.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-count distributions-1">
+Past versions of count distributions-1.png
+</button>
+</p>
+<div id="fig-count distributions-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/bef8ee1a0ab45ba0032f25f9634ae6410d6184ab/docs/figure/pbmc2_media.Rmd/count distributions-1.png" target="_blank">bef8ee1</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-05
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>#number of cluster with differnt batch distributions
+per_dist &lt;- 1</code></pre>
 <p>Mean expression batch vs each other</p>
 <pre class="r"><code>#mean expression
 mean_expr &lt;- mean_list %&gt;% bind_rows(.id = &quot;sample&quot; ) %&gt;% spread(sample, logcounts)
@@ -1341,7 +1438,8 @@ zjanna
 <div id="cellspecific-mixing-score" class="section level1">
 <h1>Cellspecific mixing score</h1>
 <p>Calculate cms</p>
-<pre class="r"><code># sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
+<pre class="r"><code>#sce &lt;- cms(sce, group = batch, k = 300, k_min = 180, cell_min = 20, n_dim = 10)
+#sce &lt;- runUMAP(sce)
 #saveRDS(sce, paste0(out_path, &quot;/cms_&quot;, dataset_name, &quot;.rds&quot;))
 sce &lt;- readRDS(paste0(out_path, &quot;/cms_&quot;, dataset_name, &quot;.rds&quot;))
 
@@ -1384,7 +1482,7 @@ zjanna
 </table>
 </div>
 </div>
-<pre class="r"><code>visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;tsne&quot;)</code></pre>
+<pre class="r"><code>visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
 <p><img src="figure/pbmc2_media.Rmd/cms-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cms-2">
@@ -1423,6 +1521,8 @@ zjanna
 </table>
 </div>
 </div>
+<pre class="r"><code>visGroup(sce, batch , dim_red = &quot;UMAP&quot;)</code></pre>
+<p><img src="figure/pbmc2_media.Rmd/cms-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#summarize
 mean_cms &lt;- mean(sce$cms)
 n_cms_0.01 &lt;- length(which(sce$cms &lt; 0.01))
@@ -1650,9 +1750,9 @@ zjanna
 <h1>Histograms of p-values</h1>
 <pre class="r"><code>source(paste0(code_path, &quot;/diagnostic_plots.R&quot;))
 histogram.gg(res)</code></pre>
-<pre><code>Loading required package: reshape2</code></pre>
+<pre><code>Lade nötiges Paket: reshape2</code></pre>
 <pre><code>
-Attaching package: &#39;reshape2&#39;</code></pre>
+Attache Paket: &#39;reshape2&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:tidyr&#39;:
 
     smiths</code></pre>
@@ -1828,38 +1928,43 @@ saveRDS(summary, paste0(out_path, &quot;/summary_&quot;, dataset_name, &quot;.rd
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.6.0 (2019-04-26)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Sierra 10.12.6
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.2 LTS
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+ [1] LC_CTYPE=de_DE.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=de_DE.UTF-8        LC_COLLATE=de_DE.UTF-8    
+ [5] LC_MONETARY=de_DE.UTF-8    LC_MESSAGES=de_DE.UTF-8   
+ [7] LC_PAPER=de_DE.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
  [1] grid      parallel  stats4    stats     graphics  grDevices utils    
  [8] datasets  methods   base     
 
 other attached packages:
- [1] reshape2_1.4.3              ComplexHeatmap_2.0.0       
+ [1] reshape2_1.4.3              ComplexHeatmap_2.1.0       
  [3] diffcyt_1.4.3               variancePartition_1.14.0   
  [5] scales_1.0.0                foreach_1.4.4              
- [7] limma_3.39.14               stringr_1.4.0              
+ [7] limma_3.40.2                stringr_1.4.0              
  [9] dplyr_0.8.1                 tidyr_0.8.3                
 [11] here_0.1                    purrr_0.3.2                
-[13] gridExtra_2.3               CellMixS_1.0.0             
-[15] kSamples_1.2-8              SuppDists_1.1-9.4          
-[17] jcolors_0.0.4               scater_1.11.13             
+[13] gridExtra_2.3               CellMixS_1.1.0             
+[15] kSamples_1.2-9              SuppDists_1.1-9.4          
+[17] jcolors_0.0.4               scater_1.12.2              
 [19] ggplot2_3.1.1               CellBench_1.0.0            
-[21] tibble_2.1.1                magrittr_1.5               
-[23] SingleCellExperiment_1.5.2  SummarizedExperiment_1.13.0
-[25] DelayedArray_0.9.9          BiocParallel_1.17.18       
-[27] matrixStats_0.54.0          Biobase_2.43.1             
-[29] GenomicRanges_1.35.1        GenomeInfoDb_1.19.2        
-[31] IRanges_2.17.4              S4Vectors_0.21.21          
-[33] BiocGenerics_0.29.2        
+[21] tibble_2.1.2                magrittr_1.5               
+[23] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
+[25] DelayedArray_0.10.0         BiocParallel_1.18.0        
+[27] matrixStats_0.54.0          Biobase_2.44.0             
+[29] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
+[31] IRanges_2.18.0              S4Vectors_0.22.0           
+[33] BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
   [1] backports_1.1.4             circlize_0.4.6             
@@ -1870,20 +1975,20 @@ loaded via a namespace (and not attached):
  [11] TH.data_1.0-10              digest_0.6.19              
  [13] htmltools_0.3.6             viridis_0.5.1              
  [15] gdata_2.18.0                memoise_1.1.0              
- [17] cluster_2.0.8               doParallel_1.0.14          
+ [17] cluster_2.0.9               doParallel_1.0.14          
  [19] sandwich_2.5-1              prettyunits_1.0.2          
  [21] colorspace_1.4-1            blob_1.1.1                 
  [23] rappdirs_0.3.1              rrcov_1.4-7                
  [25] xfun_0.7                    crayon_1.3.4               
  [27] RCurl_1.95-4.12             graph_1.62.0               
  [29] lme4_1.1-21                 survival_2.44-1.1          
- [31] zoo_1.8-5                   iterators_1.0.10           
+ [31] zoo_1.8-6                   iterators_1.0.10           
  [33] glue_1.3.1                  gtable_0.3.0               
- [35] zlibbioc_1.29.0             XVector_0.23.2             
+ [35] zlibbioc_1.30.0             XVector_0.24.0             
  [37] listarrays_0.2.0            GetoptLong_0.1.7           
- [39] BiocSingular_0.99.14        shape_1.4.4                
+ [39] BiocSingular_1.0.0          shape_1.4.4                
  [41] DEoptimR_1.0-8              mvtnorm_1.0-10             
- [43] DBI_1.0.0                   edgeR_3.25.3               
+ [43] DBI_1.0.0                   edgeR_3.26.4               
  [45] Rcpp_1.0.1                  viridisLite_0.3.0          
  [47] progress_1.2.2              clue_0.3-57                
  [49] bit_1.1-14                  rsvd_1.0.0                 
@@ -1895,17 +2000,17 @@ loaded via a namespace (and not attached):
  [61] tidyselect_0.2.5            rlang_0.3.4                
  [63] munsell_0.5.0               tools_3.6.0                
  [65] RSQLite_2.1.1               ggridges_0.5.1             
- [67] evaluate_0.13               yaml_2.2.0                 
+ [67] evaluate_0.14               yaml_2.2.0                 
  [69] knitr_1.23                  bit64_0.9-7                
- [71] fs_1.3.0                    robustbase_0.93-4          
- [73] caTools_1.17.1.2            nlme_3.1-139               
+ [71] fs_1.3.1                    robustbase_0.93-5          
+ [73] caTools_1.17.1.2            nlme_3.1-140               
  [75] whisker_0.3-2               compiler_3.6.0             
  [77] pbkrtest_0.4-7              beeswarm_0.2.3             
  [79] curl_3.3                    png_0.1-7                  
  [81] pcaPP_1.9-73                stringi_1.4.3              
  [83] lattice_0.20-38             Matrix_1.2-17              
- [85] nloptr_1.2.1                pillar_1.4.0               
- [87] GlobalOptions_0.1.0         BiocNeighbors_1.1.12       
+ [85] nloptr_1.2.1                pillar_1.4.1               
+ [87] GlobalOptions_0.1.0         BiocNeighbors_1.2.0        
  [89] cowplot_0.9.4               bitops_1.0-6               
  [91] irlba_2.3.3                 corpcor_1.6.9              
  [93] colorRamps_2.3              R6_2.4.0                   
@@ -1914,9 +2019,9 @@ loaded via a namespace (and not attached):
  [99] MASS_7.3-51.4               gtools_3.8.1               
 [101] assertthat_0.2.1            rprojroot_1.3-2            
 [103] rjson_0.2.20                withr_2.1.2                
-[105] multcomp_1.4-10             GenomeInfoDbData_1.2.0     
+[105] multcomp_1.4-10             GenomeInfoDbData_1.2.1     
 [107] hms_0.4.2                   minqa_1.2.4                
-[109] rmarkdown_1.12              DelayedMatrixStats_1.5.2   
+[109] rmarkdown_1.13              DelayedMatrixStats_1.6.0   
 [111] git2r_0.25.2                lubridate_1.7.4            
 [113] ggbeeswarm_0.6.0           </code></pre>
 </div>
