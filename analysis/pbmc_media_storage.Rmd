@@ -190,7 +190,7 @@ if(MultiSample){
 # Count distribution
 Do the overall counts distribution vary between batches? Clusterwise ploting?
   
-  ```{r count distributions, fig.width = 7, fig.height = 6}
+```{r count distributions, fig.width = 7, fig.height = 6}
 #sample an cluster ids
 sids <- levels(as.factor(colData(sce)[, batch]))
 names(sids) <- sids
