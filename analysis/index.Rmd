@@ -14,12 +14,10 @@ A systematic analysis of different kinds of unwanted varaition in single cell RN
 
 ## Datasets
 
-+ [cellranger_versions](cellranger_data.html)
-
 ## Batch effects
 
-+ [media_storage](pbmc_media_storage.html) 
-+ [media_storage](csf_media.html)
-+ [media_storage](pbmc2_media.html)
++ [media_storage_pbmc](pbmc_media_storage.html) 
++ [media_storage_csf](csf_media.html)
++ [media_storage_pbmc_pat](pbmc2_media.html)
 + [cell_bench](cellbench_seq_protocols.html)
-+ [cellranger_versions](cellranger_versions.html)
+

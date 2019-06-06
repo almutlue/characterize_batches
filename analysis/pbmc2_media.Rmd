@@ -56,7 +56,7 @@ names(colData(sce))[50]<-'cluster.merged'
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
 names(cols) <- c()
 #param
-MultiSample = FALSE
+MultiSample = TRUE
 
 #variables
 batch <- "media"
@@ -89,7 +89,7 @@ lapply(feature_list, function(feature_name){
 How much of the variance within data can be attributed to the batch effect?
   
 ## VariancePartitioning
-  ```{r variance part}
+```{r variance part}
 expr <- as.matrix(assays(sce)$logcounts)
 meta_sub <- as.data.frame(colData(sce)[, c(celltype, batch)])
 form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ")"))
@@ -155,22 +155,23 @@ Test for significant changes in celltype abundances. Diffcyt (skip for datasets 
 ```{r sum}
 if(MultiSample){
   #colData
-  
-  col_dat <-  data.frame("sample_id" = levels(colData(sce)[,sample]), "group_id" = levels(colData(sce)[,batch])) %>% set_rownames(levels(colData(sce)[,sample]))
-  
+  col_tib <- as_tibble(colData(sce)) %>% group_by_at(c(sample, batch)) %>% summarize()
+  col_dat <- data.frame("sample_id" = col_tib[,sample], "group_id" = col_tib[,batch]) %>%
+    set_rownames(levels(as.factor(colData(sce)[,sample])))
   
   #create desing matrix
-  design_ <- createDesignMatrix(
-    col_dat, cols_design = c("group_id")
+  design <- createDesignMatrix(
+    col_dat, cols_design = c(batch)
   )
   
-  #create contrast
-  contrast <- createContrast(c(0, 1))
+ #create contrast
+  n_contrast <- length(levels(as.factor(colData(sce)[,batch])))
+  contrast <- diag(n_contrast)
   
   #create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
-  cluster_counts <- as_tibble(colData(sce)) %>% group_by_at(c(sample, batch)) %>% summarize(n=n()) %>%  spread(sample_id, n)
+  cluster_counts <- as_tibble(colData(sce)) %>% group_by_at(c(sample, celltype)) %>% summarize(n=n()) %>%  spread_(sample, "n")
   cluster_count <- as.matrix(cluster_counts[,-1])
-  rownames(cluster_count) <- cluster_counts[, celltype]
+  rownames(cluster_count) <- unlist(cluster_counts[, celltype])
   
   #rowData
   row_dat <- as_tibble(colData(sce)) %>% group_by_at(celltype) %>% summarize(n=n()) %>% set_colnames(c("cluster_id", "n_cells"))
@@ -181,10 +182,10 @@ if(MultiSample){
   
   
   #differential abundance
-  res_DA <- testDA_edgeR(se, design_, contrast)
+  res_DA <- testDA_edgeR(se, design, contrast)
   
   #summarize - number of differential abundance cluster
-  n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.1))
+  n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.01))
   
 }else{
   n_da_cluster <- NA
@@ -195,7 +196,7 @@ if(MultiSample){
 # Count distribution
 Do the overall counts distribution vary between batches? Clusterwise ploting?
   
-  ```{r count distributions, fig.width = 7, fig.height = 6}
+```{r count distributions, fig.width = 7, fig.height = 6}
 #sample an cluster ids
 sids <- levels(as.factor(colData(sce)[, batch]))
 names(sids) <- sids
@@ -250,12 +251,14 @@ lapply(batch_all, function(batch_var){
 # Cellspecific mixing score
 Calculate cms
 ```{r cms}
-# sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
+#sce <- cms(sce, group = batch, k = 300, k_min = 180, cell_min = 20, n_dim = 10)
+#sce <- runUMAP(sce)
 #saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
 visHist(sce, n_col = 2)
-visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
+visGroup(sce, batch , dim_red = "UMAP")
 
 #summarize
 mean_cms <- mean(sce$cms)
