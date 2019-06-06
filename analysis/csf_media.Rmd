@@ -168,9 +168,10 @@ if(MultiSample){
   
   #summarize - number of differential abundance cluster
   n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.01))
+  per_da_cluster <- n_da_cluster/length(levels(as.factor(colData(sce)[,celltype])))
   
 }else{
-  n_da_cluster <- NA
+  per_da_cluster <- NA
 }
 
 
@@ -423,7 +424,7 @@ size <- data.frame("batch_genes_1per" = n_batch_gene,
 
 
 #Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
-celltype <- data.frame("DA_celltypes" = n_da_cluster,
+celltype <- data.frame("DA_celltypes" = per_da_cluster,
                        "per_count_dist" = per_dist,
                        "mean_cms" = mean_cms,
                        "celltype_var_cms" = var_cms,
