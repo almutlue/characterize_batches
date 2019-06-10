@@ -181,39 +181,42 @@ Test for significant changes in celltype abundances. Diffcyt (skip for datasets 
 ```{r sum}
 if(MultiSample){
   #colData
-
-  col_dat <-  data.frame("sample_id" = levels(colData(sce)[,sample]), "group_id" = levels(colData(sce)[,batch])) %>% set_rownames(levels(colData(sce)[,sample]))
-
-
+  col_tib <- as_tibble(colData(sce)) %>% group_by_at(c(sample, batch)) %>% summarize()
+  col_dat <- data.frame("sample_id" = col_tib[,sample], "group_id" = col_tib[,batch]) %>% set_rownames(levels(as.factor(colData(sce)[,sample])))
+  
+  
   #create desing matrix
-  design_ <- createDesignMatrix(
-    col_dat, cols_design = c("group_id")
+  design <- createDesignMatrix(
+    col_dat, cols_design = c(batch)
   )
-
+  
   #create contrast
-  contrast <- createContrast(c(0, 1))
-
+  n_contrast <- length(levels(as.factor(colData(sce)[,batch])))
+  contrast <- diag(n_contrast)
+  
   #create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
-  cluster_counts <- as_tibble(colData(sce)) %>% group_by_at(c(sample, batch)) %>% summarize(n=n()) %>%  spread(sample_id, n)
+  cluster_counts <- as_tibble(colData(sce)) %>% group_by_at(c(sample, celltype)) %>% summarize(n=n()) %>%  spread_(sample, "n")
   cluster_count <- as.matrix(cluster_counts[,-1])
-  rownames(cluster_count) <- cluster_counts[, celltype]
-
+  rownames(cluster_count) <- unlist(cluster_counts[, celltype])
+  
   #rowData
   row_dat <- as_tibble(colData(sce)) %>% group_by_at(celltype) %>% summarize(n=n()) %>% set_colnames(c("cluster_id", "n_cells"))
-
-
-
+  
+  
+  
   se <- SummarizedExperiment(list("counts" = cluster_count), rowData= as.data.frame(row_dat), colData= col_dat)
-
-
+  
+  
   #differential abundance
-  res_DA <- testDA_edgeR(se, design_, contrast)
-
+  res_DA <- testDA_edgeR(se, design, contrast)
+  
   #summarize - number of differential abundance cluster
-  n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.1))
-
+  n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.01))
+  per_da_cluster <- n_da_cluster/length(levels(as.factor(colData(sce)[,celltype])))
+  
 }else{
-  n_da_cluster <- NA
+  per_da_cluster <- NA
+  n_da_cluster<-0
 }
 
 ```
