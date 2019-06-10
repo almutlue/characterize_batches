@@ -1,22 +1,16 @@
 ---
-title: "pbmc2_media_storage"
-author: "almutlue"
-date: "2019-05-28"
+title: "csf_patient"
+author: "almulue"
+date: "2019-06-06"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 ---
-  
-# Different media conditions
-  
-Pbmc - media storage
 
-**PBMC dataset** that has been collected to test the influence of media storage
-on sequencing. It includes 11045 human PBMCs from the same sample, split into 3 batches. 
-All batches have been sequenced together and libraries have been prepared together, 
-but 2 batches have been stored in different media DMSO, MetOH and frozen before sequencing. 
-The last batch contains PBMCs from freshly collected blood. 
-Differences between these batches should all derive from media storage, so conditional sources.
+
+# Media batch effects
+**CSF data**, test batch effect from different media. The data has been collected to test the influence of media storage on sequencing. It includes 3395 human CSFs from three different samples, split into 2 batches (fresh and frozen). All batches have been sequenced together and libraries have been prepared together. Differences between these batches should all derive from media storage, so conditional sources.
+
 
 ```{r libs}
 suppressPackageStartupMessages({
@@ -43,44 +37,33 @@ suppressPackageStartupMessages({
 data_path <- here::here("data")
 out_path <- here::here("output")
 code_path <- here::here("code")
-dataset_name <- "pbmc2_media_storage"
-
-# sce <- readRDS(paste0(data_path, "/pbmc2_media.rds"))
-
+dataset_name <- "csf_patient"
+# loading the data
+# sce <- readRDS(paste0(data_path, "/csf_media.rds"))
 # sce <- runUMAP(sce)
-# sce <- saveRDS(paste0(data_path, "/pbmc2_media.rds"))
-
-sce <- readRDS(paste0(data_path, "/pbmc2_media.rds"))
-
-names(colData(sce))[50]<-'cluster.merged'
+sce <- readRDS(paste0(data_path, "/csf_media.rds"))
+sce$patient <- ifelse(grepl("E2490", sce$Sample), "pat1", ifelse(grepl("E2528", sce$Sample),"pat2","pat3"))
+names(colData(sce))[48]<-'cluster.merged'
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
 names(cols) <- c()
 #param
-MultiSample = TRUE
+MultiSample = FALSE
 
 #variables
-batch <- "media"
+batch <- "patient"
 celltype <- "cluster.merged"
 sample <- "Sample"
-table(colData(sce)[,sample])
-# group<-as.factor(colData(sce)[,batch])
-# contrast
-cont <- list("DMSO-fresh" = c(1,-1,0),
-             "MetOH-Fresh" = c(0,-1,1),
-             "DMSO-MetOH" = c(1,0,-1))
-
+table(colData(sce)[,batch])
+#contrast
+cont <- list("pat2-pat3" = c(0,-1,1))
 ```
-
-
-
-
 
 # Visualize batch effect
 ```{r vis batch}
-feature_list <-  c(batch, celltype, sample)
+feature_list <- c(batch, celltype, sample)
 
 lapply(feature_list, function(feature_name){
-  visGroup(sce, feature_name, dim_red= "tsne")
+  visGroup(sce, feature_name, dim_red= "UMAP")
 })
 ```
 
@@ -169,7 +152,6 @@ min_rel_abund_diff<-min(unlist(res))
 max_rel_abund_diff<-max(unlist(res))
 ```
 
-
 Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)
 ```{r sum}
 if(MultiSample){
@@ -209,7 +191,9 @@ if(MultiSample){
   
 }else{
   per_da_cluster <- NA
+  n_da_cluster <-0
 }
+
 
 ```
 
@@ -242,7 +226,7 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   scale_x_continuous(limits =  c(0, 7))
 
 #number of cluster with differnt batch distributions
-per_dist <- 1
+per_dist <- 7
 ```
 
 
@@ -276,7 +260,7 @@ Calculate cms
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
 visHist(sce, n_col = 2)
-visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
 
 #summarize
 mean_cms <- mean(sce$cms)
@@ -290,7 +274,7 @@ var_cms <- sd(cluster_mean_cms$cms_mean)
 # DE analysis
 Calculate DEG
 ```{r deg}
-
+x<-sce
 clust <- as.factor(colData(sce)[,celltype])
 # n_cells <- table(clust,colData(sce)[,sample])
 kids<-levels(clust)
@@ -359,7 +343,7 @@ doDE <- function(x,lfc_cutoff=log2(1.1)){
 
 res<-readRDS(paste0(out_path, "/limma_", dataset_name, ".rds"))
 # count nb. of DE genes by cluster
-# vapply(res[[1]][[2]], function(x) sum(x$adj.P.Val < 0.05), numeric(1))
+# vapply(res[[1]][[1]], function(x) sum(x$adj.P.Val < 0.05), numeric(1))
 
 FilterDEGs<-function (degDF=df, filter=c(FDR=5))
 {
@@ -488,3 +472,4 @@ summary <- cbind(size, celltype, gene) %>% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))
 
 ```
+

@@ -1,22 +1,19 @@
 ---
-title: "pbmc2_media_storage"
+title: "pbmc2_patient"
 author: "almutlue"
-date: "2019-05-28"
+date: "2019-06-06"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
 ---
+
+# Different patients conditions
   
-# Different media conditions
-  
-Pbmc - media storage
+Pbmc - patients storage
 
 **PBMC dataset** that has been collected to test the influence of media storage
-on sequencing. It includes 11045 human PBMCs from the same sample, split into 3 batches. 
-All batches have been sequenced together and libraries have been prepared together, 
-but 2 batches have been stored in different media DMSO, MetOH and frozen before sequencing. 
-The last batch contains PBMCs from freshly collected blood. 
-Differences between these batches should all derive from media storage, so conditional sources.
+on sequencing. It includes 28296 human PBMCs from the same sample, split into 2 patients. Material from each patient have been stored in different media DMSO, MetOH and frozen before sequencing and the last batch contains PBMCs from freshly collected blood. 
+
 
 ```{r libs}
 suppressPackageStartupMessages({
@@ -37,13 +34,12 @@ suppressPackageStartupMessages({
 })
 ```
 
-
 ```{r data}
 # data 
 data_path <- here::here("data")
 out_path <- here::here("output")
 code_path <- here::here("code")
-dataset_name <- "pbmc2_media_storage"
+dataset_name <- "pbmc2_patient"
 
 # sce <- readRDS(paste0(data_path, "/pbmc2_media.rds"))
 
@@ -59,15 +55,13 @@ names(cols) <- c()
 MultiSample = TRUE
 
 #variables
-batch <- "media"
+batch <- "patient"
 celltype <- "cluster.merged"
 sample <- "Sample"
 table(colData(sce)[,sample])
 # group<-as.factor(colData(sce)[,batch])
 # contrast
-cont <- list("DMSO-fresh" = c(1,-1,0),
-             "MetOH-Fresh" = c(0,-1,1),
-             "DMSO-MetOH" = c(1,0,-1))
+cont <- list("pat1-pat2" = c(1,-1))
 
 ```
 
@@ -168,7 +162,6 @@ mean_rel_abund_diff<-mean(unlist(res))
 min_rel_abund_diff<-min(unlist(res))
 max_rel_abund_diff<-max(unlist(res))
 ```
-
 
 Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)
 ```{r sum}
