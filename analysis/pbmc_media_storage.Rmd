@@ -41,6 +41,9 @@ code_path <- here::here("code")
 dataset_name <- "pbmc_media_storage"
 # raw data 
 #For preprocessing and quality control please check: /code/pbmc_media.rmd
+# sce <- readRDS(paste0(data_path, "/pbmc_media.rds"))
+# sce <- runUMAP(sce)
+# saveRDS(sce,file=paste0(data_path, "/pbmc_media.rds"))
 sce <- readRDS(paste0(data_path, "/pbmc_media.rds"))
 colData(sce)[,'sample_type'] <- gsub("PBMCs frozen in ","",
                                      colData(sce)[,'sample_type'])
@@ -48,7 +51,6 @@ colData(sce)[,'sample_type'] <- gsub(" 7 ?days","",
                                      colData(sce)[,'sample_type'])
 colData(sce)[,'sample_type'] <- gsub(" PBMCs","",
                                      colData(sce)[,'sample_type'])
-sce <- runUMAP(sce)
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
 names(cols) <- c()
 #param
@@ -145,27 +147,46 @@ plot_abundance <- function(cluster_var, tib, x_var){
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)
 ```
+## Celltype abundance - relative difference in abundances
+
+```{r celltype relative diffrenece in abundance}
+meta_tib <- as_tibble(colData(sce)) %>% group_by_at(c(batch, celltype)) %>% 
+  summarize(n = n()) %>% spread_(batch,"n")
+meta_df <- as.data.frame(eval(meta_tib))[,-1]
+meta_comb<-combn(meta_df,2,simplify=FALSE)
+res<-lapply(meta_comb,function(x){
+  cond1<-names(x)[1]
+  cond2<-names(x)[2]
+  rel_abund_diff<-mapply(function(cond1,cond2) abs(cond1-cond2)/(cond1+cond2), x[,cond1], x[,cond2])
+  rel_abund_diff
+  })
+
+mean_rel_abund_diff<-mean(unlist(res))
+min_rel_abund_diff<-min(unlist(res))
+max_rel_abund_diff<-max(unlist(res))
+```
 
 Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)
 ```{r sum}
 if(MultiSample){
   #colData
-  
-  col_dat <-  data.frame("sample_id" = levels(colData(sce)[,sample]), "group_id" = levels(colData(sce)[,batch])) %>% set_rownames(levels(colData(sce)[,sample]))
+  col_tib <- as_tibble(colData(sce)) %>% group_by_at(c(sample, batch)) %>% summarize()
+  col_dat <- data.frame("sample_id" = col_tib[,sample], "group_id" = col_tib[,batch]) %>% set_rownames(levels(as.factor(colData(sce)[,sample])))
   
   
   #create desing matrix
-  design_ <- createDesignMatrix(
-    col_dat, cols_design = c("group_id")
+  design <- createDesignMatrix(
+    col_dat, cols_design = c(batch)
   )
   
   #create contrast
-  contrast <- createContrast(c(0, 1))
+  n_contrast <- length(levels(as.factor(colData(sce)[,batch])))
+  contrast <- diag(n_contrast)
   
   #create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
-  cluster_counts <- as_tibble(colData(sce)) %>% group_by_at(c(sample, batch)) %>% summarize(n=n()) %>%  spread(sample_id, n)
+  cluster_counts <- as_tibble(colData(sce)) %>% group_by_at(c(sample, celltype)) %>% summarize(n=n()) %>%  spread_(sample, "n")
   cluster_count <- as.matrix(cluster_counts[,-1])
-  rownames(cluster_count) <- cluster_counts[, celltype]
+  rownames(cluster_count) <- unlist(cluster_counts[, celltype])
   
   #rowData
   row_dat <- as_tibble(colData(sce)) %>% group_by_at(celltype) %>% summarize(n=n()) %>% set_colnames(c("cluster_id", "n_cells"))
@@ -176,13 +197,15 @@ if(MultiSample){
   
   
   #differential abundance
-  res_DA <- testDA_edgeR(se, design_, contrast)
+  res_DA <- testDA_edgeR(se, design, contrast)
   
   #summarize - number of differential abundance cluster
-  n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.1))
+  n_da_cluster <- length(which(rowData(res_DA)$p_adj < 0.01))
+  per_da_cluster <- n_da_cluster/length(levels(as.factor(colData(sce)[,celltype])))
   
 }else{
-  n_da_cluster <- NA
+  per_da_cluster <- NA
+  n_da_cluster<-0
 }
 
 ```
@@ -436,6 +459,9 @@ size <- data.frame("batch_genes_1per" = n_batch_gene,
 celltype <- data.frame("DA_celltypes" = n_da_cluster,
                        "per_count_dist" = per_dist,
                        "mean_cms" = mean_cms,
+                       'mean_rel_abund_diff' = mean_rel_abund_diff,
+                       'min_rel_abund_diff' = min_rel_abund_diff,
+                       'max_rel_abund_diff' = max_rel_abund_diff,
                        "celltype_var_cms" = var_cms,
                        "n_cells_cms_0.01" = n_cms_0.01)
 
