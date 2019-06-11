@@ -22,5 +22,5 @@ A systematic analysis of different kinds of unwanted varaition in single cell RN
 + [patient_storage_pbmc](pbmc2_patient.html) 
 + [patient_storage_csf](csf_patient.html)
 + [cell_bench](cellbench_seq_protocols.html)
-+ [cell_bench](pancreas.html)
++ [pancreas_protocols](pancreas.html)
 
