@@ -523,10 +523,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreec3d488c74f4eb19c706dbd68cafd3cbe03d2740etargetblankc3d488ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/c3d488c74f4eb19c706dbd68cafd3cbe03d2740e" target="_blank">c3d488c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef0d39ae4d49126881446d88e2842d192abb8c002targetblankf0d39aea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/f0d39ae4d49126881446d88e2842d192abb8c002" target="_blank">f0d39ae</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreec3d488c74f4eb19c706dbd68cafd3cbe03d2740etargetblankc3d488ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef0d39ae4d49126881446d88e2842d192abb8c002targetblankf0d39aea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -625,6 +625,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f0d39ae4d49126881446d88e2842d192abb8c002/analysis/summarize_batch_characteristics.Rmd" target="_blank">f0d39ae</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-11
+</td>
+<td>
+wflow_publish(“analysis/summarize_batch_characteristics.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/19d360be9a03ab4725365d460479d0ef61bc07ee/docs/summarize_batch_characteristics.html" target="_blank">19d360b</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c3d488c74f4eb19c706dbd68cafd3cbe03d2740e/analysis/summarize_batch_characteristics.Rmd" target="_blank">c3d488c</a>
 </td>
 <td>
@@ -708,7 +742,7 @@ summary_tab[is.na(summary_tab)] &lt;- 0</code></pre>
 <p>Complex heatmaps</p>
 <pre class="r"><code>######################### heatmap cms ###########################################
 #vars
-cms_vars &lt;- c(&quot;n_cells_cms_0.01&quot;)
+cms_vars &lt;- c(&quot;n_cells_total&quot;)
 
 #colors
 q4 &lt;- sequential_hcl(5, palette = &quot;YlOrRd&quot;)
@@ -738,7 +772,7 @@ mat_cms &lt;- t(as.matrix(summary_tab[cms_vars,]))
 rownames(mat_cms) &lt;- cms_vars
 
 h_cms2 &lt;- Heatmap(mat_cms, 
-                 name = &quot;genes&quot;, 
+                 name = &quot;cells&quot;, 
                  col = col_cms_cells, 
                  rect_gp = gpar(type = &quot;none&quot;), 
                  cell_fun = function(j, i, x, y, width, height, fill) {
@@ -944,7 +978,7 @@ h_list &lt;-  h_cms2 %v% h_cms %v% h_size1 %v% h_size2 %v% h_size %v% h_gene %v%
 #Add decorations describing the type of variable
 ### Size variables
 celltype_spec_variables &lt;- c(&quot;rel.abund.diff&quot;, &quot;Batch/Celltype&quot;)
-size_variables &lt;- c(&quot;cms&quot;, &quot;genes&quot;, &quot;Variance Part.&quot;, &quot;Genes&quot;)
+size_variables &lt;- c(&quot;cms&quot;, &quot;Variance Part.&quot;, &quot;Genes&quot;)
 gene_spec_variables &lt;- c(&quot;DE genes&quot;, &quot;Rel.cluster spec.&quot;)
 
 draw(h_list)
@@ -971,9 +1005,6 @@ lapply(celltype_spec_variables, function(vars){
 [1] 1
 
 [[3]]
-[1] 1
-
-[[4]]
 [1] 1</code></pre>
 <pre class="r"><code>lapply(gene_spec_variables, function(vars){
   decorate_row_names(vars, {
@@ -981,6 +1012,43 @@ lapply(celltype_spec_variables, function(vars){
   })
 })</code></pre>
 <p><img src="figure/summarize_batch_characteristics.Rmd/complex%20heatmap-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-complex heatmap-1">
+Past versions of complex heatmap-1.png
+</button>
+</p>
+<div id="fig-complex heatmap-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/19d360be9a03ab4725365d460479d0ef61bc07ee/docs/figure/summarize_batch_characteristics.Rmd/complex heatmap-1.png" target="_blank">19d360b</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-11
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>[[1]]
 [1] 1
 
