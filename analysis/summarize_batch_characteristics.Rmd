@@ -1,0 +1,329 @@
+---
+title: "summarize_batch_characteristics"
+author: "Almut Lütge"
+date: "4 Juni 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Summarise batch characteristics
+
+```{r libs}
+suppressPackageStartupMessages({
+    library(magrittr)
+    library(purrr)
+    library(dplyr)
+    library(ComplexHeatmap)
+    library(scales)
+    library(purrr)
+    library(circlize)
+    library(here)
+    library(viridis)
+    library(colorspace)
+    library(stringr)
+    library(variancePartition)
+    library(diffcyt)
+})
+```
+
+data
+```{r data}
+# data 
+out_path <- here::here("output")
+batch_names <- c("cellBench", "pancreas", "csf_media_storage", "pbmc_media_storage", "pbmc2_media_storage", "csf_patient", "pbmc2_patient")
+
+batch_names_short <- c("protocol", "protocol2", "storage", "media", "media2", "patient", "patient2")
+
+summary_list <- lapply(batch_names, function(name){
+  sum_tab <- readRDS(paste0(out_path, "/summary_", name, ".rds"))
+}) %>% set_names(batch_names_short)
+
+summary_tab <- summary_list %>% bind_rows()
+
+#scale summary tab
+colnames(summary_tab)
+scale_vars <- c("batch_genes_1per", "batch_genes_10per", "celltype_gene_1per",      "relative_batch_celltype")
+
+#summary_tab[, scale_vars] <- apply(summary_tab[, scale_vars], 
+#                                   MARGIN = 2, FUN = function(X) 
+#                                     (X - min(X))/diff(range(X)))
+
+summary_tab <- t(summary_tab)
+colnames(summary_tab) <- batch_names_short
+
+#replace NAs
+summary_tab[is.na(summary_tab)] <- 0
+
+```
+
+# Visualize results
+
+Complex heatmaps
+```{r complex heatmap}
+
+######################### heatmap cms ###########################################
+#vars
+cms_vars <- c("n_cells_cms_0.01")
+
+#colors
+q4 <- sequential_hcl(5, palette = "YlOrRd")
+q5 <- sequential_hcl(5, palette = "BlueYellow")
+q6 <- sequential_hcl(5, palette = "Reds")
+col_cms_mean = colorRamp2(c(0, 0.1, 0.2, 0.3, 0.5), q4)
+col_cms_cells = colorRamp2(c(10000, 5000, 3000, 2000, 1000), q6)
+
+ 
+#h1
+mean_cms <- t(as.matrix(summary_tab["mean_cms",]))
+rownames(mean_cms) <- "mean_cms"
+
+h_cms <- Heatmap(mean_cms, 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "cms",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_cms_mean,
+          rect_gp = gpar(col= "white"))
+
+mat_cms <- t(as.matrix(summary_tab[cms_vars,]))
+rownames(mat_cms) <- cms_vars
+
+h_cms2 <- Heatmap(mat_cms, 
+                 name = "genes", 
+                 col = col_cms_cells, 
+                 rect_gp = gpar(type = "none"), 
+                 cell_fun = function(j, i, x, y, width, height, fill) {
+                   grid.rect(x = x, y = y, width = width, height = height, 
+                             gp = gpar(col = "white", fill = NA))
+                   grid.circle(x = x, y = y, 
+                               r = abs(mat_cms[i, j])/5000 * min(unit.c(width, height)),
+                               gp = gpar(fill = col_cms_cells(mat_cms[i, j]), col = NA))}, 
+                   cluster_rows = FALSE, 
+                   cluster_columns = FALSE,
+                   show_heatmap_legend = FALSE,
+                   row_names_side = "left"
+                 )
+
+
+####################################################################################
+########################## Heatmap size #############################################
+#vars
+size_vars <- c("mean_var_batch", "mean_var_celltype", "median_var_batch", "median_var_celltype")
+abund_vars <- c("mean_rel_abund_diff", "max_rel_abund_diff", "min_rel_abund_diff")
+abund_vars <- c("mean_rel_abund_diff", "min_rel_abund_diff")
+
+#colors
+q1 <- sequential_hcl(5, palette = "Reds")
+col_size <- colorRamp2(c(0.2, 0.1, 0.03, 0.01, 0), q1)
+
+q9 <- sequential_hcl(5, palette = "Magenta")
+col_size2 <- colorRamp2(c(1.2, 0.9, 0.4, 0.1, 0), q9)
+
+q10 <- sequential_hcl(5, palette = "Green-Yellow")
+col_size1 <- colorRamp2(c(0.6, 0.5, 0.3, 0.1, 0), q10)
+
+#annotation
+ha_size <- HeatmapAnnotation("celltype_var_cms" = anno_points(summary_tab["celltype_var_cms",], 
+                                                         ylim = c(0, 0.08),
+                                                         axis = FALSE),
+                              annotation_name_side = "left",
+                              gp = gpar(col = "black"))
+
+#heatmap
+
+h_size1 <- Heatmap(summary_tab[abund_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "rel.abund.diff",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_size1,
+          top_annotation = ha_size,
+          rect_gp = gpar(col= "white"))
+
+h_size <- Heatmap(summary_tab[size_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "Variance Part.",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_size,
+          rect_gp = gpar(col= "white"))
+
+size_mat <- t(as.matrix(summary_tab["relative_batch_celltype",]))
+rownames(size_mat) <- "batch/celltype"
+
+h_size2 <- Heatmap(size_mat, 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "Batch/Celltype",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_size2,
+          rect_gp = gpar(col= "white"))
+
+####################################################################################
+################################ Heatmap genes #####################################
+
+# Batch affected genes
+gene_vars <- c("n_genes_total", "batch_genes_1per", "batch_genes_10per", "celltype_gene_1per")
+
+# Colors
+q2 <- sequential_hcl(5, palette = "Blues")
+col_gene <- colorRamp2(c(12000, 5000, 1000, 500, 0), q2)
+
+#heatmap
+h_gene <- Heatmap(summary_tab[gene_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "Genes",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_gene,
+          rect_gp = gpar(col= "white"))
+
+
+####################################################################################
+################################ DE genes #####################################
+
+# Batch affected genes
+de_vars <- c("mean_mean_n_de_genes", "max_mean_n_de_genes","min_mean_n_de_genes",
+             "mean_n_genes_lfc1", "min_n_genes_lfc1", "max_n_genes_lfc1", "mean_de_overlap",
+             "max_de_overlap", "min_de_overlap")
+
+de_vars <- c("mean_mean_n_de_genes", "mean_n_genes_lfc1",  "mean_de_overlap")
+
+de_vars2 <- c("mean_rel_cluster_spec", "min_rel_cluster_spec", "max_rel_cluster_spec")
+
+de_vars2 <- c("mean_rel_cluster_spec", "max_rel_cluster_spec")
+
+# Colors
+#col_de <- colorRamp2(c(0, 50, 200, 800, 2000, 9000), c("#F6EE5C", "#88DD7B", "#26BFA0", 
+ #                                           "#2D98AC", "#626D93", "#6F4562"))
+
+q3 <- sequential_hcl(5, palette = "BluYl")
+col_de <- colorRamp2(c(9000, 2000, 800, 50, 0), q3)
+
+q7 <- sequential_hcl(5, palette = "Mint")
+col_de2 <- colorRamp2(c(50, 10, 1, 0.5, 0), q7)
+
+#heatmap
+h_de <- Heatmap(summary_tab[de_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "DE genes",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_de,
+          rect_gp = gpar(col= "white"))
+
+de_mat <- summary_tab[de_vars2, ]
+de_mat[which(de_mat %in% "Inf")] <- NA
+
+h_de_2 <- Heatmap(de_mat, 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "Rel.cluster spec.",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_de2,
+          rect_gp = gpar(col= "white"),
+          na_col = "grey")
+
+####################################################################################
+######################### heatmap general data #######################################
+general_mat <- t(as.matrix(summary_tab["n_cells_total",]))
+rownames(general_mat) <- "n_cells_total"
+
+q11 <- sequential_hcl(5, palette = "Peach")
+col_general <- colorRamp2(c(30000, 10000, 5000, 3000, 1000), q11)
+
+h_general <- Heatmap(general_mat, 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "n_cells",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_general,
+          rect_gp = gpar(col= "white"))
+
+
+batch_type_mat <- t(as.matrix(c(rep("protocol", 2), "storage", rep("media", 2), rep("patient", 2))))
+rownames(batch_type_mat) <- "batch_type"
+colnames(batch_type_mat) <- colnames(summary_tab)
+
+q12 <- qualitative_hcl(4, palette = "Dark 3")
+col_general2 <- list("protocol" = q12[1], "storage" = q12[2], "media" = q12[3], "patient" = q12[4])
+
+h_general2 <- Heatmap(batch_type_mat, 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = "batch_type",
+          column_names_side = "bottom",
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = "left", 
+          col = col_general2,
+          rect_gp = gpar(col= "white"))
+
+
+####################################################################################
+h_list <-  h_cms2 %v% h_cms %v% h_size1 %v% h_size2 %v% h_size %v% h_gene %v% h_de %v% h_de_2 %v% h_general2
+
+#Add decorations describing the type of variable
+### Size variables
+celltype_spec_variables <- c("rel.abund.diff", "Batch/Celltype")
+size_variables <- c("cms", "genes", "Variance Part.", "Genes")
+gene_spec_variables <- c("DE genes", "Rel.cluster spec.")
+
+draw(h_list)
+
+lapply(celltype_spec_variables, function(vars){
+  decorate_row_names(vars, {
+    grid.rect(gp = gpar(fill = "#4DE38D", alpha = 0.2, col = "white"))
+  })
+})
+
+lapply(size_variables, function(vars){
+  decorate_row_names(vars, {
+    grid.rect(gp = gpar(fill = "#89A9EC", alpha = 0.2, col = "white"))
+  })
+})
+
+lapply(gene_spec_variables, function(vars){
+  decorate_row_names(vars, {
+    grid.rect(gp = gpar(fill = "#DE78AF", alpha = 0.2, col = "white"))
+  })
+})
+
+```
+
