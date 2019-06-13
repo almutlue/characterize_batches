@@ -444,7 +444,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-06-11
+<strong>Last updated:</strong> 2019-06-13
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -523,10 +523,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef0d39ae4d49126881446d88e2842d192abb8c002targetblankf0d39aea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/f0d39ae4d49126881446d88e2842d192abb8c002" target="_blank">f0d39ae</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree8db53748d02aae2b6039a4cda69c04ce2f93608ftargetblank8db5374a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/8db53748d02aae2b6039a4cda69c04ce2f93608f" target="_blank">8db5374</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef0d39ae4d49126881446d88e2842d192abb8c002targetblankf0d39aea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree8db53748d02aae2b6039a4cda69c04ce2f93608ftargetblank8db5374a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -540,6 +540,7 @@ Untracked files:
     Untracked:  code/diagnostic_plots.R
     Untracked:  data/PBMC_media_merged_clusters_seurat.rds
     Untracked:  data/csf_media.rds
+    Untracked:  data/pancreas.rds
     Untracked:  data/pbmc2_media.rds
     Untracked:  data/pbmc_media.rds
     Untracked:  output/cms_cellBench.rds
@@ -583,6 +584,9 @@ Untracked files:
     Untracked:  output/vp_pbmc2_patient.rds
     Untracked:  output/vp_pbmc_media_storage.rds
 
+Unstaged changes:
+    Modified:   analysis/pancreas.Rmd
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -620,6 +624,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/8db53748d02aae2b6039a4cda69c04ce2f93608f/analysis/summarize_batch_characteristics.Rmd" target="_blank">8db5374</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-13
+</td>
+<td>
+wflow_publish(c(“analysis/cellbench_seq_protocols.Rmd”, “analysis/csf_media.Rmd”,
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/9b69105ff7cd2b000facc312e4630011c405b6ea/docs/summarize_batch_characteristics.html" target="_blank">9b69105</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -724,10 +762,14 @@ colnames(summary_tab)</code></pre>
 [23] &quot;min_n_genes_lfc1&quot;        &quot;max_n_genes_lfc1&quot;       
 [25] &quot;mean_de_overlap&quot;         &quot;min_de_overlap&quot;         
 [27] &quot;max_de_overlap&quot;          &quot;mean_rel_cluster_spec&quot;  
-[29] &quot;min_rel_cluster_spec&quot;    &quot;max_rel_cluster_spec&quot;   </code></pre>
-<pre class="r"><code>scale_vars &lt;- c(&quot;batch_genes_1per&quot;, &quot;batch_genes_10per&quot;, &quot;celltype_gene_1per&quot;,      &quot;relative_batch_celltype&quot;)
-
-#summary_tab[, scale_vars] &lt;- apply(summary_tab[, scale_vars], 
+[29] &quot;min_rel_cluster_spec&quot;    &quot;max_rel_cluster_spec&quot;   
+[31] &quot;mean_p_be&quot;               &quot;max_p_be&quot;               
+[33] &quot;min_p_be&quot;                &quot;mean_lfc_be&quot;            
+[35] &quot;min_lfc_be&quot;              &quot;max_lfc_be&quot;             
+[37] &quot;mean_rel_be&quot;             &quot;min_rel_be&quot;             
+[39] &quot;max_rel_be&quot;              &quot;mean_p_ct&quot;              
+[41] &quot;min_p_ct&quot;                &quot;max_p_ct&quot;               </code></pre>
+<pre class="r"><code>#summary_tab[, scale_vars] &lt;- apply(summary_tab[, scale_vars], 
 #                                   MARGIN = 2, FUN = function(X) 
 #                                     (X - min(X))/diff(range(X)))
 
@@ -1036,6 +1078,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/9b69105ff7cd2b000facc312e4630011c405b6ea/docs/figure/summarize_batch_characteristics.Rmd/complex heatmap-1.png" target="_blank">9b69105</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-11
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/19d360be9a03ab4725365d460479d0ef61bc07ee/docs/figure/summarize_batch_characteristics.Rmd/complex heatmap-1.png" target="_blank">19d360b</a>
 </td>
 <td>
@@ -1054,6 +1107,147 @@ almutlue
 
 [[2]]
 [1] 1</code></pre>
+</div>
+<div id="simulation-parameter" class="section level1">
+<h1>Simulation parameter</h1>
+<pre class="r"><code>########################## Heatmap simulation parameterv#########################################
+#vars
+p_be_vars &lt;- c(&quot;mean_p_be&quot;, &quot;max_p_be&quot;, &quot;min_p_be&quot;)
+lfc_vars &lt;- c(&quot;mean_lfc_be&quot;, &quot;min_lfc_be&quot;, &quot;max_lfc_be&quot;)
+rel_be_vars &lt;- c(&quot;mean_rel_be&quot;, &quot;min_rel_be&quot;, &quot;max_rel_be&quot;)
+p_ct_vars &lt;- c(&quot;mean_p_ct&quot;, &quot;min_p_ct&quot;, &quot;max_p_ct&quot;)
+
+
+#colors
+q1 &lt;- sequential_hcl(5, palette = &quot;Reds&quot;)
+col_p_be &lt;- colorRamp2(c(0.6, 0.3, 0.1, 0.05, 0), q1)
+
+q9 &lt;- sequential_hcl(5, palette = &quot;Magenta&quot;)
+col_lfc &lt;- colorRamp2(c(6, 3, 1, 0.5, 0), q9)
+
+q10 &lt;- sequential_hcl(5, palette = &quot;Peach&quot;)
+col_rel &lt;- colorRamp2(c(1.6, 1.5, 1.4, 1.3, 1), q10)
+
+q11 &lt;- sequential_hcl(5, palette = &quot;BluYl&quot;)
+col_pct &lt;- colorRamp2(c(1, 0.99, 0.95, 0.8, 0.4), q11)
+
+
+
+#heatmap
+
+h_p_be &lt;- Heatmap(summary_tab[p_be_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = &quot;p_be&quot;,
+          column_names_side = &quot;bottom&quot;,
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = &quot;left&quot;, 
+          col = col_p_be,
+          rect_gp = gpar(col= &quot;white&quot;),
+          heatmap_legend_param = list(
+          legend_height = unit(1.5, &quot;cm&quot;)),
+          height = unit(1.8, &quot;cm&quot;))
+
+h_lfc &lt;- Heatmap(summary_tab[lfc_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = &quot;lfc_be&quot;,
+          column_names_side = &quot;bottom&quot;,
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = &quot;left&quot;, 
+          col = col_lfc,
+          rect_gp = gpar(col= &quot;white&quot;),
+          heatmap_legend_param = list(
+          legend_height = unit(1.5, &quot;cm&quot;)),
+          height = unit(1.8, &quot;cm&quot;))
+
+
+h_rel_be &lt;- Heatmap(summary_tab[rel_be_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = &quot;rel_be&quot;,
+          column_names_side = &quot;bottom&quot;,
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = &quot;left&quot;, 
+          col = col_rel,
+          rect_gp = gpar(col= &quot;white&quot;),
+          heatmap_legend_param = list(
+          legend_height = unit(1.5, &quot;cm&quot;)),
+          height = unit(1.8, &quot;cm&quot;))
+
+h_p_ct &lt;- Heatmap(summary_tab[p_ct_vars, ], 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = &quot;p_ct&quot;,
+          column_names_side = &quot;bottom&quot;,
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = &quot;left&quot;, 
+          col = col_pct,
+          rect_gp = gpar(col= &quot;white&quot;),
+          heatmap_legend_param = list(
+          legend_height = unit(1.5, &quot;cm&quot;)),
+          height = unit(1.8, &quot;cm&quot;)
+)
+
+h_general2 &lt;- Heatmap(batch_type_mat, 
+          cluster_rows = FALSE, 
+          cluster_columns = FALSE,
+          name = &quot;batch_type&quot;,
+          column_names_side = &quot;bottom&quot;,
+          column_names_rot = 0,
+          column_names_centered = TRUE,
+          column_names_gp = gpar(fontsize = 8),
+          row_names_side = &quot;left&quot;, 
+          col = col_general2,
+          rect_gp = gpar(col= &quot;white&quot;),
+          heatmap_legend_param = list(
+          legend_height = unit(1.5, &quot;cm&quot;)),
+          height = unit(0.6, &quot;cm&quot;))
+
+
+h_list2 &lt;-  h_p_be %v% h_lfc %v% h_rel_be %v% h_p_ct %v% h_general2
+
+draw(h_list2,
+     legend_title_gp = gpar(fontsize = 12),
+     legend_labels_gp = gpar(fontsize = 12),
+     heatmap_row_names_gp = gpar(fontsize = 16),
+      heatmap_column_names_gp = gpar(fontsize = 8), 
+     width = unit(9, &quot;cm&quot;),
+     adjust_annotation_extension = FALSE
+     )</code></pre>
+<pre><code>Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.
+
+Warning: `legend_height` you specified is too small, use the default
+minimal height.</code></pre>
+<p><img src="figure/summarize_batch_characteristics.Rmd/sim%20para-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>####################################################################################</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
