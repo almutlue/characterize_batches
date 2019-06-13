@@ -427,7 +427,69 @@ for(i in 1:dim(unique_genes)[2]){
 mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)
+
 ```
+
+# Simulation parameter
+```{r par}
+#percentage of batch affected genes
+cond <- gsub("-.*", "", names(n_de))
+cond <- c(cond, unique(gsub(".*-", "", names(n_de))))
+de_be <- n_de %>% bind_cols() %>% mutate("batch1" = rowMeans(.)) %>% set_colnames(cond) 
+n_cl <- rep(nrow(sce), ncol(de_be)) %>% set_names(colnames(de_be))
+  
+p_be <- de_be/n_cl
+mean_p_be <- mean(colMeans(p_be))
+min_p_be <- min(colMins(as.matrix(p_be)))
+max_p_be <- max(colMaxs(as.matrix(p_be)))
+
+#logFoldchange
+mean_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
+  de_genes <- which(x$adj.P.Val < 0.01)
+  mean_de <- mean(abs(x[de_genes, "logFC"]))}
+  , numeric(1))) %>% bind_cols()
+
+min_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
+  de_genes <- which(x$adj.P.Val < 0.01)
+  min_de <- min(abs(x[de_genes, "logFC"]))}
+  , numeric(1))) %>% bind_cols()
+
+max_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
+  de_genes <- which(x$adj.P.Val < 0.01)
+  max_de <- max(abs(x[de_genes, "logFC"]))}
+  , numeric(1))) %>% bind_cols()
+
+mean_lfc_be <- mean(colMeans(mean_lfc_cl, na.rm = TRUE))
+min_lfc_be <- min(colMins(as.matrix(min_lfc_cl), na.rm = TRUE))
+max_lfc_be <- max(colMaxs(as.matrix(max_lfc_cl), na.rm = TRUE))
+
+#rel_be
+var_lfc_cl <- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
+rel_be <- (var_lfc_cl + colMeans(mean_lfc_cl, na.rm = TRUE))/colMeans(mean_lfc_cl, na.rm = TRUE)
+mean_rel_be <- mean(rel_be)
+min_rel_be <- min(rel_be)
+max_rel_be <- max(rel_be)
+
+#p_ct
+n_de_unique <- lapply(result,function(x){
+  de_genes <- unlist(x) %>% unique() %>% length()
+}) %>% bind_cols()
+
+
+rel_spec2 <- NULL
+for(i in 1:length(de_overlap)){
+  rel_spec <- de_overlap[[i]]/n_de_unique[[i]]
+  rel_spec2 <- cbind(rel_spec2,rel_spec)
+}
+
+mean_p_ct <- 1 - mean(rel_spec2)
+max_p_ct <- 1 - min(rel_spec2)
+min_p_ct <- 1 - max(rel_spec2)
+
+
+```
+
+
 
 # Summarize results
 ```{r summary}
@@ -470,7 +532,20 @@ gene <- data.frame("mean_mean_n_de_genes" = mean_mean_n_de,
 )
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
-summary <- cbind(size, celltype, gene) %>% set_rownames(dataset_name)
+sim <- data.frame("mean_p_be" = mean_p_be,
+                   "max_p_be" = max_p_be,
+                   "min_p_be" = min_p_be,
+                   "mean_lfc_be" = mean_lfc_be,
+                   "min_lfc_be" = min_lfc_be,
+                   "max_lfc_be" = max_lfc_be,
+                   "mean_rel_be" = mean_rel_be,
+                   "min_rel_be" = min_rel_be,
+                   "max_rel_be" = max_rel_be,
+                   "mean_p_ct"= mean_p_ct,
+                   "min_p_ct"= min_p_ct,
+                   "max_p_ct"= max_p_ct)
+
+summary <- cbind(size, celltype, gene, sim) %>% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))
 
 ```
