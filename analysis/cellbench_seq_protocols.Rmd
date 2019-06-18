@@ -494,6 +494,7 @@ mean_lfc_be <- mean(colMeans(mean_lfc_cl, na.rm = TRUE))
 min_lfc_be <- min(colMins(as.matrix(min_lfc_cl), na.rm = TRUE))
 max_lfc_be <- max(colMaxs(as.matrix(max_lfc_cl), na.rm = TRUE))
 
+
 #rel_be
 var_lfc_cl <- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
 rel_be <- (var_lfc_cl + colMeans(mean_lfc_cl, na.rm = TRUE))/colMeans(mean_lfc_cl, na.rm = TRUE)
