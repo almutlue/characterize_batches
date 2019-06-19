@@ -41,7 +41,7 @@ dataset_name <- "csf_patient"
 # loading the data
 # sce <- readRDS(paste0(data_path, "/csf_media.rds"))
 sce <- readRDS(paste0(data_path, "/csf_media.rds"))
-sce <- runUMAP(sce)
+#sce <- runUMAP(sce)
 sce$patient <- ifelse(grepl("E2490", sce$Sample), "pat1", ifelse(grepl("E2528", sce$Sample),"pat2","pat3"))
 names(colData(sce))[48]<-'cluster.merged'
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
@@ -99,9 +99,9 @@ Summarize variance partitioning
 
 ```{r summarize}
 #How many genes have a variance component affected by the batch variable with more than 1%
-n_batch_gene <- as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow()
-n_batch_gene10 <- as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow()
-n_celltype_gene <- as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow()
+n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
+n_batch_gene10 <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow())/dim(sce)[1]
+n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[2]
 n_rel <- n_batch_gene/n_celltype_gene
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
@@ -267,7 +267,7 @@ mean_cms <- mean(sce$cms)
 n_cms_0.01 <- length(which(sce$cms < 0.01))
 cluster_mean_cms <- as_tibble(colData(sce)) %>% group_by_at(celltype) %>% summarize(cms_mean = mean(cms))
 
-var_cms <- sd(cluster_mean_cms$cms_mean)
+var_cms <- var(cluster_mean_cms$cms_mean)
 
 ```
 
@@ -385,13 +385,13 @@ baloonplot.gg(result)
 
 n_de<-lapply(res[[1]],function(y) vapply(y, function(x) sum(x$adj.P.Val < 0.05), numeric(1)))
 mean_n_de<-lapply(n_de,function(x) mean(x))
-mean_mean_n_de<-mean(unlist(mean_n_de))
-min_mean_n_de<-min(unlist(mean_n_de))
-max_mean_n_de<-max(unlist(mean_n_de))
+mean_mean_n_de<-mean(unlist(mean_n_de))/dim(sce)[1]
+min_mean_n_de<-min(unlist(mean_n_de))/dim(sce)[1]
+max_mean_n_de<-max(unlist(mean_n_de))/dim(sce)[1]
 n_genes_lfc1<-lapply(res[[1]],function(y) vapply(y, function(x) sum(abs(x$logFC) > 1), numeric(1)))
-mean_n_genes_lfc1<-mean(unlist(n_genes_lfc1))
-min_n_genes_lfc1<-min(unlist(n_genes_lfc1))
-max_n_genes_lfc1<-max(unlist(n_genes_lfc1))
+mean_n_genes_lfc1<-mean(unlist(n_genes_lfc1))/dim(sce)[1]
+min_n_genes_lfc1<-min(unlist(n_genes_lfc1))/dim(sce)[1]
+max_n_genes_lfc1<-max(unlist(n_genes_lfc1))/dim(sce)[1]
 
 
 de_overlap<-lapply(result,function(x){
@@ -401,9 +401,9 @@ de_overlap<-lapply(result,function(x){
   de_overlap<-length(Reduce(intersect, result2))
   de_overlap
 })
-mean_de_overlap<-mean(unlist(de_overlap))
-min_de_overlap<-min(unlist(de_overlap))
-max_de_overlap<-max(unlist(de_overlap))
+mean_de_overlap<-mean(unlist(de_overlap))/dim(sce)[1]
+min_de_overlap<-min(unlist(de_overlap))/dim(sce)[1]
+max_de_overlap<-max(unlist(de_overlap))/dim(sce)[1]
 unique_genes_matrix<-NULL
 unique_genes<-NULL
 cb<-length(names(result[[1]]))
