@@ -444,6 +444,10 @@ mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)
 
+
+# Simulation parameter
+```{r par}
+
 #percentage of batch affected genes
 cond <- gsub("-.*", "", names(n_de))
 cond <- c(cond, unique(gsub(".*-", "", names(n_de))))
