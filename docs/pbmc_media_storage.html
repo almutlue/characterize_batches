@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree3306cbf031260927c25c2a91c7f9011eb2b77beftargetblank3306cbfa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/3306cbf031260927c25c2a91c7f9011eb2b77bef" target="_blank">3306cbf</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef43721f686bff45db00d459ad27685a881ebd06etargetblankf43721fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/f43721f686bff45db00d459ad27685a881ebd06e" target="_blank">f43721f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree3306cbf031260927c25c2a91c7f9011eb2b77beftargetblank3306cbfa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef43721f686bff45db00d459ad27685a881ebd06etargetblankf43721fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -545,7 +545,6 @@ Ignored files:
     Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/khan.Rmd
     Untracked:  code/calculate_overlaping_DEG.R
     Untracked:  code/diagnostic_plots.R
     Untracked:  code/hca_cms_red.Rmd
@@ -561,6 +560,7 @@ Untracked files:
     Untracked:  data/pbmc_media.rds
     Untracked:  data/sce_cellBench.rds
     Untracked:  data/sce_khang_patient.rds
+    Untracked:  output/cms_4_mouse_red.rds
     Untracked:  output/cms_all_mouse_red.rds
     Untracked:  output/cms_cellBench.rds
     Untracked:  output/cms_csf_media_storage.rds
@@ -597,6 +597,7 @@ Untracked files:
     Untracked:  output/summary_cellBench.rds
     Untracked:  output/summary_csf_media_storage.rds
     Untracked:  output/summary_csf_patient.rds
+    Untracked:  output/summary_hca.rds
     Untracked:  output/summary_khang_patient.rds
     Untracked:  output/summary_pancreas.rds
     Untracked:  output/summary_pbmc2_media_storage.rds
@@ -662,6 +663,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f43721f686bff45db00d459ad27685a881ebd06e/analysis/pbmc_media_storage.Rmd" target="_blank">f43721f</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+<td>
+wflow_publish(“analysis/pbmc_media_storage.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/feb4c608edc17469bee22f3a36d51cf0026e28bd/docs/pbmc_media_storage.html" target="_blank">feb4c60</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -2981,7 +3016,9 @@ mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)
 
-#percentage of batch affected genes
+
+# Simulation parameter</code></pre>
+<pre class="r"><code>#percentage of batch affected genes
 cond &lt;- gsub(&quot;-.*&quot;, &quot;&quot;, names(n_de))
 cond &lt;- c(cond, unique(gsub(&quot;.*-&quot;, &quot;&quot;, names(n_de))))
 de_be &lt;- n_de %&gt;% bind_cols() %&gt;% mutate(&quot;batch1&quot; = rowMeans(.)) %&gt;% set_colnames(cond) 
