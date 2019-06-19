@@ -33,9 +33,9 @@ data
 ```{r data}
 # data 
 out_path <- here::here("output")
-batch_names <- c("cellBench", "pancreas", "csf_media_storage", "pbmc_media_storage", "pbmc2_media_storage", "csf_patient", "pbmc2_patient")
+batch_names <- c("cellBench", "pancreas", "hca", "csf_media_storage", "pbmc_media_storage", "pbmc2_media_storage", "csf_patient", "pbmc2_patient", "khang_patient")
 
-batch_names_short <- c("protocol", "protocol2", "storage", "media", "media2", "patient", "patient2")
+batch_names_short <- c("protocol", "protocol2", "protocol2", "storage", "media", "media2", "patient", "patient2", "patient3")
 
 summary_list <- lapply(batch_names, function(name){
   sum_tab <- readRDS(paste0(out_path, "/summary_", name, ".rds"))
@@ -275,7 +275,7 @@ h_general <- Heatmap(general_mat,
           rect_gp = gpar(col= "white"))
 
 
-batch_type_mat <- t(as.matrix(c(rep("protocol", 2), "storage", rep("media", 2), rep("patient", 2))))
+batch_type_mat <- t(as.matrix(c(rep("protocol", 3), "storage", rep("media", 2), rep("patient", 3))))
 rownames(batch_type_mat) <- "batch_type"
 colnames(batch_type_mat) <- colnames(summary_tab)
 
