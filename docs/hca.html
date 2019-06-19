@@ -445,7 +445,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-06-18
+<strong>Last updated:</strong> 2019-06-19
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -526,7 +526,16 @@ celltype abundance
 celltype relative diffrenece in abundance
 </li>
 <li>
+cms
+</li>
+<li>
 count distributions
+</li>
+<li>
+deg
+</li>
+<li>
+histograms
 </li>
 <li>
 libs
@@ -538,10 +547,25 @@ load data
 mean expression
 </li>
 <li>
+par
+</li>
+<li>
+ratio_cluster_specific
+</li>
+<li>
+session-info-chunk-inserted-by-workflowr
+</li>
+<li>
 sum
 </li>
 <li>
 summarize
+</li>
+<li>
+summary
+</li>
+<li>
+upset
 </li>
 <li>
 variance part
@@ -557,10 +581,10 @@ vis batch
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreeb5698d53c4ea937d87bb44a2c4bc455d922b992dtargetblankb5698d5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/b5698d53c4ea937d87bb44a2c4bc455d922b992d" target="_blank">b5698d5</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree79b280f7366f93afc58acb01e42b5e45b0d9a5fetargetblank79b280fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/79b280f7366f93afc58acb01e42b5e45b0d9a5fe" target="_blank">79b280f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreeb5698d53c4ea937d87bb44a2c4bc455d922b992dtargetblankb5698d5a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree79b280f7366f93afc58acb01e42b5e45b0d9a5fetargetblank79b280fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -626,9 +650,6 @@ Untracked files:
     Untracked:  output/vp_pbmc2_patient.rds
     Untracked:  output/vp_pbmc_media_storage.rds
 
-Unstaged changes:
-    Modified:   analysis/summarize_batch_characteristics.Rmd
-
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -666,6 +687,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/79b280f7366f93afc58acb01e42b5e45b0d9a5fe/analysis/hca.Rmd" target="_blank">79b280f</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-19
+</td>
+<td>
+wflow_publish(c(“analysis/hca.Rmd”, “analysis/summarize_batch_characteristics.Rmd”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/3729d1e6a0b865dcc057e24b1842f1376e353ff9/docs/hca.html" target="_blank">3729d1e</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -726,12 +781,6 @@ wflow_publish(“analysis/hca.Rmd”)
   library(ComplexHeatmap)
   library(variancePartition)
 })</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 <p>Dataset</p>
 <pre class="r"><code># data
 data_path &lt;- here::here(&quot;data&quot;)
@@ -801,12 +850,6 @@ table(colData(sce)[, batch])</code></pre>
 cont&lt;-list(&quot;10X2x5Kcell250Kreads-CELseq2&quot; = c(1,-1,0,0),
            &quot;10X2x5Kcell250Kreads-Dropseq&quot; = c(1,0,-1,0),
            &quot;10X2x5Kcell250Kreads-SMARTseq2&quot; = c(1,0,0,-1))</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 <div id="visualize-batch-effect" class="section level1">
 <h1>Visualize batch effect</h1>
@@ -816,16 +859,10 @@ lapply(feature_list, function(feature_name){
   visGroup(sce, batch, dim_red= &quot;TSNE&quot;)
 })</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/hca.Rmd/vis batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]]</code></pre>
-<img src="figure/hca.Rmd/vis batch-2.png" width="672" style="display: block; margin: auto;" />
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
+<p><img src="figure/hca.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sizestrength-of-the-batch-effcet" class="section level1">
 <h1>Size/Strength of the batch effcet</h1>
@@ -848,15 +885,9 @@ vp_sub &lt;- vp[1:3] %&gt;% set_rownames(vp$gene)
 
 #plot
 plotPercentBars( vp_sub[1:10,] )</code></pre>
-<p><img src="figure/hca.Rmd/variance part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plotVarPart( vp_sub )</code></pre>
-<img src="figure/hca.Rmd/variance part-2.png" width="672" style="display: block; margin: auto;" />
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
+<p><img src="figure/hca.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Summarize variance partitioning</p>
 <pre class="r"><code>#How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene &lt;- as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.01) %&gt;% nrow()
@@ -874,12 +905,6 @@ m_rel &lt;- m_batch/m_celltype
 me_batch &lt;- median(vp[, batch])
 me_celltype &lt;- median(vp[, celltype])
 me_rel &lt;- me_batch/me_celltype</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 </div>
 <div id="celltype-specificity" class="section level1">
@@ -897,16 +922,7 @@ plot_abundance &lt;- function(cluster_var, tib, x_var){
 }
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
-<img src="figure/hca.Rmd/celltype abundance-1.png" width="672" style="display: block; margin: auto;" />
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
-</div>
-<div id="celltype-abundance---relative-difference-in-abundances" class="section level2">
-<h2>Celltype abundance - relative difference in abundances</h2>
+<p><img src="figure/hca.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /> ## Celltype abundance - relative difference in abundances</p>
 <pre class="r"><code>meta_tib &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(batch, celltype)) %&gt;% 
   summarize(n = n()) %&gt;% spread_(batch,&quot;n&quot;)
 meta_df &lt;- as.data.frame(eval(meta_tib))[,-1]
@@ -921,12 +937,6 @@ res&lt;-lapply(meta_comb,function(x){
 mean_rel_abund_diff&lt;-mean(unlist(res))
 min_rel_abund_diff&lt;-min(unlist(res))
 max_rel_abund_diff&lt;-max(unlist(res))</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 <p>Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)</p>
 <pre class="r"><code>if(MultiSample){
   #colData
@@ -967,12 +977,6 @@ max_rel_abund_diff&lt;-max(unlist(res))</code></pre>
   per_da_cluster &lt;- NA
   n_da_cluster &lt;- 0
 }</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 </div>
 <div id="count-distribution" class="section level1">
@@ -1001,15 +1005,9 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   facet_wrap( ~ cluster, ncol = 3) +
   scale_colour_manual(values = cols[c(1:3,7)]) +
   scale_x_continuous(limits =  c(0, 0.5))</code></pre>
-<p><img src="figure/hca.Rmd/count distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>#number of cluster with differnt batch distributions
 per_dist &lt;- 14</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 <p>Mean expression protocols vs each other</p>
 <pre class="r"><code>#mean expression
 names(mean_list)[1]&lt;-&#39;X10&#39;
@@ -1028,52 +1026,46 @@ lapply(batch_all, function(batch_var){
 })</code></pre>
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[1]][[2]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[1]][[3]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-4.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]][[2]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-5.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]][[3]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-6.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-7.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[3]][[2]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-8.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[3]][[3]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-9.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 
 [[4]]
 [[4]][[1]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-10.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[4]][[2]]</code></pre>
-<p><img src="figure/hca.Rmd/mean expression-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/hca.Rmd/mean%20expression-11.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[4]][[3]]</code></pre>
-<img src="figure/hca.Rmd/mean expression-12.png" width="672" style="display: block; margin: auto;" />
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
+<p><img src="figure/hca.Rmd/mean%20expression-12.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="cellspecific-mixing-score" class="section level1">
 <h1>Cellspecific mixing score</h1>
@@ -1088,20 +1080,88 @@ sce &lt;- runUMAP(sce)
 
 visHist(sce, n_col = 2)</code></pre>
 <p><img src="figure/hca.Rmd/cms-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cms-1">
+Past versions of cms-1.png
+</button>
+</p>
+<div id="fig-cms-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/3729d1e6a0b865dcc057e24b1842f1376e353ff9/docs/figure/hca.Rmd/cms-1.png" target="_blank">3729d1e</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
 <p><img src="figure/hca.Rmd/cms-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cms-2">
+Past versions of cms-2.png
+</button>
+</p>
+<div id="fig-cms-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/3729d1e6a0b865dcc057e24b1842f1376e353ff9/docs/figure/hca.Rmd/cms-2.png" target="_blank">3729d1e</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#summarize
 mean_cms &lt;- mean(sce$cms)
 n_cms_0.01 &lt;- length(which(sce$cms &lt; 0.01))
 cluster_mean_cms &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(celltype) %&gt;% summarize(cms_mean = mean(cms))
 
 var_cms &lt;- sd(cluster_mean_cms$cms_mean)</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 <div id="de-analysis" class="section level1">
 <h1>DE analysis</h1>
@@ -1167,12 +1227,6 @@ doDE &lt;- function(x,lfc_cutoff=log2(1.1)){
 }
 # res&lt;-doDE(x,lfc_cutoff=log2(1.1))
 # saveRDS(res, file=paste0(&quot;limma_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 <div id="some-diagnostics-plot-of-deg" class="section level2">
 <h2>Some diagnostics plot of DEG</h2>
 </div>
@@ -1206,12 +1260,6 @@ names(m2)&lt;-names(cs)
 
 
 #lapply(m2, function(x) UpSet(x))</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 <div id="unique-degs-for-all-clusters" class="section level1">
 <h1>unique DEGs for all clusters</h1>
@@ -1219,13 +1267,81 @@ names(m2)&lt;-names(cs)
 <pre class="r"><code>source(paste0(code_path, &quot;/diagnostic_plots.R&quot;))
 histogram.gg(res)</code></pre>
 <p><img src="figure/hca.Rmd/histograms-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>baloonplot.gg(result)</code></pre>
-<img src="figure/hca.Rmd/histograms-2.png" width="672" style="display: block; margin: auto;" />
-<div class="alert alert-warning">
 <p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-histograms-1">
+Past versions of histograms-1.png
+</button>
 </p>
+<div id="fig-histograms-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/3729d1e6a0b865dcc057e24b1842f1376e353ff9/docs/figure/hca.Rmd/histograms-1.png" target="_blank">3729d1e</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>baloonplot.gg(result)</code></pre>
+<p><img src="figure/hca.Rmd/histograms-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-histograms-2">
+Past versions of histograms-2.png
+</button>
+</p>
+<div id="fig-histograms-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/3729d1e6a0b865dcc057e24b1842f1376e353ff9/docs/figure/hca.Rmd/histograms-2.png" target="_blank">3729d1e</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div id="ratio-specific-cluster-of-deg" class="section level1">
@@ -1275,12 +1391,6 @@ for(i in 1:dim(unique_genes)[2]){
 mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 <div id="simulation-parameter" class="section level1">
 <h1>Simulation parameter</h1>
@@ -1344,12 +1454,6 @@ for(i in 1:length(de_overlap)){
 mean_p_ct &lt;- 1 - mean(rel_spec2)
 max_p_ct &lt;- 1 - min(rel_spec2)
 min_p_ct &lt;- 1 - max(rel_spec2)</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 <div id="summarize-results" class="section level1">
 <h1>Summarize results</h1>
@@ -1407,12 +1511,6 @@ sim &lt;- data.frame(&quot;mean_p_be&quot; = mean_p_be,
 
 summary &lt;- cbind(size, celltype, gene, sim) %&gt;% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, &quot;/summary_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1438,7 +1536,7 @@ locale:
 [11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
- [1] grid      stats4    parallel  stats     graphics  grDevices utils    
+ [1] grid      parallel  stats4    stats     graphics  grDevices utils    
  [8] datasets  methods   base     
 
 other attached packages:
@@ -1500,32 +1598,26 @@ loaded via a namespace (and not attached):
  [73] fs_1.3.1                    robustbase_0.93-5          
  [75] caTools_1.17.1.2            nlme_3.1-140               
  [77] whisker_0.3-2               pbkrtest_0.4-7             
- [79] compiler_3.6.0              rstudioapi_0.10            
- [81] beeswarm_0.2.3              curl_3.3                   
- [83] png_0.1-7                   pcaPP_1.9-73               
- [85] stringi_1.4.3               RSpectra_0.14-0            
- [87] lattice_0.20-38             Matrix_1.2-17              
- [89] nloptr_1.2.1                pillar_1.4.1               
- [91] GlobalOptions_0.1.0         RcppAnnoy_0.0.12           
- [93] BiocNeighbors_1.2.0         cowplot_0.9.4              
- [95] bitops_1.0-6                irlba_2.3.3                
- [97] corpcor_1.6.9               colorRamps_2.3             
- [99] R6_2.4.0                    KernSmooth_2.23-15         
-[101] vipor_0.4.5                 codetools_0.2-16           
-[103] boot_1.3-22                 MASS_7.3-51.4              
-[105] gtools_3.8.1                assertthat_0.2.1           
-[107] rprojroot_1.3-2             rjson_0.2.20               
-[109] withr_2.1.2                 multcomp_1.4-10            
-[111] GenomeInfoDbData_1.2.1      hms_0.4.2                  
-[113] minqa_1.2.4                 rmarkdown_1.13             
-[115] DelayedMatrixStats_1.6.0    git2r_0.25.2               
+ [79] compiler_3.6.0              beeswarm_0.2.3             
+ [81] curl_3.3                    png_0.1-7                  
+ [83] pcaPP_1.9-73                stringi_1.4.3              
+ [85] RSpectra_0.14-0             lattice_0.20-38            
+ [87] Matrix_1.2-17               nloptr_1.2.1               
+ [89] pillar_1.4.1                GlobalOptions_0.1.0        
+ [91] RcppAnnoy_0.0.12            BiocNeighbors_1.2.0        
+ [93] cowplot_0.9.4               bitops_1.0-6               
+ [95] irlba_2.3.3                 corpcor_1.6.9              
+ [97] colorRamps_2.3              R6_2.4.0                   
+ [99] KernSmooth_2.23-15          vipor_0.4.5                
+[101] codetools_0.2-16            boot_1.3-22                
+[103] MASS_7.3-51.4               gtools_3.8.1               
+[105] assertthat_0.2.1            rprojroot_1.3-2            
+[107] rjson_0.2.20                withr_2.1.2                
+[109] multcomp_1.4-10             GenomeInfoDbData_1.2.1     
+[111] hms_0.4.2                   minqa_1.2.4                
+[113] rmarkdown_1.13              DelayedMatrixStats_1.6.0   
+[115] Rtsne_0.15                  git2r_0.25.2               
 [117] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
-<div class="alert alert-warning">
-<p>
-<strong>Warning:</strong> The above code chunk cached its results, but it won’t be re-run if previous chunks it depends on are updated. If you need to use caching, it is highly recommended to also set <code>knitr::opts_chunk$set(autodep = TRUE)</code> at the top of the file (in a chunk that is not cached). Alternatively, you can customize the option <code>dependson</code> for each individual chunk that is cached. Using either <code>autodep</code> or <code>dependson</code> will remove this warning. See the <a href="https://yihui.name/knitr/options/#cache"
->knitr cache options</a> for more details.
-</p>
-</div>
 </div>
 </div>
 
