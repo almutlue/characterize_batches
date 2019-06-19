@@ -42,33 +42,34 @@ dataset_name <- "pancreas"
 # sce<-readRDS(paste0(data_path,"/",  "pancreas.rds"))
 # sce <- runUMAP(sce)
 # saveRDS(sce,paste0(data_path,"/",  "pancreas.rds"))
-sce<-readRDS(paste0(data_path,"/",  "pancreas.rds"))
+#sce<-readRDS(paste0(data_path,"/",  "pancreas.rds"))
 # preprocessing step
 
-sce <- sce[which(rowSums(as.matrix(assays(sce)$counts) > 0) > 0), ]
-is.mito <- grepl("^MT", rownames(as.matrix(assays(sce)$logcounts)), ignore.case=T) 
-summary(is.mito) 
-
-sce <- calculateQCMetrics(sce, feature_controls=list(Mt = is.mito),  percent_top=c(20,50,100,200))
-sce$total_counts_drop <- isOutlier(sce$total_counts, nmads = 2.5, 
-                                   type = "both", log = TRUE, batch=sce$tech) 
-
-sce$total_features_drop <- isOutlier(sce$total_features_by_counts, nmads = 2.5, 
-                                     type = "both", log = TRUE, batch=sce$tech) 
-
-sce$mito_drop <- sce$pct_counts_Mt > 5 & 
-  isOutlier(sce$pct_counts_Mt, nmads = 2.5, type = "higher", batch=sce$tech) 
-
-sce$isOutlier <- sce$total_counts_drop | sce$total_features_drop | sce$mito_drop 
-mets <- c("total_counts_drop","total_features_drop","mito_drop") 
-sapply(mets, FUN=function(x){ sapply(mets, y=x, function(x,y){ sum(sce[[x]] & sce[[y]]) }) }) 
-cct <- table(sce$isOutlier, sce$tech) 
-row.names(cct) <- c("Kept", "Filtered out") 
-cct 
-sce <- sce[,!sce$isOutlier] 
-sce <- sce[which(rowSums(as.matrix(assays(sce)$counts)>1)>=20),] 
-sce <- runUMAP(sce)
-
+# sce <- sce[which(rowSums(as.matrix(assays(sce)$counts) > 0) > 0), ]
+# is.mito <- grepl("^MT", rownames(as.matrix(assays(sce)$logcounts)), ignore.case=T) 
+# summary(is.mito) 
+# 
+# sce <- calculateQCMetrics(sce, feature_controls=list(Mt = is.mito),  percent_top=c(20,50,100,200))
+# sce$total_counts_drop <- isOutlier(sce$total_counts, nmads = 2.5, 
+#                                    type = "both", log = TRUE, batch=sce$tech) 
+# 
+# sce$total_features_drop <- isOutlier(sce$total_features_by_counts, nmads = 2.5, 
+#                                      type = "both", log = TRUE, batch=sce$tech) 
+# 
+# sce$mito_drop <- sce$pct_counts_Mt > 5 & 
+#   isOutlier(sce$pct_counts_Mt, nmads = 2.5, type = "higher", batch=sce$tech) 
+# 
+# sce$isOutlier <- sce$total_counts_drop | sce$total_features_drop | sce$mito_drop 
+# mets <- c("total_counts_drop","total_features_drop","mito_drop") 
+# sapply(mets, FUN=function(x){ sapply(mets, y=x, function(x,y){ sum(sce[[x]] & sce[[y]]) }) }) 
+# cct <- table(sce$isOutlier, sce$tech) 
+# row.names(cct) <- c("Kept", "Filtered out") 
+# cct 
+# sce <- sce[,!sce$isOutlier] 
+# sce <- sce[which(rowSums(as.matrix(assays(sce)$counts)>1)>=20),] 
+# sce <- runUMAP(sce)
+# saveRDS(sce,paste0(data_path,"/",  "pancreas.rds"))
+sce<-readRDS(paste0(data_path,"/",  "pancreas.rds"))
 #colors
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
 names(cols) <- c()
@@ -131,9 +132,9 @@ Summarize variance partitioning
 
 ```{r summarize}
 #How many genes have a variance component affected by the batch variable with more than 1%
-n_batch_gene <- as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow()
-n_batch_gene10 <- as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow()
-n_celltype_gene <- as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow()
+n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
+n_batch_gene10 <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow())/dim(sce)[1]
+n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[2]
 n_rel <- n_batch_gene/n_celltype_gene
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
@@ -291,7 +292,6 @@ Calculate cms
 # sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
 #saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
-sce <- runUMAP(sce)
 
 visHist(sce, n_col = 2)
 visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
@@ -301,7 +301,7 @@ mean_cms <- mean(sce$cms)
 n_cms_0.01 <- length(which(sce$cms < 0.01))
 cluster_mean_cms <- as_tibble(colData(sce)) %>% group_by_at(celltype) %>% summarize(cms_mean = mean(cms))
 
-var_cms <- sd(cluster_mean_cms$cms_mean)
+var_cms <- var(cluster_mean_cms$cms_mean)
 
 ```
 # DE analysis
@@ -419,15 +419,14 @@ baloonplot.gg(result)
 
 n_de<-lapply(res[[1]],function(y) vapply(y, function(x) sum(x$adj.P.Val < 0.05), numeric(1)))
 mean_n_de<-lapply(n_de,function(x) mean(x))
-mean_mean_n_de<-mean(unlist(mean_n_de))
-min_mean_n_de<-min(unlist(mean_n_de))
-max_mean_n_de<-max(unlist(mean_n_de))
+mean_mean_n_de<-mean(unlist(mean_n_de))/dim(sce)[1]
+min_mean_n_de<-min(unlist(mean_n_de))/dim(sce)[1]
+max_mean_n_de<-max(unlist(mean_n_de))/dim(sce)[1]
 n_genes_lfc1<-lapply(res[[1]],function(y) vapply(y, function(x) sum(abs(x$logFC) > 1), numeric(1)))
-mean_n_genes_lfc1<-mean(unlist(n_genes_lfc1))
-min_n_genes_lfc1<-min(unlist(n_genes_lfc1))
-max_n_genes_lfc1<-max(unlist(n_genes_lfc1))
+mean_n_genes_lfc1<-mean(unlist(n_genes_lfc1))/dim(sce)[1]
+min_n_genes_lfc1<-min(unlist(n_genes_lfc1))/dim(sce)[1]
+max_n_genes_lfc1<-max(unlist(n_genes_lfc1))/dim(sce)[1]
 
-unique_genes<-numeric()
 
 de_overlap<-lapply(result,function(x){
   which.Null<-lapply(x,function(y) is.null(y))
@@ -436,9 +435,9 @@ de_overlap<-lapply(result,function(x){
   de_overlap<-length(Reduce(intersect, result2))
   de_overlap
 })
-mean_de_overlap<-mean(unlist(de_overlap))
-min_de_overlap<-min(unlist(de_overlap))
-max_de_overlap<-max(unlist(de_overlap))
+mean_de_overlap<-mean(unlist(de_overlap))/dim(sce)[1]
+min_de_overlap<-min(unlist(de_overlap))/dim(sce)[1]
+max_de_overlap<-max(unlist(de_overlap))/dim(sce)[1]
 unique_genes_matrix<-NULL
 unique_genes<-NULL
 cb<-length(names(result[[1]]))
@@ -462,72 +461,6 @@ for(i in 1:dim(unique_genes)[2]){
 mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)
-```
-
-# Simulation parameter
-
-```{r par}
-#percentage of batch affected genes
-cond <- gsub("-.*", "", names(n_de))
-cond <- c(cond, unique(gsub(".*-", "", names(n_de))))
-cond <- unique(cond)
-de_be_tab <- n_de %>% bind_cols()
-de_be <- cond %>% map(function(x){
-  de_tab <- de_be_tab[, grep(x, colnames(de_be_tab))]
-  de_be <- rowMeans(de_tab)
-}) %>% bind_cols() %>% set_colnames(cond)
-
-n_cl <- rep(nrow(sce), ncol(de_be)) %>% set_names(colnames(de_be))
-  
-p_be <- de_be/n_cl
-mean_p_be <- mean(colMeans(p_be))
-min_p_be <- min(colMins(as.matrix(p_be)))
-max_p_be <- max(colMaxs(as.matrix(p_be)))
-
-#logFoldchange
-mean_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
-  de_genes <- which(x$adj.P.Val < 0.01)
-  mean_de <- mean(abs(x[de_genes, "logFC"]))}
-  , numeric(1))) %>% bind_cols()
-
-min_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
-  de_genes <- which(x$adj.P.Val < 0.01)
-  min_de <- min(abs(x[de_genes, "logFC"]))}
-  , numeric(1))) %>% bind_cols()
-
-max_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
-  de_genes <- which(x$adj.P.Val < 0.01)
-  max_de <- max(abs(x[de_genes, "logFC"]))}
-  , numeric(1))) %>% bind_cols()
-
-mean_lfc_be <- mean(colMeans(mean_lfc_cl, na.rm = TRUE))
-min_lfc_be <- min(colMins(as.matrix(min_lfc_cl), na.rm = TRUE))
-max_lfc_be <- max(colMaxs(as.matrix(max_lfc_cl), na.rm = TRUE))
-
-#rel_be
-var_lfc_cl <- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
-rel_be <- (var_lfc_cl + colMeans(mean_lfc_cl, na.rm = TRUE))/colMeans(mean_lfc_cl, na.rm = TRUE)
-mean_rel_be <- mean(rel_be)
-min_rel_be <- min(rel_be)
-max_rel_be <- max(rel_be)
-
-#p_ct
-n_de_unique <- lapply(result,function(x){
-  de_genes <- unlist(x) %>% unique() %>% length()
-}) %>% bind_cols()
-
-
-rel_spec2 <- NULL
-for(i in 1:length(de_overlap)){
-  rel_spec <- de_overlap[[i]]/n_de_unique[[i]]
-  rel_spec2 <- cbind(rel_spec2,rel_spec)
-}
-
-mean_p_ct <- 1 - mean(rel_spec2)
-max_p_ct <- 1 - min(rel_spec2)
-min_p_ct <- 1 - max(rel_spec2)
-
-
 ```
 
 
@@ -573,20 +506,7 @@ gene <- data.frame("mean_mean_n_de_genes" = mean_mean_n_de,
                   )
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
-sim <- data.frame("mean_p_be" = mean_p_be,
-                   "max_p_be" = max_p_be,
-                   "min_p_be" = min_p_be,
-                   "mean_lfc_be" = mean_lfc_be,
-                   "min_lfc_be" = min_lfc_be,
-                   "max_lfc_be" = max_lfc_be,
-                   "mean_rel_be" = mean_rel_be,
-                   "min_rel_be" = min_rel_be,
-                   "max_rel_be" = max_rel_be,
-                   "mean_p_ct"= mean_p_ct,
-                   "min_p_ct"= min_p_ct,
-                   "max_p_ct"= max_p_ct)
-
-summary <- cbind(size, celltype, gene, sim) %>% set_rownames(dataset_name)
+summary <- cbind(size, celltype, gene) %>% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))
 
 ```
