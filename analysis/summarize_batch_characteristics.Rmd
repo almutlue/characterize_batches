@@ -290,7 +290,8 @@ h_general2 <- Heatmap(batch_type_mat,
           column_names_rot = 0,
           column_names_centered = TRUE,
           column_names_gp = gpar(fontsize = 8),
-          row_names_side = "left", 
+          row_names_side = "left",
+          show_column_names = FALSE,
           col = col_general2,
           rect_gp = gpar(col= "white"))
 
