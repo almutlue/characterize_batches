@@ -148,7 +148,7 @@ Summarize variance partitioning
 #How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
 n_batch_gene10 <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow())/dim(sce)[1]
-n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[2]
+n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[1]
 n_rel <- n_batch_gene/n_celltype_gene
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype

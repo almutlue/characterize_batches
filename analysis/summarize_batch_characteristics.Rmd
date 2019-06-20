@@ -56,6 +56,17 @@ colnames(summary_tab) <- batch_names_short
 #replace NAs
 summary_tab[is.na(summary_tab)] <- 0
 
+#Change variable names
+new_var_names <- c(rownames(summary_tab))
+new_var_names[which(new_var_names %in% "mean_mean_n_de_genes")] <- "mean_de_genes"
+new_var_names[which(new_var_names %in% "max_mean_n_de_genes")] <- "max_de_genes"
+new_var_names[which(new_var_names %in% "min_mean_n_de_genes")] <- "min_de_genes"
+new_var_names[which(new_var_names %in% "mean_n_genes_lfc1")] <- "mean_lfc1"
+new_var_names[which(new_var_names %in% "min_n_genes_lfc1")] <- "min_lfc1"
+new_var_names[which(new_var_names %in% "max_n_genes_lfc1")] <- "max_lfc1"
+
+rownames(summary_tab) <- new_var_names
+
 ```
 
 # Visualize results
@@ -130,7 +141,7 @@ col_size1 <- colorRamp2(c(0.6, 0.5, 0.3, 0.1, 0), q10)
 
 #annotation
 ha_size <- HeatmapAnnotation("celltype_var_cms" = anno_points(summary_tab["celltype_var_cms",], 
-                                                         ylim = c(0, 0.08),
+                                                         ylim = c(0, 0.02),
                                                          axis = FALSE),
                               annotation_name_side = "left",
                               gp = gpar(col = "black"))
@@ -181,11 +192,11 @@ h_size2 <- Heatmap(size_mat,
 ################################ Heatmap genes #####################################
 
 # Batch affected genes
-gene_vars <- c("n_genes_total", "batch_genes_1per", "batch_genes_10per", "celltype_gene_1per")
+gene_vars <- c("batch_genes_1per", "batch_genes_10per", "celltype_gene_1per")
 
 # Colors
 q2 <- sequential_hcl(5, palette = "Blues")
-col_gene <- colorRamp2(c(12000, 5000, 1000, 500, 0), q2)
+col_gene <- colorRamp2(c(1, 0.7, 0.5, 0.1, 0), q2)
 
 #heatmap
 h_gene <- Heatmap(summary_tab[gene_vars, ], 
@@ -205,11 +216,11 @@ h_gene <- Heatmap(summary_tab[gene_vars, ],
 ################################ DE genes #####################################
 
 # Batch affected genes
-de_vars <- c("mean_mean_n_de_genes", "max_mean_n_de_genes","min_mean_n_de_genes",
-             "mean_n_genes_lfc1", "min_n_genes_lfc1", "max_n_genes_lfc1", "mean_de_overlap",
+de_vars <- c("mean_de_genes", "max_de_genes","min_de_genes",
+             "mean_lfc1", "min_lfc1", "max_lfc1", "mean_de_overlap",
              "max_de_overlap", "min_de_overlap")
 
-de_vars <- c("mean_mean_n_de_genes", "mean_n_genes_lfc1",  "mean_de_overlap")
+de_vars <- c("mean_de_genes", "mean_lfc1",  "mean_de_overlap")
 
 de_vars2 <- c("mean_rel_cluster_spec", "min_rel_cluster_spec", "max_rel_cluster_spec")
 
@@ -220,7 +231,7 @@ de_vars2 <- c("mean_rel_cluster_spec", "max_rel_cluster_spec")
  #                                           "#2D98AC", "#626D93", "#6F4562"))
 
 q3 <- sequential_hcl(5, palette = "BluYl")
-col_de <- colorRamp2(c(9000, 2000, 800, 50, 0), q3)
+col_de <- colorRamp2(c(0.4, 0.07, 0.03, 0.01, 0), q3)
 
 q7 <- sequential_hcl(5, palette = "Mint")
 col_de2 <- colorRamp2(c(50, 10, 1, 0.5, 0), q7)
@@ -256,23 +267,6 @@ h_de_2 <- Heatmap(de_mat,
 
 ####################################################################################
 ######################### heatmap general data #######################################
-general_mat <- t(as.matrix(summary_tab["n_cells_total",]))
-rownames(general_mat) <- "n_cells_total"
-
-q11 <- sequential_hcl(5, palette = "Peach")
-col_general <- colorRamp2(c(30000, 10000, 5000, 3000, 1000), q11)
-
-h_general <- Heatmap(general_mat, 
-          cluster_rows = FALSE, 
-          cluster_columns = FALSE,
-          name = "n_cells",
-          column_names_side = "bottom",
-          column_names_rot = 0,
-          column_names_centered = TRUE,
-          column_names_gp = gpar(fontsize = 8),
-          row_names_side = "left", 
-          col = col_general,
-          rect_gp = gpar(col= "white"))
 
 
 batch_type_mat <- t(as.matrix(c(rep("protocol", 3), "storage", rep("media", 2), rep("patient", 3))))
@@ -297,13 +291,13 @@ h_general2 <- Heatmap(batch_type_mat,
 
 
 ####################################################################################
-h_list <-  h_cms2 %v% h_cms %v% h_size1 %v% h_size2 %v% h_size %v% h_gene %v% h_de %v% h_de_2 %v% h_general2
+h_list <-  h_cms2 %v% h_cms %v% h_size1 %v% h_size2 %v% h_size %v% h_gene %v% h_de %v% h_general2
 
 #Add decorations describing the type of variable
 ### Size variables
 celltype_spec_variables <- c("rel.abund.diff", "Batch/Celltype")
 size_variables <- c("cms", "Variance Part.", "Genes")
-gene_spec_variables <- c("DE genes", "Rel.cluster spec.")
+gene_spec_variables <- c("DE genes")
 
 draw(h_list)
 

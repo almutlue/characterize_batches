@@ -3,8 +3,6 @@ title: "khang_patient"
 author: "almulue"
 date: "2019-06-06"
 output: workflowr::wflow_html
-editor_options:
-  chunk_output_type: console
 ---
 
 
@@ -15,13 +13,11 @@ Represented as a SingleCellExperiment; derived from GEO accession number GSE9658
 ```{r libs}
 suppressPackageStartupMessages({
   library(ExperimentHub)
-  library(CellBench)
   library(scater)
   library(jcolors)
   library(CellMixS)
   library(gridExtra)
   library(purrr)
-  library(jcolors)
   library(here)
   library(tidyr)
   library(dplyr)
@@ -29,6 +25,7 @@ suppressPackageStartupMessages({
   library(variancePartition)
   library(diffcyt)
   library(ComplexHeatmap)
+  library(magrittr)
 })
 ```
 
@@ -41,7 +38,7 @@ out_path <- here::here("output")
 code_path <- here::here("code")
 dataset_name <- "khang_patient"
 # loading the data
-sce <- readRDS(paste0(data_path, "/sce_khang_patient.rds"))
+sce <- readRDS(paste0(out_path, "/sce_khang_patient.rds"))
 # sce <- runUMAP(sce)
 sce$patient <- as.factor(as.character(colData(sce)[,'ind']))
 
@@ -73,7 +70,7 @@ cont <- list("1015-1016" = c(0,1,-1,0,0,0,0,0,0),
 feature_list <- c(batch, celltype)
 
 lapply(feature_list, function(feature_name){
-  visGroup(sce, feature_name, dim_red= "pca")
+  visGroup(sce, feature_name, dim_red= "UMAP")
 })
 ```
 
@@ -111,7 +108,7 @@ Summarize variance partitioning
 #How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
 n_batch_gene10 <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow())/dim(sce)[1]
-n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[2]
+n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[1]
 n_rel <- n_batch_gene/n_celltype_gene
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
@@ -271,7 +268,8 @@ Calculate cms
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
 visHist(sce, n_col = 2)
-# visMetric(sce, metric_var = "cms_smooth", dim_red = "TSNE")
+visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+visGroup(sce,  batch, dim_red = "tsne")
 
 #summarize
 mean_cms <- mean(sce$cms)
@@ -440,14 +438,22 @@ mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)
 ```
+
+
 # Simulation parameter
 ```{r par}
-# percentage of batch affected genes
+#percentage of batch affected genes
 cond <- gsub("-.*", "", names(n_de))
-cond <- c(unique(gsub(".*-", "", names(n_de))))
-de_be <- n_de %>% bind_cols() %>% mutate("batch1" = rowMeans(.)) %>% set_colnames(cond)
-n_cl <- rep(nrow(sce), ncol(de_be)) %>% set_names(colnames(de_be))
+cond <- c(cond, unique(gsub(".*-", "", names(n_de))))
+cond <- unique(cond)
+de_be_tab <- n_de %>% bind_cols()
+de_be <- cond %>% map(function(x){
+  de_tab <- de_be_tab[, grep(x, colnames(de_be_tab))]
+  de_be <- rowMeans(de_tab)
+}) %>% bind_cols() %>% set_colnames(cond)
 
+n_cl <- rep(nrow(sce), ncol(de_be)) %>% set_names(colnames(de_be))
+  
 p_be <- de_be/n_cl
 mean_p_be <- mean(colMeans(p_be))
 min_p_be <- min(colMins(as.matrix(p_be)))
@@ -472,6 +478,7 @@ max_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
 mean_lfc_be <- mean(colMeans(mean_lfc_cl, na.rm = TRUE))
 min_lfc_be <- min(colMins(as.matrix(min_lfc_cl), na.rm = TRUE))
 max_lfc_be <- max(colMaxs(as.matrix(max_lfc_cl), na.rm = TRUE))
+
 
 #rel_be
 var_lfc_cl <- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
