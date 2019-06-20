@@ -3,8 +3,6 @@ title: "pbmc_media_storage"
 author: "almutlue"
 date: "2019-05-28"
 output: workflowr::wflow_html
-editor_options:
-  chunk_output_type: console
 ---
   
 # Different media conditions

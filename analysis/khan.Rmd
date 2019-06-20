@@ -560,6 +560,6 @@ sim <- data.frame("mean_p_be" = mean_p_be,
                   "min_p_ct"= min_p_ct,
                   "max_p_ct"= max_p_ct)
 
-summary <- cbind(size, celltype, gene) %>% set_rownames(dataset_name)
+summary <- cbind(size, celltype, gene, sim) %>% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))
 ```
