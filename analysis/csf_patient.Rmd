@@ -3,8 +3,6 @@ title: "csf_patient"
 author: "almulue"
 date: "2019-06-06"
 output: workflowr::wflow_html
-editor_options:
-  chunk_output_type: console
 ---
 
 
@@ -38,11 +36,12 @@ data_path <- here::here("data")
 out_path <- here::here("output")
 code_path <- here::here("code")
 dataset_name <- "csf_patient"
+
 # loading the data
-# sce <- readRDS(paste0(data_path, "/csf_media.rds"))
 sce <- readRDS(paste0(data_path, "/csf_media.rds"))
-#sce <- runUMAP(sce)
+sce <- runUMAP(sce)
 sce$patient <- ifelse(grepl("E2490", sce$Sample), "pat1", ifelse(grepl("E2528", sce$Sample),"pat2","pat3"))
+
 names(colData(sce))[48]<-'cluster.merged'
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
 names(cols) <- c()
@@ -74,8 +73,8 @@ How much of the variance within data can be attributed to the batch effect?
 ## VariancePartitioning
 ```{r variance part}
 expr <- as.matrix(assays(sce)$logcounts)
-meta_sub <- as.data.frame(colData(sce)[, c(celltype, batch)])
-form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ")"))
+meta_sub <- as.data.frame(colData(sce)[, c(celltype, batch, "media")])
+form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ") + (1|media)"))
 #varPart <- fitExtractVarPartModel(expr, form, meta_sub)
 
 #Sort variables (i.e. columns) by median fraction# of variance explained
@@ -226,7 +225,7 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   scale_x_continuous(limits =  c(0, 7))
 
 #number of cluster with differnt batch distributions
-per_dist <- 7
+per_dist <- 1
 ```
 
 
@@ -255,17 +254,21 @@ lapply(batch_all, function(batch_var){
 # Cellspecific mixing score
 Calculate cms
 ```{r cms}
-# sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
-#saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
-sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
-visHist(sce, n_col = 2)
-visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
+sce_cms <- sce[,which(sce$patient %in% c("pat2","pat3"))]
+sce_cms <- cms(sce_cms, group = batch, k = 120, cell_min = 10, n_dim = 10)
+
+#saveRDS(sce_cms, paste0(out_path, "/cms_", dataset_name, ".rds"))
+sce_cms <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
+
+visHist(sce_cms, n_col = 2)
+visMetric(sce_cms, metric_var = "cms_smooth", dim_red = "UMAP")
+visGroup(sce_cms, celltype, dim_red = "UMAP")
 
 #summarize
-mean_cms <- mean(sce$cms)
-n_cms_0.01 <- length(which(sce$cms < 0.01))
-cluster_mean_cms <- as_tibble(colData(sce)) %>% group_by_at(celltype) %>% summarize(cms_mean = mean(cms))
+mean_cms <- mean(sce_cms$cms)
+n_cms_0.01 <- length(which(sce_cms$cms < 0.01))
+cluster_mean_cms <- as_tibble(colData(sce_cms)) %>% group_by_at(celltype) %>% summarize(cms_mean = mean(cms))
 
 var_cms <- var(cluster_mean_cms$cms_mean)
 
