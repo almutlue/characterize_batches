@@ -523,10 +523,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreee33654fd60c4c71b5262a6dccf1971a4042d35fftargetblanke33654fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/e33654fd60c4c71b5262a6dccf1971a4042d35ff" target="_blank">e33654f</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreec46302124ccde9a4ad2019f1d529b05113022db4targetblankc463021a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/c46302124ccde9a4ad2019f1d529b05113022db4" target="_blank">c463021</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreee33654fd60c4c71b5262a6dccf1971a4042d35fftargetblanke33654fa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreec46302124ccde9a4ad2019f1d529b05113022db4targetblankc463021a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -607,9 +607,6 @@ Untracked files:
     Untracked:  output/vp_pbmc2_patient.rds
     Untracked:  output/vp_pbmc_media_storage.rds
 
-Unstaged changes:
-    Modified:   analysis/pancreas.Rmd
-
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -647,6 +644,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c46302124ccde9a4ad2019f1d529b05113022db4/analysis/summarize_batch_characteristics.Rmd" target="_blank">c463021</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-20
+</td>
+<td>
+wflow_publish(“analysis/summarize_batch_characteristics.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/f8e6fa112016bc7c89c55e0601b7a21d2e1e941c/docs/summarize_batch_characteristics.html" target="_blank">f8e6fa1</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -855,8 +886,6 @@ add summary
     library(viridis)
     library(colorspace)
     library(stringr)
-    library(variancePartition)
-    library(diffcyt)
 })</code></pre>
 <p>data</p>
 <pre class="r"><code># data 
@@ -1139,8 +1168,8 @@ h_list &lt;-  h_cms2 %v% h_cms %v% h_size1 %v% h_size2 %v% h_size %v% h_gene %v%
 
 #Add decorations describing the type of variable
 ### Size variables
-celltype_spec_variables &lt;- c(&quot;rel.abund.diff&quot;, &quot;Batch/Celltype&quot;)
-size_variables &lt;- c(&quot;cms&quot;, &quot;Variance Part.&quot;, &quot;Genes&quot;)
+celltype_spec_variables &lt;- c(&quot;rel.abund.diff&quot;)
+size_variables &lt;- c(&quot;cms&quot;, &quot;Variance Part.&quot;, &quot;Genes&quot;, &quot;Batch/Celltype&quot;)
 gene_spec_variables &lt;- c(&quot;DE genes&quot;)
 
 draw(h_list)
@@ -1151,9 +1180,6 @@ lapply(celltype_spec_variables, function(vars){
   })
 })</code></pre>
 <pre><code>[[1]]
-[1] 1
-
-[[2]]
 [1] 1</code></pre>
 <pre class="r"><code>lapply(size_variables, function(vars){
   decorate_row_names(vars, {
@@ -1167,6 +1193,9 @@ lapply(celltype_spec_variables, function(vars){
 [1] 1
 
 [[3]]
+[1] 1
+
+[[4]]
 [1] 1</code></pre>
 <pre class="r"><code>lapply(gene_spec_variables, function(vars){
   decorate_row_names(vars, {
@@ -1196,6 +1225,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f8e6fa112016bc7c89c55e0601b7a21d2e1e941c/docs/figure/summarize_batch_characteristics.Rmd/complex heatmap-1.png" target="_blank">f8e6fa1</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-20
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/fc34b2155ee0567c17623d702b7a5e9faf31c2d3/docs/figure/summarize_batch_characteristics.Rmd/complex heatmap-1.png" target="_blank">fc34b21</a>
@@ -1421,6 +1461,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f8e6fa112016bc7c89c55e0601b7a21d2e1e941c/docs/figure/summarize_batch_characteristics.Rmd/sim para-1.png" target="_blank">f8e6fa1</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-06-20
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/e478dc786047707f426c6e20cccd34b80d7ee24f/docs/figure/summarize_batch_characteristics.Rmd/sim para-1.png" target="_blank">e478dc7</a>
 </td>
 <td>
@@ -1471,70 +1522,30 @@ locale:
 [11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] parallel  grid      stats     graphics  grDevices utils     datasets 
-[8] methods   base     
+[1] grid      stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
- [1] diffcyt_1.4.3            variancePartition_1.14.0
- [3] Biobase_2.44.0           BiocGenerics_0.30.0     
- [5] foreach_1.4.4            limma_3.40.2            
- [7] ggplot2_3.1.1            stringr_1.4.0           
- [9] colorspace_1.4-1         viridis_0.5.1           
-[11] viridisLite_0.3.0        here_0.1                
-[13] circlize_0.4.6           scales_1.0.0            
-[15] ComplexHeatmap_2.1.0     dplyr_0.8.1             
-[17] purrr_0.3.2              magrittr_1.5            
+ [1] stringr_1.4.0        colorspace_1.4-1     viridis_0.5.1       
+ [4] viridisLite_0.3.0    here_0.1             circlize_0.4.6      
+ [7] scales_1.0.0         ComplexHeatmap_2.1.0 dplyr_0.8.1         
+[10] purrr_0.3.2          magrittr_1.5        
 
 loaded via a namespace (and not attached):
- [1] TH.data_1.0-10              minqa_1.2.4                
- [3] rjson_0.2.20                colorRamps_2.3             
- [5] rprojroot_1.3-2             corpcor_1.6.9              
- [7] XVector_0.24.0              GenomicRanges_1.36.0       
- [9] GlobalOptions_0.1.0         fs_1.3.1                   
-[11] clue_0.3-57                 mvtnorm_1.0-11             
-[13] codetools_0.2-16            splines_3.6.0              
-[15] doParallel_1.0.14           robustbase_0.93-5          
-[17] knitr_1.23                  workflowr_1.3.0            
-[19] nloptr_1.2.1                pbkrtest_0.4-7             
-[21] cluster_2.1.0               png_0.1-7                  
-[23] graph_1.62.0                rrcov_1.4-7                
-[25] compiler_3.6.0              backports_1.1.4            
-[27] assertthat_0.2.1            Matrix_1.2-17              
-[29] lazyeval_0.2.2              htmltools_0.3.6            
-[31] prettyunits_1.0.2           tools_3.6.0                
-[33] igraph_1.2.4.1              gtable_0.3.0               
-[35] glue_1.3.1                  GenomeInfoDbData_1.2.1     
-[37] reshape2_1.4.3              Rcpp_1.0.1                 
-[39] gdata_2.18.0                nlme_3.1-140               
-[41] iterators_1.0.10            xfun_0.7                   
-[43] lme4_1.1-21                 gtools_3.8.1               
-[45] XML_3.98-1.19               edgeR_3.26.4               
-[47] DEoptimR_1.0-8              MASS_7.3-51.4              
-[49] zlibbioc_1.30.0             zoo_1.8-6                  
-[51] hms_0.4.2                   SummarizedExperiment_1.14.0
-[53] sandwich_2.5-1              RColorBrewer_1.1-2         
-[55] yaml_2.2.0                  gridExtra_2.3              
-[57] stringi_1.4.3               S4Vectors_0.22.0           
-[59] pcaPP_1.9-73                flowCore_1.50.0            
-[61] caTools_1.17.1.2            boot_1.3-22                
-[63] BiocParallel_1.18.0         shape_1.4.4                
-[65] GenomeInfoDb_1.20.0         rlang_0.3.4                
-[67] pkgconfig_2.0.2             matrixStats_0.54.0         
-[69] bitops_1.0-6                evaluate_0.14              
-[71] lattice_0.20-38             tidyselect_0.2.5           
-[73] plyr_1.8.4                  R6_2.4.0                   
-[75] IRanges_2.18.1              gplots_3.0.1.1             
-[77] multcomp_1.4-10             DelayedArray_0.10.0        
-[79] pillar_1.4.1                whisker_0.3-2              
-[81] withr_2.1.2                 survival_2.44-1.1          
-[83] RCurl_1.95-4.12             FlowSOM_1.16.0             
-[85] tibble_2.1.2                tsne_0.1-3                 
-[87] crayon_1.3.4                KernSmooth_2.23-15         
-[89] rmarkdown_1.13              GetoptLong_0.1.7           
-[91] progress_1.2.2              locfit_1.5-9.1             
-[93] git2r_0.25.2                ConsensusClusterPlus_1.48.0
-[95] digest_0.6.19               tidyr_0.8.3                
-[97] stats4_3.6.0                munsell_0.5.0              </code></pre>
+ [1] Rcpp_1.0.1          plyr_1.8.4          pillar_1.4.1       
+ [4] compiler_3.6.0      RColorBrewer_1.1-2  git2r_0.25.2       
+ [7] workflowr_1.3.0     tools_3.6.0         digest_0.6.19      
+[10] gtable_0.3.0        evaluate_0.14       tibble_2.1.2       
+[13] clue_0.3-57         pkgconfig_2.0.2     png_0.1-7          
+[16] rlang_0.3.4         yaml_2.2.0          parallel_3.6.0     
+[19] xfun_0.7            gridExtra_2.3       knitr_1.23         
+[22] cluster_2.1.0       fs_1.3.1            GlobalOptions_0.1.0
+[25] rprojroot_1.3-2     tidyselect_0.2.5    glue_1.3.1         
+[28] R6_2.4.0            GetoptLong_0.1.7    rmarkdown_1.13     
+[31] ggplot2_3.1.1       whisker_0.3-2       backports_1.1.4    
+[34] htmltools_0.3.6     assertthat_0.2.1    shape_1.4.4        
+[37] stringi_1.4.3       lazyeval_0.2.2      munsell_0.5.0      
+[40] crayon_1.3.4        rjson_0.2.20       </code></pre>
 </div>
 </div>
 
