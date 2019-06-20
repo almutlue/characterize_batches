@@ -341,8 +341,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -447,7 +445,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-06-19
+<strong>Last updated:</strong> 2019-06-20
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -526,40 +524,27 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree0650f8b1672439471c229bca2851c2e32b490e75targetblank0650f8ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/0650f8b1672439471c229bca2851c2e32b490e75" target="_blank">0650f8b</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreee33654fd60c4c71b5262a6dccf1971a4042d35fftargetblanke33654fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/e33654fd60c4c71b5262a6dccf1971a4042d35ff" target="_blank">e33654f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree0650f8b1672439471c229bca2851c2e32b490e75targetblank0650f8ba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreee33654fd60c4c71b5262a6dccf1971a4042d35fftargetblanke33654fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/hca_cache/
-    Ignored:    data/.DS_Store
-    Ignored:    data/.Rhistory
-    Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  code/calculate_overlaping_DEG.R
     Untracked:  code/diagnostic_plots.R
-    Untracked:  code/hca_cms_red.Rmd
-    Untracked:  code/khan.R
-    Untracked:  code/pancreas_preprocessing.R
-    Untracked:  data/.RDataTmp
     Untracked:  data/PBMC_media_merged_clusters_seurat.rds
     Untracked:  data/csf_media.rds
-    Untracked:  data/hg19/
-    Untracked:  data/khang_patient.rds
     Untracked:  data/pancreas.rds
     Untracked:  data/pbmc2_media.rds
     Untracked:  data/pbmc_media.rds
-    Untracked:  data/sce_cellBench.rds
-    Untracked:  data/sce_khang_patient.rds
     Untracked:  output/cms_4_mouse_red.rds
     Untracked:  output/cms_all_mouse_red.rds
     Untracked:  output/cms_cellBench.rds
@@ -589,6 +574,7 @@ Untracked files:
     Untracked:  output/limma_pbmc2_media_storage.rds
     Untracked:  output/limma_pbmc2_patient.rds
     Untracked:  output/limma_pbmc_media_storage.rds
+    Untracked:  output/pbmc_media_cms.rds
     Untracked:  output/pbmc_media_limma_results.RData
     Untracked:  output/pbmc_media_upset_data.RData
     Untracked:  output/protocol_processed_sce_list_red.rds
@@ -602,6 +588,7 @@ Untracked files:
     Untracked:  output/summary_pancreas.rds
     Untracked:  output/summary_pbmc2_media_storage.rds
     Untracked:  output/summary_pbmc2_patient.rds
+    Untracked:  output/summary_pbmc_media.rds
     Untracked:  output/summary_pbmc_media_storage.rds
     Untracked:  output/upset_cellBench.rds
     Untracked:  output/upset_csf_media_storage.rds
@@ -617,14 +604,13 @@ Untracked files:
     Untracked:  output/vp_hca.rds
     Untracked:  output/vp_khang_patient.rds
     Untracked:  output/vp_pancreas.rds
+    Untracked:  output/vp_pbmc.rds
     Untracked:  output/vp_pbmc2_media_storage.rds
     Untracked:  output/vp_pbmc2_patient.rds
     Untracked:  output/vp_pbmc_media_storage.rds
-    Untracked:  outputsce_hca_integrated.rds
-    Untracked:  sce_hca_integrated.rds
 
 Unstaged changes:
-    Modified:   analysis/pbmc2_patient.Rmd
+    Modified:   analysis/pancreas.Rmd
 
 </code></pre>
 <p>
@@ -665,6 +651,23 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/khan.html" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -692,13 +695,11 @@ wflow_publish(“analysis/khan.Rmd”)
 <p><strong>Khang data</strong>, test batch effect from different patient. Droplet-based scRNA-seq PBMC data from 8 Lupus patients before and after 6h-treatment with INF-beta. Represented as a SingleCellExperiment; derived from GEO accession number GSE96583.</p>
 <pre class="r"><code>suppressPackageStartupMessages({
   library(ExperimentHub)
-  library(CellBench)
   library(scater)
   library(jcolors)
   library(CellMixS)
   library(gridExtra)
   library(purrr)
-  library(jcolors)
   library(here)
   library(tidyr)
   library(dplyr)
@@ -706,6 +707,7 @@ wflow_publish(“analysis/khan.Rmd”)
   library(variancePartition)
   library(diffcyt)
   library(ComplexHeatmap)
+  library(magrittr)
 })</code></pre>
 <pre class="r"><code># data
 data_path &lt;- here::here(&quot;data&quot;)
@@ -713,7 +715,7 @@ out_path &lt;- here::here(&quot;output&quot;)
 code_path &lt;- here::here(&quot;code&quot;)
 dataset_name &lt;- &quot;khang_patient&quot;
 # loading the data
-sce &lt;- readRDS(paste0(data_path, &quot;/sce_khang_patient.rds&quot;))
+sce &lt;- readRDS(paste0(out_path, &quot;/sce_khang_patient.rds&quot;))
 # sce &lt;- runUMAP(sce)
 sce$patient &lt;- as.factor(as.character(colData(sce)[,&#39;ind&#39;]))
 
@@ -747,13 +749,87 @@ cont &lt;- list(&quot;1015-1016&quot; = c(0,1,-1,0,0,0,0,0,0),
 <pre class="r"><code>feature_list &lt;- c(batch, celltype)
 
 lapply(feature_list, function(feature_name){
-  visGroup(sce, feature_name, dim_red= &quot;pca&quot;)
+  visGroup(sce, feature_name, dim_red= &quot;UMAP&quot;)
 })</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/khan.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-1">
+Past versions of vis batch-1.png
+</button>
+</p>
+<div id="fig-vis batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/vis batch-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/khan.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-2">
+Past versions of vis batch-2.png
+</button>
+</p>
+<div id="fig-vis batch-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/vis batch-2.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sizestrength-of-the-batch-effcet" class="section level1">
 <h1>Size/Strength of the batch effcet</h1>
@@ -772,21 +848,95 @@ vp &lt;- readRDS(paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot
 
 vp_names &lt;- rownames(vp)
 vp &lt;-vp  %&gt;% dplyr::mutate(gene= vp_names) %&gt;% dplyr::arrange(-!! rlang::parse_expr(batch))</code></pre>
-<pre><code>Warning in class(x) &lt;- c(subclass, tibble_class): Setting class(x) to
-multiple strings (&quot;tbl_df&quot;, &quot;tbl&quot;, ...); result will no longer be an S4
-object</code></pre>
+<pre><code>Warning in class(x) &lt;- c(subclass, tibble_class): Setze class(x) auf
+mehrere Zeichenketten(&quot;tbl_df&quot;, &quot;tbl&quot;, ...); das Ergebnis ist kein S4
+Objekt mehr</code></pre>
 <pre class="r"><code>vp_sub &lt;- vp[1:3] %&gt;% set_rownames(vp$gene)
 
 #plot
 plotPercentBars( vp_sub[1:10,] )</code></pre>
 <p><img src="figure/khan.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-1">
+Past versions of variance part-1.png
+</button>
+</p>
+<div id="fig-variance part-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/variance part-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plotVarPart( vp_sub )</code></pre>
 <p><img src="figure/khan.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-2">
+Past versions of variance part-2.png
+</button>
+</p>
+<div id="fig-variance part-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/variance part-2.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Summarize variance partitioning</p>
 <pre class="r"><code>#How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.01) %&gt;% nrow())/dim(sce)[1]
 n_batch_gene10 &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.1) %&gt;% nrow())/dim(sce)[1]
-n_celltype_gene &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(celltype)&gt; 0.01) %&gt;% nrow())/dim(sce)[2]
+n_celltype_gene &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(celltype)&gt; 0.01) %&gt;% nrow())/dim(sce)[1]
 n_rel &lt;- n_batch_gene/n_celltype_gene
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
@@ -816,7 +966,47 @@ plot_abundance &lt;- function(cluster_var, tib, x_var){
 }
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
-<p><img src="figure/khan.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /> ## Celltype abundance - relative difference in abundances</p>
+<p><img src="figure/khan.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-celltype abundance-1">
+Past versions of celltype abundance-1.png
+</button>
+</p>
+<div id="fig-celltype abundance-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/celltype abundance-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="celltype-abundance---relative-difference-in-abundances" class="section level2">
+<h2>Celltype abundance - relative difference in abundances</h2>
 <pre class="r"><code>meta_tib &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(batch, celltype)) %&gt;%
   summarize(n = n()) %&gt;% spread_(batch,&quot;n&quot;)
 meta_df &lt;- as.data.frame(eval(meta_tib))[,-1]
@@ -901,6 +1091,43 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   scale_x_continuous(limits =  c(0, 2))</code></pre>
 <pre><code>Warning: Removed 6924 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="figure/khan.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-count distributions-1">
+Past versions of count distributions-1.png
+</button>
+</p>
+<div id="fig-count distributions-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/count distributions-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#number of cluster with differnt batch distributions
 per_dist &lt;- 5</code></pre>
 <p>Mean expression batch vs each other</p>
@@ -922,185 +1149,2257 @@ lapply(batch_all, function(batch_var){
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-1">
+Past versions of mean expression-1.png
+</button>
+</p>
+<div id="fig-mean expression-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-2">
+Past versions of mean expression-2.png
+</button>
+</p>
+<div id="fig-mean expression-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-2.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-3">
+Past versions of mean expression-3.png
+</button>
+</p>
+<div id="fig-mean expression-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-3.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-4">
+Past versions of mean expression-4.png
+</button>
+</p>
+<div id="fig-mean expression-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-4.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-5">
+Past versions of mean expression-5.png
+</button>
+</p>
+<div id="fig-mean expression-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-5.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-6">
+Past versions of mean expression-6.png
+</button>
+</p>
+<div id="fig-mean expression-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-6.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-7">
+Past versions of mean expression-7.png
+</button>
+</p>
+<div id="fig-mean expression-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-7.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-8">
+Past versions of mean expression-8.png
+</button>
+</p>
+<div id="fig-mean expression-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-8.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-9">
+Past versions of mean expression-9.png
+</button>
+</p>
+<div id="fig-mean expression-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-9.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-10">
+Past versions of mean expression-10.png
+</button>
+</p>
+<div id="fig-mean expression-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-10.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-11">
+Past versions of mean expression-11.png
+</button>
+</p>
+<div id="fig-mean expression-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-11.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-12">
+Past versions of mean expression-12.png
+</button>
+</p>
+<div id="fig-mean expression-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-12.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-13">
+Past versions of mean expression-13.png
+</button>
+</p>
+<div id="fig-mean expression-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-13.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-14">
+Past versions of mean expression-14.png
+</button>
+</p>
+<div id="fig-mean expression-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-14.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-15">
+Past versions of mean expression-15.png
+</button>
+</p>
+<div id="fig-mean expression-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-15.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-16">
+Past versions of mean expression-16.png
+</button>
+</p>
+<div id="fig-mean expression-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-16.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-17">
+Past versions of mean expression-17.png
+</button>
+</p>
+<div id="fig-mean expression-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-17.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-18">
+Past versions of mean expression-18.png
+</button>
+</p>
+<div id="fig-mean expression-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-18.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-19">
+Past versions of mean expression-19.png
+</button>
+</p>
+<div id="fig-mean expression-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-19.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-20.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-20">
+Past versions of mean expression-20.png
+</button>
+</p>
+<div id="fig-mean expression-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-20.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-21.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-21">
+Past versions of mean expression-21.png
+</button>
+</p>
+<div id="fig-mean expression-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-21.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[4]]
 [[4]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-22.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-22">
+Past versions of mean expression-22.png
+</button>
+</p>
+<div id="fig-mean expression-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-22.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-23.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-23">
+Past versions of mean expression-23.png
+</button>
+</p>
+<div id="fig-mean expression-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-23.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-24">
+Past versions of mean expression-24.png
+</button>
+</p>
+<div id="fig-mean expression-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-24.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-25">
+Past versions of mean expression-25.png
+</button>
+</p>
+<div id="fig-mean expression-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-25.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-26">
+Past versions of mean expression-26.png
+</button>
+</p>
+<div id="fig-mean expression-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-26.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-27.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-27">
+Past versions of mean expression-27.png
+</button>
+</p>
+<div id="fig-mean expression-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-27.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-28.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-28">
+Past versions of mean expression-28.png
+</button>
+</p>
+<div id="fig-mean expression-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-28.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[5]]
 [[5]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-29.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-29">
+Past versions of mean expression-29.png
+</button>
+</p>
+<div id="fig-mean expression-29" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-29.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-30.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-30">
+Past versions of mean expression-30.png
+</button>
+</p>
+<div id="fig-mean expression-30" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-30.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-31.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-31">
+Past versions of mean expression-31.png
+</button>
+</p>
+<div id="fig-mean expression-31" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-31.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-32.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-32">
+Past versions of mean expression-32.png
+</button>
+</p>
+<div id="fig-mean expression-32" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-32.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-33.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-33">
+Past versions of mean expression-33.png
+</button>
+</p>
+<div id="fig-mean expression-33" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-33.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-34.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-34">
+Past versions of mean expression-34.png
+</button>
+</p>
+<div id="fig-mean expression-34" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-34.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-35.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-35">
+Past versions of mean expression-35.png
+</button>
+</p>
+<div id="fig-mean expression-35" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-35.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[6]]
 [[6]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-36.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-36">
+Past versions of mean expression-36.png
+</button>
+</p>
+<div id="fig-mean expression-36" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-36.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-37.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-37">
+Past versions of mean expression-37.png
+</button>
+</p>
+<div id="fig-mean expression-37" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-37.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-38.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-38">
+Past versions of mean expression-38.png
+</button>
+</p>
+<div id="fig-mean expression-38" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-38.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-39.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-39">
+Past versions of mean expression-39.png
+</button>
+</p>
+<div id="fig-mean expression-39" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-39.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-40.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-40">
+Past versions of mean expression-40.png
+</button>
+</p>
+<div id="fig-mean expression-40" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-40.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-41.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-41">
+Past versions of mean expression-41.png
+</button>
+</p>
+<div id="fig-mean expression-41" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-41.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-42.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-42">
+Past versions of mean expression-42.png
+</button>
+</p>
+<div id="fig-mean expression-42" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-42.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[7]]
 [[7]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-43.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-43">
+Past versions of mean expression-43.png
+</button>
+</p>
+<div id="fig-mean expression-43" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-43.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-44.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-44">
+Past versions of mean expression-44.png
+</button>
+</p>
+<div id="fig-mean expression-44" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-44.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-45.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-45">
+Past versions of mean expression-45.png
+</button>
+</p>
+<div id="fig-mean expression-45" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-45.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-46.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-46">
+Past versions of mean expression-46.png
+</button>
+</p>
+<div id="fig-mean expression-46" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-46.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-47.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-47">
+Past versions of mean expression-47.png
+</button>
+</p>
+<div id="fig-mean expression-47" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-47.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-48.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-48">
+Past versions of mean expression-48.png
+</button>
+</p>
+<div id="fig-mean expression-48" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-48.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-49.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-49">
+Past versions of mean expression-49.png
+</button>
+</p>
+<div id="fig-mean expression-49" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-49.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[8]]
 [[8]][[1]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-50.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-50">
+Past versions of mean expression-50.png
+</button>
+</p>
+<div id="fig-mean expression-50" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-50.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]][[2]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-51.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-51">
+Past versions of mean expression-51.png
+</button>
+</p>
+<div id="fig-mean expression-51" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-51.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]][[3]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-52.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-52">
+Past versions of mean expression-52.png
+</button>
+</p>
+<div id="fig-mean expression-52" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-52.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]][[4]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-53.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-53">
+Past versions of mean expression-53.png
+</button>
+</p>
+<div id="fig-mean expression-53" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-53.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]][[5]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-54.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-54">
+Past versions of mean expression-54.png
+</button>
+</p>
+<div id="fig-mean expression-54" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-54.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]][[6]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-55.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-55">
+Past versions of mean expression-55.png
+</button>
+</p>
+<div id="fig-mean expression-55" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-55.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]][[7]]</code></pre>
 <p><img src="figure/khan.Rmd/mean%20expression-56.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-56">
+Past versions of mean expression-56.png
+</button>
+</p>
+<div id="fig-mean expression-56" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/mean expression-56.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cellspecific-mixing-score" class="section level1">
 <h1>Cellspecific mixing score</h1>
@@ -1111,9 +3410,48 @@ sce &lt;- readRDS(paste0(out_path, &quot;/cms_&quot;, dataset_name, &quot;.rds&q
 
 visHist(sce, n_col = 2)</code></pre>
 <p><img src="figure/khan.Rmd/cms-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code># visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;TSNE&quot;)
-
-#summarize
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cms-1">
+Past versions of cms-1.png
+</button>
+</p>
+<div id="fig-cms-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/cms-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;tsne&quot;)</code></pre>
+<p><img src="figure/khan.Rmd/cms-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>visGroup(sce,  batch, dim_red = &quot;tsne&quot;)</code></pre>
+<p><img src="figure/khan.Rmd/cms-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#summarize
 mean_cms &lt;- mean(sce$cms)
 n_cms_0.01 &lt;- length(which(sce$cms &lt; 0.01))
 cluster_mean_cms &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(celltype) %&gt;% summarize(cms_mean = mean(cms))
@@ -1190,8 +3528,12 @@ doDE &lt;- function(x,lfc_cutoff=log2(1.1)){
 </div>
 <div id="upset-plot" class="section level1">
 <h1>Upset plot</h1>
-<pre class="r"><code>res&lt;-readRDS(paste0(out_path, &quot;/limma_&quot;, dataset_name, &quot;.rds&quot;))
-# count nb. of DE genes by cluster
+<pre class="r"><code>res&lt;-readRDS(paste0(out_path, &quot;/limma_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
+<pre><code>Warning: Namensraum &#39;kernlab&#39; ist nicht verfügar und ist durch.GlobalEnv
+ersetzt worden während Objekt &#39;&#39; verarbeitet wurde</code></pre>
+<pre><code>Warning: Namensraum &#39;NADA&#39; ist nicht verfügar und ist durch.GlobalEnv
+ersetzt worden während Objekt &#39;&#39; verarbeitet wurde</code></pre>
+<pre class="r"><code># count nb. of DE genes by cluster
 # vapply(res[[1]][[1]], function(x) sum(x$adj.P.Val &lt; 0.05), numeric(1))
 
 FilterDEGs&lt;-function (degDF=df, filter=c(FDR=5))
@@ -1220,41 +3562,451 @@ m2&lt;-readRDS(paste0(out_path, &quot;/upset_&quot;, dataset_name, &quot;.rds&qu
 lapply(m2, function(x) UpSet(x))</code></pre>
 <pre><code>$`1015-1016`</code></pre>
 <p><img src="figure/khan.Rmd/upset-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-1">
+Past versions of upset-1.png
+</button>
+</p>
+<div id="fig-upset-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1015-1244`</code></pre>
 <p><img src="figure/khan.Rmd/upset-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-2">
+Past versions of upset-2.png
+</button>
+</p>
+<div id="fig-upset-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-2.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1015-1256`</code></pre>
 <p><img src="figure/khan.Rmd/upset-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-3">
+Past versions of upset-3.png
+</button>
+</p>
+<div id="fig-upset-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-3.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1015-1488`</code></pre>
 <p><img src="figure/khan.Rmd/upset-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-4">
+Past versions of upset-4.png
+</button>
+</p>
+<div id="fig-upset-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-4.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1016-1244`</code></pre>
 <p><img src="figure/khan.Rmd/upset-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-5">
+Past versions of upset-5.png
+</button>
+</p>
+<div id="fig-upset-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-5.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1016-1256`</code></pre>
 <p><img src="figure/khan.Rmd/upset-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-6">
+Past versions of upset-6.png
+</button>
+</p>
+<div id="fig-upset-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-6.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1244-1256`</code></pre>
 <p><img src="figure/khan.Rmd/upset-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-7">
+Past versions of upset-7.png
+</button>
+</p>
+<div id="fig-upset-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-7.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1244-1488`</code></pre>
 <p><img src="figure/khan.Rmd/upset-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-8">
+Past versions of upset-8.png
+</button>
+</p>
+<div id="fig-upset-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-8.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 $`1256-1488`</code></pre>
-<p><img src="figure/khan.Rmd/upset-9.png" width="672" style="display: block; margin: auto;" /> # Histograms of p-values</p>
+<p><img src="figure/khan.Rmd/upset-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-upset-9">
+Past versions of upset-9.png
+</button>
+</p>
+<div id="fig-upset-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/upset-9.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="histograms-of-p-values" class="section level1">
+<h1>Histograms of p-values</h1>
 <pre class="r"><code>source(paste0(code_path, &quot;/diagnostic_plots.R&quot;))
 histogram.gg(res)</code></pre>
-<pre><code>Loading required package: reshape2</code></pre>
+<pre><code>Lade nötiges Paket: reshape2</code></pre>
 <pre><code>
-Attaching package: &#39;reshape2&#39;</code></pre>
+Attache Paket: &#39;reshape2&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:tidyr&#39;:
 
     smiths</code></pre>
 <p><img src="figure/khan.Rmd/histograms-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-histograms-1">
+Past versions of histograms-1.png
+</button>
+</p>
+<div id="fig-histograms-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/histograms-1.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>baloonplot.gg(result)</code></pre>
 <p><img src="figure/khan.Rmd/histograms-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-histograms-2">
+Past versions of histograms-2.png
+</button>
+</p>
+<div id="fig-histograms-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/41eef7048ea1ce0baa3a6c4c3dd390950d90616d/docs/figure/khan.Rmd/histograms-2.png" target="_blank">41eef70</a>
+</td>
+<td>
+zjanna
+</td>
+<td>
+2019-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ratio-specific-cluster-of-deg" class="section level1">
 <h1>ratio specific cluster of DEG</h1>
@@ -1305,12 +4057,18 @@ max_rel_spec=max(rel_spec1)</code></pre>
 </div>
 <div id="simulation-parameter" class="section level1">
 <h1>Simulation parameter</h1>
-<pre class="r"><code># percentage of batch affected genes
+<pre class="r"><code>#percentage of batch affected genes
 cond &lt;- gsub(&quot;-.*&quot;, &quot;&quot;, names(n_de))
-cond &lt;- c(unique(gsub(&quot;.*-&quot;, &quot;&quot;, names(n_de))))
-de_be &lt;- n_de %&gt;% bind_cols() %&gt;% mutate(&quot;batch1&quot; = rowMeans(.)) %&gt;% set_colnames(cond)
-n_cl &lt;- rep(nrow(sce), ncol(de_be)) %&gt;% set_names(colnames(de_be))
+cond &lt;- c(cond, unique(gsub(&quot;.*-&quot;, &quot;&quot;, names(n_de))))
+cond &lt;- unique(cond)
+de_be_tab &lt;- n_de %&gt;% bind_cols()
+de_be &lt;- cond %&gt;% map(function(x){
+  de_tab &lt;- de_be_tab[, grep(x, colnames(de_be_tab))]
+  de_be &lt;- rowMeans(de_tab)
+}) %&gt;% bind_cols() %&gt;% set_colnames(cond)
 
+n_cl &lt;- rep(nrow(sce), ncol(de_be)) %&gt;% set_names(colnames(de_be))
+  
 p_be &lt;- de_be/n_cl
 mean_p_be &lt;- mean(colMeans(p_be))
 min_p_be &lt;- min(colMins(as.matrix(p_be)))
@@ -1326,58 +4084,59 @@ min_lfc_cl &lt;- lapply(res[[1]],function(y) vapply(y, function(x){
   de_genes &lt;- which(x$adj.P.Val &lt; 0.01)
   min_de &lt;- min(abs(x[de_genes, &quot;logFC&quot;]))}
   , numeric(1))) %&gt;% bind_cols()</code></pre>
-<pre><code>Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+<pre><code>Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück
 
-Warning in min(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to min;
-returning Inf</code></pre>
+Warning in min(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für min; gebe Inf zurück</code></pre>
 <pre class="r"><code>max_lfc_cl &lt;- lapply(res[[1]],function(y) vapply(y, function(x){
   de_genes &lt;- which(x$adj.P.Val &lt; 0.01)
   max_de &lt;- max(abs(x[de_genes, &quot;logFC&quot;]))}
   , numeric(1))) %&gt;% bind_cols()</code></pre>
-<pre><code>Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf</code></pre>
-<pre><code>Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf
+<pre><code>Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück</code></pre>
+<pre><code>Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück
 
-Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf
+Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück
 
-Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf
+Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück
 
-Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf
+Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück
 
-Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf
+Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück
 
-Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf
+Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück
 
-Warning in max(abs(x[de_genes, &quot;logFC&quot;])): no non-missing arguments to max;
-returning -Inf</code></pre>
+Warning in max(abs(x[de_genes, &quot;logFC&quot;])): kein nicht-fehlendes Argument
+für max; gebe -Inf zurück</code></pre>
 <pre class="r"><code>mean_lfc_be &lt;- mean(colMeans(mean_lfc_cl, na.rm = TRUE))
 min_lfc_be &lt;- min(colMins(as.matrix(min_lfc_cl), na.rm = TRUE))
 max_lfc_be &lt;- max(colMaxs(as.matrix(max_lfc_cl), na.rm = TRUE))
+
 
 #rel_be
 var_lfc_cl &lt;- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
@@ -1467,40 +4226,44 @@ saveRDS(summary, paste0(out_path, &quot;/summary_&quot;, dataset_name, &quot;.rd
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 3.6.0 (2019-04-26)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Sierra 10.12.6
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.2 LTS
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+ [1] LC_CTYPE=de_DE.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=de_DE.UTF-8        LC_COLLATE=de_DE.UTF-8    
+ [5] LC_MONETARY=de_DE.UTF-8    LC_MESSAGES=de_DE.UTF-8   
+ [7] LC_PAPER=de_DE.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
  [1] grid      stats4    parallel  stats     graphics  grDevices utils    
  [8] datasets  methods   base     
 
 other attached packages:
- [1] reshape2_1.4.3              ComplexHeatmap_2.0.0       
- [3] diffcyt_1.4.3               variancePartition_1.14.0   
- [5] scales_1.0.0                foreach_1.4.4              
- [7] limma_3.39.14               stringr_1.4.0              
- [9] dplyr_0.8.1                 tidyr_0.8.3                
-[11] here_0.1                    purrr_0.3.2                
-[13] gridExtra_2.3               CellMixS_1.0.0             
-[15] kSamples_1.2-8              SuppDists_1.1-9.4          
-[17] jcolors_0.0.4               scater_1.11.13             
-[19] ggplot2_3.1.1               CellBench_1.0.0            
-[21] tibble_2.1.1                magrittr_1.5               
-[23] SingleCellExperiment_1.5.2  SummarizedExperiment_1.13.0
-[25] DelayedArray_0.9.9          BiocParallel_1.17.18       
-[27] matrixStats_0.54.0          Biobase_2.43.1             
-[29] GenomicRanges_1.35.1        GenomeInfoDb_1.19.2        
-[31] IRanges_2.17.4              S4Vectors_0.21.21          
-[33] ExperimentHub_1.10.0        AnnotationHub_2.16.0       
-[35] BiocFileCache_1.8.0         dbplyr_1.4.0               
-[37] BiocGenerics_0.29.2        
+ [1] reshape2_1.4.3              magrittr_1.5               
+ [3] ComplexHeatmap_2.1.0        diffcyt_1.4.3              
+ [5] variancePartition_1.14.0    scales_1.0.0               
+ [7] foreach_1.4.4               limma_3.40.2               
+ [9] stringr_1.4.0               dplyr_0.8.1                
+[11] tidyr_0.8.3                 here_0.1                   
+[13] purrr_0.3.2                 gridExtra_2.3              
+[15] CellMixS_1.1.0              kSamples_1.2-9             
+[17] SuppDists_1.1-9.4           jcolors_0.0.4              
+[19] scater_1.12.2               ggplot2_3.1.1              
+[21] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
+[23] DelayedArray_0.10.0         BiocParallel_1.18.0        
+[25] matrixStats_0.54.0          Biobase_2.44.0             
+[27] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
+[29] IRanges_2.18.1              S4Vectors_0.22.0           
+[31] ExperimentHub_1.10.0        AnnotationHub_2.16.0       
+[33] BiocFileCache_1.8.0         dbplyr_1.4.0               
+[35] BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
   [1] backports_1.1.4               circlize_0.4.6               
@@ -1510,60 +4273,59 @@ loaded via a namespace (and not attached):
   [9] flowCore_1.50.0               TH.data_1.0-10               
  [11] digest_0.6.19                 htmltools_0.3.6              
  [13] viridis_0.5.1                 gdata_2.18.0                 
- [15] memoise_1.1.0                 cluster_2.0.8                
+ [15] memoise_1.1.0                 cluster_2.1.0                
  [17] doParallel_1.0.14             sandwich_2.5-1               
  [19] prettyunits_1.0.2             colorspace_1.4-1             
  [21] rrcov_1.4-7                   blob_1.1.1                   
  [23] rappdirs_0.3.1                xfun_0.7                     
  [25] crayon_1.3.4                  RCurl_1.95-4.12              
  [27] graph_1.62.0                  lme4_1.1-21                  
- [29] survival_2.44-1.1             zoo_1.8-5                    
+ [29] survival_2.44-1.1             zoo_1.8-6                    
  [31] iterators_1.0.10              glue_1.3.1                   
- [33] gtable_0.3.0                  zlibbioc_1.29.0              
- [35] XVector_0.23.2                listarrays_0.2.0             
- [37] GetoptLong_0.1.7              kernlab_0.9-27               
- [39] BiocSingular_0.99.14          shape_1.4.4                  
- [41] DEoptimR_1.0-8                mvtnorm_1.0-10               
- [43] edgeR_3.25.3                  DBI_1.0.0                    
- [45] Rcpp_1.0.1                    viridisLite_0.3.0            
- [47] xtable_1.8-4                  progress_1.2.2               
- [49] clue_0.3-57                   bit_1.1-14                   
- [51] rsvd_1.0.0                    FlowSOM_1.16.0               
- [53] tsne_0.1-3                    httr_1.4.0                   
- [55] gplots_3.0.1.1                RColorBrewer_1.1-2           
- [57] NADA_1.6-1                    pkgconfig_2.0.2              
- [59] XML_3.98-1.19                 locfit_1.5-9.1               
- [61] labeling_0.3                  tidyselect_0.2.5             
- [63] rlang_0.3.4                   later_0.8.0                  
- [65] AnnotationDbi_1.46.0          munsell_0.5.0                
- [67] tools_3.6.0                   RSQLite_2.1.1                
- [69] ggridges_0.5.1                evaluate_0.13                
- [71] yaml_2.2.0                    knitr_1.23                   
- [73] bit64_0.9-7                   fs_1.3.0                     
- [75] robustbase_0.93-4             caTools_1.17.1.2             
- [77] nlme_3.1-139                  whisker_0.3-2                
- [79] mime_0.6                      compiler_3.6.0               
- [81] pbkrtest_0.4-7                beeswarm_0.2.3               
- [83] curl_3.3                      png_0.1-7                    
- [85] interactiveDisplayBase_1.22.0 pcaPP_1.9-73                 
- [87] stringi_1.4.3                 lattice_0.20-38              
- [89] Matrix_1.2-17                 nloptr_1.2.1                 
- [91] pillar_1.4.0                  BiocManager_1.30.4           
- [93] GlobalOptions_0.1.0           BiocNeighbors_1.1.12         
- [95] cowplot_0.9.4                 bitops_1.0-6                 
- [97] irlba_2.3.3                   corpcor_1.6.9                
- [99] httpuv_1.5.1                  colorRamps_2.3               
-[101] R6_2.4.0                      promises_1.0.1               
-[103] KernSmooth_2.23-15            vipor_0.4.5                  
-[105] codetools_0.2-16              boot_1.3-22                  
-[107] MASS_7.3-51.4                 gtools_3.8.1                 
-[109] assertthat_0.2.1              rprojroot_1.3-2              
-[111] rjson_0.2.20                  withr_2.1.2                  
-[113] multcomp_1.4-10               GenomeInfoDbData_1.2.0       
-[115] hms_0.4.2                     minqa_1.2.4                  
-[117] rmarkdown_1.12                DelayedMatrixStats_1.5.2     
-[119] git2r_0.25.2                  shiny_1.3.2                  
-[121] lubridate_1.7.4               ggbeeswarm_0.6.0             </code></pre>
+ [33] gtable_0.3.0                  zlibbioc_1.30.0              
+ [35] XVector_0.24.0                listarrays_0.2.0             
+ [37] GetoptLong_0.1.7              BiocSingular_1.0.0           
+ [39] shape_1.4.4                   DEoptimR_1.0-8               
+ [41] mvtnorm_1.0-11                edgeR_3.26.4                 
+ [43] DBI_1.0.0                     Rcpp_1.0.1                   
+ [45] viridisLite_0.3.0             xtable_1.8-4                 
+ [47] progress_1.2.2                clue_0.3-57                  
+ [49] bit_1.1-14                    rsvd_1.0.1                   
+ [51] FlowSOM_1.16.0                tsne_0.1-3                   
+ [53] httr_1.4.0                    gplots_3.0.1.1               
+ [55] RColorBrewer_1.1-2            pkgconfig_2.0.2              
+ [57] XML_3.98-1.19                 locfit_1.5-9.1               
+ [59] labeling_0.3                  tidyselect_0.2.5             
+ [61] rlang_0.3.4                   later_0.8.0                  
+ [63] AnnotationDbi_1.46.0          munsell_0.5.0                
+ [65] tools_3.6.0                   RSQLite_2.1.1                
+ [67] ggridges_0.5.1                evaluate_0.14                
+ [69] yaml_2.2.0                    knitr_1.23                   
+ [71] bit64_0.9-7                   fs_1.3.1                     
+ [73] robustbase_0.93-5             caTools_1.17.1.2             
+ [75] nlme_3.1-140                  whisker_0.3-2                
+ [77] mime_0.7                      compiler_3.6.0               
+ [79] pbkrtest_0.4-7                beeswarm_0.2.3               
+ [81] curl_3.3                      png_0.1-7                    
+ [83] interactiveDisplayBase_1.22.0 tibble_2.1.2                 
+ [85] pcaPP_1.9-73                  stringi_1.4.3                
+ [87] lattice_0.20-38               Matrix_1.2-17                
+ [89] nloptr_1.2.1                  pillar_1.4.1                 
+ [91] BiocManager_1.30.4            GlobalOptions_0.1.0          
+ [93] BiocNeighbors_1.2.0           cowplot_0.9.4                
+ [95] bitops_1.0-6                  irlba_2.3.3                  
+ [97] corpcor_1.6.9                 httpuv_1.5.1                 
+ [99] colorRamps_2.3                R6_2.4.0                     
+[101] promises_1.0.1                KernSmooth_2.23-15           
+[103] vipor_0.4.5                   codetools_0.2-16             
+[105] boot_1.3-22                   MASS_7.3-51.4                
+[107] gtools_3.8.1                  assertthat_0.2.1             
+[109] rprojroot_1.3-2               rjson_0.2.20                 
+[111] withr_2.1.2                   multcomp_1.4-10              
+[113] GenomeInfoDbData_1.2.1        hms_0.4.2                    
+[115] minqa_1.2.4                   rmarkdown_1.13               
+[117] DelayedMatrixStats_1.6.0      git2r_0.25.2                 
+[119] shiny_1.3.2                   ggbeeswarm_0.6.0             </code></pre>
 </div>
 </div>
 
