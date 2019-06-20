@@ -24,8 +24,6 @@ suppressPackageStartupMessages({
     library(viridis)
     library(colorspace)
     library(stringr)
-    library(variancePartition)
-    library(diffcyt)
 })
 ```
 
@@ -295,8 +293,8 @@ h_list <-  h_cms2 %v% h_cms %v% h_size1 %v% h_size2 %v% h_size %v% h_gene %v% h_
 
 #Add decorations describing the type of variable
 ### Size variables
-celltype_spec_variables <- c("rel.abund.diff", "Batch/Celltype")
-size_variables <- c("cms", "Variance Part.", "Genes")
+celltype_spec_variables <- c("rel.abund.diff")
+size_variables <- c("cms", "Variance Part.", "Genes", "Batch/Celltype")
 gene_spec_variables <- c("DE genes")
 
 draw(h_list)
