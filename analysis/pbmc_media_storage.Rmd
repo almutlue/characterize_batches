@@ -107,26 +107,111 @@ plotVarPart( vp_sub )
 
 
 
+#Deviance explaine by Piere Luc
+```{r}
+getDevianceExplained <- function(sce, form.full=~lsize+phenoid, form.null=~lsize, tagwise=TRUE){
+ library(edgeR)
+ if(is.null(sizeFactors(sce))) sce <- scran::computeSumFactors(sce)
+ dds <- DGEList(as.matrix(counts(sce)))
+ dds$samples$lib.size <- 1
+ CD <- as.data.frame(colData(sce))
+ CD$lsize <- log(sizeFactors(sce))
+ mm <- model.matrix(form.full, data=CD)
+ mm0 <- model.matrix(form.null, data=CD)
+ dds <- estimateDisp(dds, mm, tagwise=tagwise)
+ fit <- glmFit(dds, mm)
+ fit0 <- glmFit(dds, mm0)
+ de <- (deviance(fit0)-deviance(fit))/deviance(fit0)
+ de[which(de<0)] <- 0
+ return( de )
+}
+
+
+form.full <- as.formula(paste0("~ lsize  + ", batch))
+form.null <- as.formula(paste0("~ lsize"))
+d_exp <- getDevianceExplained(sce, form.full = form.full, form.null = form.null)
+
+form.full_ct <- as.formula(paste0("~ lsize  + ", celltype))
+d_exp_ct <- getDevianceExplained(sce, form.full = form.full_ct, form.null = form.null)
+
+saveRDS(d_exp, paste0(out_path,"/d_exp_", dataset_name, ".rds"))
+saveRDS(d_exp_ct, paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
+```
+
+
+
 Summarize variance partitioning
 
 ```{r summarize}
+d_exp <- readRDS(paste0(out_path,"/d_exp_", dataset_name, ".rds"))
+d_exp_ct <- readRDS(paste0(out_path,"d_exp_ct", dataset_name, ".rds"))
+
 #How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
 n_batch_gene10 <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.1) %>% nrow())/dim(sce)[1]
 n_celltype_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(celltype)> 0.01) %>% nrow())/dim(sce)[1]
 n_rel <- n_batch_gene/n_celltype_gene
 
+#Deviance modeled
+n_batch_gene_mod <- length(which(d_exp > 0.01))/dim(sce)[1]
+n_batch_gene10_mod <- length(which(d_exp > 0.1))/dim(sce)[1]
+n_celltype_gene_mod <- length(which(d_exp_ct > 0.01))/dim(sce)[1]
+n_rel_mod <- n_batch_gene_mod/n_celltype_gene_mod
+
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
 m_batch <- mean(vp[,batch])
 m_celltype <- mean(vp[,celltype])
 m_rel <- m_batch/m_celltype
+
+m_batch_mod <- mean(d_exp)
+m_celltype_mod <- mean(d_exp_ct)
+m_rel_mod <- m_batch_mod/m_celltype_mod
 
 
 #The median percentage of the variance that is explained by the batch effect independent from the celltype
 me_batch <- median(vp[, batch])
 me_celltype <- median(vp[, celltype])
 me_rel <- me_batch/me_celltype
+
+me_batch_mod <- median(d_exp)
+me_celltype_mod <- median(d_exp_ct)
+me_rel_mod <- me_batch_mod/me_celltype_mod
 ```
+
+
+
+#Plot varinace/deviance expression
+```{r var dev expr}
+#plot varinace dev-along with expression
+rownames(vp) <- vp$gene
+vp <- vp[rownames(sce),]
+rowData(sce)$vp_batch <- vp[,batch]
+rowData(sce)$vp_ct <- vp[,celltype]
+
+rowData(sce)$d_exp <- d_exp
+rowData(sce)$d_exp_ct <- d_exp_ct
+rowData(sce)$mean_expr <- rowMeans(assays(sce)$logcounts)
+
+
+ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_batch, colour = d_exp)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = d_exp, colour = vp_batch)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+
+ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_ct, colour = d_exp_ct)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = d_exp_ct, colour = vp_ct)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE)
+
+```
+ 
 
 
 # Celltype specificity
@@ -438,6 +523,7 @@ for(i in 1:dim(unique_genes)[2]){
 mean_rel_spec=mean(rel_spec1)
 min_rel_spec=min(rel_spec1)
 max_rel_spec=max(rel_spec1)
+```
 
 
 # Simulation parameter
@@ -454,6 +540,10 @@ p_be <- de_be/n_cl
 mean_p_be <- mean(colMeans(p_be))
 min_p_be <- min(colMins(as.matrix(p_be)))
 max_p_be <- max(colMaxs(as.matrix(p_be)))
+
+#### Could also be inferred from the variance explained by the batches
+p_be_mod <- n_batch_gene_mod
+
 
 #logFoldchange
 mean_lfc_cl <- lapply(res[[1]],function(y) vapply(y, function(x){
@@ -508,16 +598,24 @@ size <- data.frame("batch_genes_1per" = n_batch_gene,
                    "batch_genes_10per" = n_batch_gene10,
                    "celltype_gene_1per" = n_celltype_gene,
                    "relative_batch_celltype" = n_rel,
+                   "batch_genes_1per_mod" = n_batch_gene_mod,
+                   "batch_genes_10per_mod" = n_batch_gene10_mod,
+                   "celltype_gene_1per_mod" = n_celltype_gene_mod,
+                   "relative_batch_celltype_mod" = n_rel_mod,
                    "mean_var_batch" = m_batch,
                    "mean_var_celltype" = m_celltype,
                    "median_var_batch" = me_batch,
                    "median_var_celltype" = me_celltype,
+                   "mean_var_batch_mod" = m_batch_mod,
+                   "mean_var_celltype_mod" = m_celltype_mod,
+                   "median_var_batch_mod" = me_batch_mod,
+                   "median_var_celltype_mod" = me_celltype_mod,
                    "n_cells_total" = ncol(sce),
                    "n_genes_total" = nrow(sce))
 
 
 #Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
-celltype <- data.frame("DA_celltypes" = n_da_cluster,
+celltype <- data.frame("DA_celltypes" = per_da_cluster,
                        "per_count_dist" = per_dist,
                        "mean_cms" = mean_cms,
                        'mean_rel_abund_diff' = mean_rel_abund_diff,
@@ -528,27 +626,24 @@ celltype <- data.frame("DA_celltypes" = n_da_cluster,
 
 #Gene-specificity? How do they effect genes? Single genes? All genes? Which genes?
 gene <- data.frame("mean_mean_n_de_genes" = mean_mean_n_de,
-                   "max_mean_n_de_genes" = max_mean_n_de,
-                   "min_mean_n_de_genes" = min_mean_n_de,
-                   "mean_n_genes_lfc1" = mean_n_genes_lfc1,
-                   "min_n_genes_lfc1" = min_n_genes_lfc1,
-                   "max_n_genes_lfc1" = max_n_genes_lfc1,
-                   "mean_de_overlap" = mean_de_overlap,
+                    "max_mean_n_de_genes" = max_mean_n_de,
+                    "min_mean_n_de_genes" = min_mean_n_de,
+                    "mean_n_genes_lfc1" = mean_n_genes_lfc1,
+                    "min_n_genes_lfc1" = min_n_genes_lfc1,
+                    "max_n_genes_lfc1" = max_n_genes_lfc1,
+                     "mean_de_overlap" = mean_de_overlap,
                    "min_de_overlap" = min_de_overlap,
                    "max_de_overlap" = max_de_overlap,
-                   "mean_rel_cluster_spec"= mean_rel_spec,
-                   "min_rel_cluster_spec"= min_rel_spec,
-                   "max_rel_cluster_spec"= max_rel_spec
-)
+                  "mean_rel_cluster_spec"= mean_rel_spec,
+                  "min_rel_cluster_spec"= min_rel_spec,
+                  "max_rel_cluster_spec"= max_rel_spec
+                  )
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
-```
-
-# Simulation parameter
-```{r summarize simulation parameter}
 sim <- data.frame("mean_p_be" = mean_p_be,
                    "max_p_be" = max_p_be,
                    "min_p_be" = min_p_be,
+                   "p_be_mod" = p_be_mod,
                    "mean_lfc_be" = mean_lfc_be,
                    "min_lfc_be" = min_lfc_be,
                    "max_lfc_be" = max_lfc_be,
@@ -559,10 +654,7 @@ sim <- data.frame("mean_p_be" = mean_p_be,
                    "min_p_ct"= min_p_ct,
                    "max_p_ct"= max_p_ct)
 
-
 summary <- cbind(size, celltype, gene, sim) %>% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))
+
 ```
-
-
-
