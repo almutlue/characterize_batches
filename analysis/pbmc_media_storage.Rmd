@@ -187,10 +187,19 @@ rownames(vp) <- vp$gene
 vp <- vp[rownames(sce),]
 rowData(sce)$vp_batch <- vp[,batch]
 rowData(sce)$vp_ct <- vp[,celltype]
+rowData(sce)$vp_other <- vp[,"Residuals"]
 
 rowData(sce)$d_exp <- d_exp
 rowData(sce)$d_exp_ct <- d_exp_ct
+rowData(sce)$d_exp_other <- 1 - d_exp - d_exp_ct
 rowData(sce)$mean_expr <- rowMeans(assays(sce)$logcounts)
+
+#add expr classes 
+th <- quantile(rowMeans(assays(sce)$logcounts), c(.33, .66))
+high_th <- th[2]
+mid_th <- th[1]
+
+rowData(sce)$expr_class <- ifelse(rowMeans(assays(sce)$logcounts) > high_th, "high", ifelse(rowMeans(assays(sce)$logcounts) <= high_th & rowMeans(assays(sce)$logcounts) > mid_th, "medium", "low"))
 
 
 ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_batch, colour = d_exp)) + 
@@ -212,6 +221,45 @@ ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = d_exp_ct, colour = vp
 
 ```
  
+# Ternary plots
+```{r tern plots}
+ggtern(data=as.data.frame(rowData(sce)),aes(vp_batch, vp_ct, vp_other)) + 
+  stat_density_tern(aes(fill=..level.., alpha=..level..),geom='polygon') +
+  scale_fill_gradient2(high = "red") +
+  guides(color = "none", fill = "none", alpha = "none") +
+  geom_point(size= 0.1, alpha = 0.5)  + 
+  theme_bw()
+
+ggtern(data=as.data.frame(rowData(sce)),aes(vp_batch, vp_ct, vp_other)) + 
+  geom_point(size = 0.1) +
+  geom_density_tern() + 
+  theme_bw()
+
+ggtern(data=as.data.frame(rowData(sce)),aes(vp_batch, vp_ct, vp_other)) + 
+  geom_point(size = 0.1) +
+  geom_density_tern() + 
+  theme_bw() + 
+  facet_grid(~expr_class)
+  
+ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
+  stat_density_tern(aes(fill=..level.., alpha=..level..),geom='polygon') +
+  scale_fill_gradient2(high = "red") +
+  guides(color = "none", fill = "none", alpha = "none") +
+  geom_point(size= 0.1, alpha = 0.5) + 
+  theme_bw() 
+
+ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
+  geom_point(size = 0.1) +
+  geom_density_tern() + 
+  theme_bw() 
+
+ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
+  geom_point(size = 0.1) +
+  geom_density_tern() + 
+  theme_bw() + 
+  facet_grid(~expr_class)
+
+```
 
 
 # Celltype specificity
