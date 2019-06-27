@@ -39,9 +39,9 @@ Dataset
 
 ```{r load data}
 # data
-data_path <- here::here("data")
-out_path <- here::here("output")
-code_path <- here::here("code")
+out_path <- '/home/zjanna/output_new'
+code_path <- '/home/zjanna'
+data_path <- '/home/zjanna/output_new'
 dataset_name <- "hca"
 
 # Mixology dataset
@@ -105,15 +105,15 @@ cont<-list("10X2x5Kcell250Kreads-CELseq2" = c(1,-1,0,0),
 
 ```
 
-# Visualize batch effect
-```{r vis batch}
-feature_list <- c(batch, celltype)
-
-lapply(feature_list, function(feature_name){
-  visGroup(sce, batch, dim_red= "TSNE")
-})
-
-```
+# # Visualize batch effect
+# ```{r vis batch}
+# feature_list <- c(batch, celltype)
+# 
+# lapply(feature_list, function(feature_name){
+#   visGroup(sce, batch, dim_red= "TSNE")
+# })
+# 
+# ```
 
 # Size/Strength of the batch effcet
 How much of the variance within data can be attributed to the batch effect?
@@ -126,7 +126,7 @@ form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ")"))
 # varPart <- fitExtractVarPartModel(expr, form, meta_sub)
 
 #Sort variables (i.e. columns) by median fraction# of variance explained
-#vp <- varPart
+# vp <- varPart
 # saveRDS(vp, paste0("vp_", dataset_name, ".rds"))
 vp <- readRDS(paste0(out_path,"/vp_", dataset_name, ".rds"))
 
@@ -145,20 +145,20 @@ plotVarPart( vp_sub )
 #Deviance explaine by Piere Luc
 ```{r}
 getDevianceExplained <- function(sce, form.full=~lsize+phenoid, form.null=~lsize, tagwise=TRUE){
- library(edgeR)
- if(is.null(sizeFactors(sce))) sce <- scran::computeSumFactors(sce)
- dds <- DGEList(as.matrix(counts(sce)))
- dds$samples$lib.size <- 1
- CD <- as.data.frame(colData(sce))
- CD$lsize <- log(sizeFactors(sce))
- mm <- model.matrix(form.full, data=CD)
- mm0 <- model.matrix(form.null, data=CD)
- dds <- estimateDisp(dds, mm, tagwise=tagwise)
- fit <- glmFit(dds, mm)
- fit0 <- glmFit(dds, mm0)
- de <- (deviance(fit0)-deviance(fit))/deviance(fit0)
- de[which(de<0)] <- 0
- return( de )
+  library(edgeR)
+  if(is.null(sizeFactors(sce))) sce <- scran::computeSumFactors(sce)
+  dds <- DGEList(as.matrix(counts(sce)))
+  dds$samples$lib.size <- 1
+  CD <- as.data.frame(colData(sce))
+  CD$lsize <- log(sizeFactors(sce))
+  mm <- model.matrix(form.full, data=CD)
+  mm0 <- model.matrix(form.null, data=CD)
+  dds <- estimateDisp(dds, mm, tagwise=tagwise)
+  fit <- glmFit(dds, mm)
+  fit0 <- glmFit(dds, mm0)
+  de <- (deviance(fit0)-deviance(fit))/deviance(fit0)
+  de[which(de<0)] <- 0
+  return( de )
 }
 
 
@@ -179,7 +179,7 @@ Summarize variance partitioning
 
 ```{r summarize}
 d_exp <- readRDS(paste0(out_path,"/d_exp_", dataset_name, ".rds"))
-d_exp_ct <- readRDS(paste0(out_path,"d_exp_ct", dataset_name, ".rds"))
+d_exp_ct <- readRDS(paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
 
 #How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
@@ -246,7 +246,7 @@ ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = d_exp_ct, colour = vp
   geom_smooth(method = "lm", se = FALSE)
 
 ```
- 
+
 
 
 
@@ -392,14 +392,14 @@ Calculate cms
 ```{r cms}
 
 #sce$protocol <- as.factor(sce$protocol)
-#sce <- cms(sce, k = 300, group = "protocol", dim_red = "PCA", cell_min = 30, n_dim = 10)
+# sce <- cms(sce, k = 300, group = "protocol", dim_red = "PCA", cell_min = 30, n_dim = 10)
 
-#saveRDS(sce, file = paste0(out_path, "/cms_4_mouse_red.rds"))
+# saveRDS(sce, file = paste0(out_path, "/cms_4_mouse_red.rds"))
 
 sce <- readRDS(paste0(out_path, "/cms_4_mouse_red.rds"))
 # sce <- runUMAP(sce)
 
-visHist(sce, n_col = 2)
+# visHist(sce, n_col = 2)
 #visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
 
 #summarize
@@ -474,8 +474,8 @@ doDE <- function(x,lfc_cutoff=log2(1.1)){
        design = design,
        coef = coef)
 }
-# res<-doDE(x,lfc_cutoff=log2(1.1))
-# saveRDS(res, file=paste0("limma_", dataset_name, ".rds"))
+res<-doDE(x,lfc_cutoff=log2(1.1))
+saveRDS(res, file=paste0("limma_", dataset_name, ".rds"))
 ```
 
 ## Some diagnostics plot of DEG
@@ -505,27 +505,27 @@ for(jj in 1:length(cs)){
 }
 names(result)<-names(cs)
 names(m2)<-names(cs)
-# saveRDS(m2, file=paste0(out_path, "/upset_", dataset_name, ".rds"))
-#m2<-readRDS(paste0( "upset_", dataset_name, ".rds"))
+saveRDS(m2, file=paste0(out_path, "/upset_", dataset_name, ".rds"))
+# m2<-readRDS(paste0( "upset_", dataset_name, ".rds"))
 
 
 #lapply(m2, function(x) UpSet(x))
-
-
-```
-
 
 # unique DEGs for all clusters
 
 DEG<-unique(unlist(result))
 saveRDS(DEG,file=paste0('deg_',dataset_name,'.rds'))
-# Histograms of p-values
-
-```{r histograms, fig.height=6}
-source(paste0(code_path, "/diagnostic_plots.R"))
-histogram.gg(res)
-baloonplot.gg(result)
 ```
+
+
+
+<!-- # Histograms of p-values -->
+
+<!-- ```{r histograms, fig.height=6} -->
+<!-- source(paste0(code_path, "/diagnostic_plots.R")) -->
+<!-- histogram.gg(res) -->
+<!-- baloonplot.gg(result) -->
+<!-- ``` -->
 
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}
@@ -591,7 +591,7 @@ de_be <- cond %>% map(function(x){
 }) %>% bind_cols() %>% set_colnames(cond)
 
 n_cl <- rep(nrow(sce), ncol(de_be)) %>% set_names(colnames(de_be))
-  
+
 p_be <- de_be/n_cl
 mean_p_be <- mean(colMeans(p_be))
 min_p_be <- min(colMins(as.matrix(p_be)))
@@ -684,33 +684,33 @@ celltype <- data.frame("DA_celltypes" = per_da_cluster,
 
 #Gene-specificity? How do they effect genes? Single genes? All genes? Which genes?
 gene <- data.frame("mean_mean_n_de_genes" = mean_mean_n_de,
-                    "max_mean_n_de_genes" = max_mean_n_de,
-                    "min_mean_n_de_genes" = min_mean_n_de,
-                    "mean_n_genes_lfc1" = mean_n_genes_lfc1,
-                    "min_n_genes_lfc1" = min_n_genes_lfc1,
-                    "max_n_genes_lfc1" = max_n_genes_lfc1,
-                     "mean_de_overlap" = mean_de_overlap,
+                   "max_mean_n_de_genes" = max_mean_n_de,
+                   "min_mean_n_de_genes" = min_mean_n_de,
+                   "mean_n_genes_lfc1" = mean_n_genes_lfc1,
+                   "min_n_genes_lfc1" = min_n_genes_lfc1,
+                   "max_n_genes_lfc1" = max_n_genes_lfc1,
+                   "mean_de_overlap" = mean_de_overlap,
                    "min_de_overlap" = min_de_overlap,
                    "max_de_overlap" = max_de_overlap,
-                  "mean_rel_cluster_spec"= mean_rel_spec,
-                  "min_rel_cluster_spec"= min_rel_spec,
-                  "max_rel_cluster_spec"= max_rel_spec
-                  )
+                   "mean_rel_cluster_spec"= mean_rel_spec,
+                   "min_rel_cluster_spec"= min_rel_spec,
+                   "max_rel_cluster_spec"= max_rel_spec
+)
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
 sim <- data.frame("mean_p_be" = mean_p_be,
-                   "max_p_be" = max_p_be,
-                   "min_p_be" = min_p_be,
-                   "p_be_mod" = p_be_mod,
-                   "mean_lfc_be" = mean_lfc_be,
-                   "min_lfc_be" = min_lfc_be,
-                   "max_lfc_be" = max_lfc_be,
-                   "mean_rel_be" = mean_rel_be,
-                   "min_rel_be" = min_rel_be,
-                   "max_rel_be" = max_rel_be,
-                   "mean_p_ct"= mean_p_ct,
-                   "min_p_ct"= min_p_ct,
-                   "max_p_ct"= max_p_ct)
+                  "max_p_be" = max_p_be,
+                  "min_p_be" = min_p_be,
+                  "p_be_mod" = p_be_mod,
+                  "mean_lfc_be" = mean_lfc_be,
+                  "min_lfc_be" = min_lfc_be,
+                  "max_lfc_be" = max_lfc_be,
+                  "mean_rel_be" = mean_rel_be,
+                  "min_rel_be" = min_rel_be,
+                  "max_rel_be" = max_rel_be,
+                  "mean_p_ct"= mean_p_ct,
+                  "min_p_ct"= min_p_ct,
+                  "max_p_ct"= max_p_ct)
 
 summary <- cbind(size, celltype, gene, sim) %>% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, "/summary_", dataset_name, ".rds"))

@@ -33,9 +33,9 @@ suppressPackageStartupMessages({
 
 ```{r data}
 # data
-data_path <- here::here("data")
-out_path <- here::here("output")
-code_path <- here::here("code")
+out_path <- '/home/zjanna/output_new'
+code_path <- '/home/zjanna'
+data_path <- '/home/zjanna/output_new'
 dataset_name <- "khang_patient"
 # loading the data
 sce <- readRDS(paste0(out_path, "/sce_khang_patient.rds"))
@@ -65,14 +65,14 @@ cont <- list("1015-1016" = c(0,1,-1,0,0,0,0,0,0),
              "1256-1488" = c(0,0,0,0,0,0,1,-1,0))
 ```
 
-# Visualize batch effect
-```{r vis batch}
-feature_list <- c(batch, celltype)
+<!-- # Visualize batch effect -->
+<!-- ```{r vis batch} -->
+<!-- feature_list <- c(batch, celltype) -->
 
-lapply(feature_list, function(feature_name){
-  visGroup(sce, feature_name, dim_red= "UMAP")
-})
-```
+<!-- lapply(feature_list, function(feature_name){ -->
+<!--   visGroup(sce, feature_name, dim_red= "UMAP") -->
+<!-- }) -->
+<!-- ``` -->
 
 
 # Size/Strength of the batch effcet
@@ -83,11 +83,11 @@ How much of the variance within data can be attributed to the batch effect?
 expr <- as.matrix(assays(sce)$logcounts)
 meta_sub <- as.data.frame(colData(sce)[, c(celltype, batch)])
 form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ")"))
-#varPart <- fitExtractVarPartModel(expr, form, meta_sub)
+# varPart <- fitExtractVarPartModel(expr, form, meta_sub)
 
 #Sort variables (i.e. columns) by median fraction# of variance explained
-#vp <- varPart
-#saveRDS(vp, paste0(out_path,"/vp_", dataset_name, ".rds"))
+# vp <- varPart
+# saveRDS(vp, paste0(out_path,"/vp_", dataset_name, ".rds"))
 vp <- readRDS(paste0(out_path,"/vp_", dataset_name, ".rds"))
 
 vp_names <- rownames(vp)
@@ -100,36 +100,36 @@ plotVarPart( vp_sub )
 
 ```
 
-#Deviance explaine by Piere Luc
-```{r}
-getDevianceExplained <- function(sce, form.full=~lsize+phenoid, form.null=~lsize, tagwise=TRUE){
- library(edgeR)
- if(is.null(sizeFactors(sce))) sce <- scran::computeSumFactors(sce)
- dds <- DGEList(as.matrix(counts(sce)))
- dds$samples$lib.size <- 1
- CD <- as.data.frame(colData(sce))
- CD$lsize <- log(sizeFactors(sce))
- mm <- model.matrix(form.full, data=CD)
- mm0 <- model.matrix(form.null, data=CD)
- dds <- estimateDisp(dds, mm, tagwise=tagwise)
- fit <- glmFit(dds, mm)
- fit0 <- glmFit(dds, mm0)
- de <- (deviance(fit0)-deviance(fit))/deviance(fit0)
- de[which(de<0)] <- 0
- return( de )
-}
+<!-- #Deviance explaine by Piere Luc -->
+<!-- ```{r} -->
+<!-- getDevianceExplained <- function(sce, form.full=~lsize+phenoid, form.null=~lsize, tagwise=TRUE){ -->
+<!--  library(edgeR) -->
+<!--  if(is.null(sizeFactors(sce))) sce <- scran::computeSumFactors(sce) -->
+<!--  dds <- DGEList(as.matrix(counts(sce))) -->
+<!--  dds$samples$lib.size <- 1 -->
+<!--  CD <- as.data.frame(colData(sce)) -->
+<!--  CD$lsize <- log(sizeFactors(sce)) -->
+<!--  mm <- model.matrix(form.full, data=CD) -->
+<!--  mm0 <- model.matrix(form.null, data=CD) -->
+<!--  dds <- estimateDisp(dds, mm, tagwise=tagwise) -->
+<!--  fit <- glmFit(dds, mm) -->
+<!--  fit0 <- glmFit(dds, mm0) -->
+<!--  de <- (deviance(fit0)-deviance(fit))/deviance(fit0) -->
+<!--  de[which(de<0)] <- 0 -->
+<!--  return( de ) -->
+<!-- } -->
 
 
-form.full <- as.formula(paste0("~ lsize  + ", batch))
-form.null <- as.formula(paste0("~ lsize"))
-d_exp <- getDevianceExplained(sce, form.full = form.full, form.null = form.null)
+<!-- form.full <- as.formula(paste0("~ lsize  + ", batch)) -->
+<!-- form.null <- as.formula(paste0("~ lsize")) -->
+<!-- d_exp <- getDevianceExplained(sce, form.full = form.full, form.null = form.null) -->
 
-form.full_ct <- as.formula(paste0("~ lsize  + ", celltype))
-d_exp_ct <- getDevianceExplained(sce, form.full = form.full_ct, form.null = form.null)
+<!-- form.full_ct <- as.formula(paste0("~ lsize  + ", celltype)) -->
+<!-- d_exp_ct <- getDevianceExplained(sce, form.full = form.full_ct, form.null = form.null) -->
 
-saveRDS(d_exp, paste0(out_path,"/d_exp_", dataset_name, ".rds"))
-saveRDS(d_exp_ct, paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
-```
+<!-- saveRDS(d_exp, paste0(out_path,"/d_exp_", dataset_name, ".rds")) -->
+<!-- saveRDS(d_exp_ct, paste0(out_path,"/d_exp_ct", dataset_name, ".rds")) -->
+<!-- ``` -->
 
 
 
@@ -137,7 +137,7 @@ Summarize variance partitioning
 
 ```{r summarize}
 d_exp <- readRDS(paste0(out_path,"/d_exp_", dataset_name, ".rds"))
-d_exp_ct <- readRDS(paste0(out_path,"d_exp_ct", dataset_name, ".rds"))
+d_exp_ct <- readRDS(paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
 
 #How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]
@@ -347,12 +347,12 @@ lapply(batch_all, function(batch_var){
 Calculate cms
 ```{r cms}
 # sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
-#saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
+# saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
-visHist(sce, n_col = 2)
-visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
-visGroup(sce,  batch, dim_red = "tsne")
+# visHist(sce, n_col = 2)
+# visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+# visGroup(sce,  batch, dim_red = "tsne")
 
 #summarize
 mean_cms <- mean(sce$cms)
@@ -425,8 +425,8 @@ doDE <- function(x,lfc_cutoff=log2(1.1)){
        design = design,
        coef = coef)
 }
-# res<-doDE(x,lfc_cutoff=log2(1.1))
-# saveRDS(res, file=paste0(out_path, "/limma_", dataset_name, ".rds"))
+res<-doDE(x,lfc_cutoff=log2(1.1))
+saveRDS(res, file=paste0(out_path, "/limma_", dataset_name, ".rds"))
 ```
 
 ## Some diagnostics plot of DEG
@@ -458,20 +458,20 @@ for(jj in 1:length(cs)){
 names(result)<-names(cs)
 names(m2)<-names(cs)
 # saveRDS(m2, file=paste0(out_path, "/upset_", dataset_name, ".rds"))
-m2<-readRDS(paste0(out_path, "/upset_", dataset_name, ".rds"))
-
-
-lapply(m2, function(x) UpSet(x))
+# m2<-readRDS(paste0(out_path, "/upset_", dataset_name, ".rds"))
+# 
+# 
+# lapply(m2, function(x) UpSet(x))
 
 
 ```
-# Histograms of p-values
+<!-- # Histograms of p-values -->
 
-```{r histograms, fig.height=6}
-source(paste0(code_path, "/diagnostic_plots.R"))
-histogram.gg(res)
-baloonplot.gg(result)
-```
+<!-- ```{r histograms, fig.height=6} -->
+<!-- source(paste0(code_path, "/diagnostic_plots.R")) -->
+<!-- histogram.gg(res) -->
+<!-- baloonplot.gg(result) -->
+<!-- ``` -->
 
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}
