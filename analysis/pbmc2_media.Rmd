@@ -147,7 +147,7 @@ Summarize variance partitioning
 
 ```{r summarize}
 d_exp <- readRDS(paste0(out_path,"/d_exp_", dataset_name, ".rds"))
-d_exp_ct <- readRDS(paste0(out_path,"d_exp_ct", dataset_name, ".rds"))
+d_exp_ct <- readRDS(paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
 
 #How many genes have a variance component affected by the batch variable with more than 1%
 n_batch_gene <- (as_tibble(vp) %>%  dplyr::filter(!! rlang::parse_expr(batch) > 0.01) %>% nrow())/dim(sce)[1]

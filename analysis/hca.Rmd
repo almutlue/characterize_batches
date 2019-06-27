@@ -399,8 +399,8 @@ Calculate cms
 sce <- readRDS(paste0(out_path, "/cms_4_mouse_red.rds"))
 # sce <- runUMAP(sce)
 
-# visHist(sce, n_col = 2)
-#visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
+visHist(sce, n_col = 2)
+visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
 
 #summarize
 mean_cms <- mean(sce$cms)

@@ -349,8 +349,8 @@ lapply(batch_all, function(batch_var){
 # Cellspecific mixing score
 Calculate cms
 ```{r cms}
-sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
-saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
+# sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
+# saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
 visHist(sce, n_col = 2)
