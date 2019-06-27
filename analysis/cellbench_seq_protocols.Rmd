@@ -32,7 +32,7 @@ suppressPackageStartupMessages({
 ```
 
 Dataset
-```{r load data}
+```{r load data1}
 # data
 out_path <- here::here("output")
 code_path <- here::here("code")

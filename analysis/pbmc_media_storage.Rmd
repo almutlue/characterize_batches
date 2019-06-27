@@ -33,9 +33,9 @@ suppressPackageStartupMessages({
 
 ```{r data}
 # data 
-out_path <- '/home/zjanna/output_new'
-code_path <- '/home/zjanna'
-data_path <- '/home/zjanna/output_new'
+data_path <- here::here("data")
+out_path <- here::here("output")
+code_path <- here::here("code")
 dataset_name <- "pbmc_media_storage"
 # raw data 
 #For preprocessing and quality control please check: /code/pbmc_media.rmd
@@ -70,14 +70,14 @@ cont <- list("DMSO-Fresh" = c(0,1,-1,0),
 
 
 
-<!-- # Visualize batch effect -->
-<!-- ```{r vis batch} -->
-<!-- feature_list <- c("sample_type", "cluster.merged", "cluster.main") -->
+# Visualize batch effect
+```{r vis batch}
+feature_list <- c("sample_type", "cluster.merged", "cluster.main")
 
-<!-- lapply(feature_list, function(feature_name){ -->
-<!--   visGroup(sce, feature_name, dim_red= "UMAP") -->
-<!-- }) -->
-<!-- ``` -->
+lapply(feature_list, function(feature_name){
+  visGroup(sce, feature_name, dim_red= "UMAP")
+})
+```
 
 
 # Size/Strength of the batch effcet

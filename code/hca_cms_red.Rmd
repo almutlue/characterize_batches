@@ -1,0 +1,281 @@
+---
+title: "hcs_cms_reduced"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## HCA benchmark mixability mouse
+```{r libs}
+suppressPackageStartupMessages({
+    library(scater)
+    library(scran)
+    library(here)
+    library(magrittr)
+    library(purrr)
+    library(dplyr)
+    library(data.table)
+    library(Seurat)
+    library(harmony)
+    library(scMerge)
+    library(kBET)
+    library(CellMixS)
+    library(jcolors)
+})
+
+rseed <- 1234
+```
+
+
+
+```{r data}
+data_path <- here::here("data")
+out_path <- here::here("output")
+
+# Create sce list
+protocol_names <- c("10X2x5Kcell250Kreads", "C1HTmedium", "C1HTsmall", "CELseq2", "ddSEQ", "Dropseq", "ICELL8", "inDrop", "QUARTZseq", "SCRBseq", "SMARTseq2")
+
+
+create_sce <- function(protocol){
+  data <-  data.frame(fread(paste0(data_path, "/", protocol, "_mouse_exp_mat.tsv")), row.names = 1)
+  meta_data <- data.frame(fread(paste0(data_path, "/", protocol, "_mouse_metada.tsv")), row.names = 1)
+  colnames(data) <- rownames(meta_data)
+  sce <- SingleCellExperiment(
+    assays = list(counts = as.matrix(data)), 
+    colData = meta_data
+    )
+}
+
+sce_list <- protocol_names %>% map(create_sce)
+
+```
+
+# Preprocessing
+
+## Filtering and Normalization
+```{r norm}
+#filter
+filter_norm <- function(sce){
+  keep_total_counts <- !isOutlier(sce$total_counts, nmads = 2.5, 
+                                   type = "both", log = TRUE)
+  keep_total_features <- !isOutlier(sce$total_features_by_counts, nmads=2.5, 
+    type="both", log=TRUE)
+  #how to find mito genes?
+  sce <- sce[, keep_total_counts & keep_total_features]
+  #create seurat
+  seurat <- CreateSeuratObject( counts=counts(sce), 
+                              meta.data=as.data.frame(colData(sce)), 
+                              project = "protocols" )
+  seurat <- NormalizeData(seurat, verbose = F)
+  seurat <- FindVariableFeatures(seurat, selection.method = "vst", nfeatures = 10000)
+  seurat <- ScaleData(seurat)
+  seurat <- RunPCA(seurat, features = VariableFeatures(object = seurat), verbose = FALSE, 
+                   seed.use = rseed, npcs = 10)
+  seurat <- FindNeighbors(seurat, dims = 1:8)
+  seurat <- FindClusters(seurat, resolution = 0.6)
+  seurat <- RunTSNE(seurat, reduction = "pca", dims = 1:8, do.fast = TRUE,
+                  check_duplicates = FALSE, seed.use = rseed )
+  sce <- SingleCellExperiment(
+          assays=list(
+            counts=seurat@assays$RNA@counts,
+            logcounts=seurat@assays$RNA@data
+          ),
+          colData=seurat@meta.data,
+          reducedDims=lapply(seurat@reductions, FUN=function(x) x@cell.embeddings)
+    )
+  metadata(sce)$hvg_genes <- seurat@assays$RNA@var.features
+  sce
+} 
+
+
+#sce_list <- lapply(sce_list, filter_norm)
+
+#save
+#saveRDS(sce_list, file = paste0(out_path, "/protocol_processed_sce_list_red.rds"))
+```
+
+
+# Integrate data
+
+1. Combine data
+```{r integrate, eval=FALSE}
+sce_list <- readRDS(file = paste0(out_path, "/protocol_processed_sce_list_red.rds"))
+names(sce_list) <- protocol_names
+
+overlap_genes <- Reduce(intersect, map(sce_list, rownames))
+overlap_hvg <- Reduce(intersect, map(sce_list, function(x) hvg <- metadata(x)$hvg_genes))
+
+#combine naive
+#Mixology dataset
+colData(sce_list[[1]])$protocol <- rep(names(sce_list)[1], ncol(sce_list[[1]]))
+sce_naive <- sce_list[[1]]
+
+for(i in 2:length(sce_list)){
+  colData(sce_list[[i]])$protocol <- rep(names(sce_list)[i], ncol(sce_list[[i]]))
+  coldata_overlap <- intersect(names(colData(sce_naive)), names(colData(sce_list[[i]]))) 
+  sce_list[[i]] <- sce_list[[i]][overlap_genes,]
+  colData(sce_list[[i]]) <- colData(sce_list[[i]])[, coldata_overlap]
+  colData(sce_naive) <- colData(sce_naive)[, coldata_overlap]
+  sce_naive <- sce_naive[overlap_genes,]
+  sce_naive <- cbind(sce_naive, sce_list[[i]])
+}
+
+sce_naive <- runPCA(sce_naive, ncomponents = 10)
+sce_naive <- runTSNE(sce_naive)
+sce_naive <- runUMAP(sce_naive)
+
+#saveRDS(sce_naive, file = paste0(out_path, "/protocol_mouse_reddim_combined_red.rds"))
+
+```
+
+
+2. Integrate data with harmony and scmerge
+```{r integrate data}
+#load saved res
+sce_list <- readRDS(file = paste0(out_path, "/protocol_processed_sce_list_red.rds"))
+names(sce_list) <- protocol_names
+#sce_naive <- readRDS(file = paste0(out_path, "/protocol_mouse_reddim_combined_red.rds"))
+
+
+#run harmony
+#harmony <- HarmonyMatrix(logcounts(sce_naive), colData(sce_naive), "protocol")
+#reducedDims(sce_naive)$harmony <- harmony
+
+#run scMerge
+#sce_scmerge <- sce_naive
+#data("segList_ensemblGeneID", package = "scMerge")   #load reference list mouse 
+#sce_scmerge$batch <- sce_scmerge$protocol
+#assays(sce_scmerge)$logcounts <- as.matrix(assays(sce_scmerge)$logcounts)
+#assays(sce_scmerge)$counts <- as.matrix(assays(sce_scmerge)$counts)
+#celltype_vec <- sce_list %>% map(function(x){
+#  n_ct <- length(levels(as.factor(x$seurat_clusters)))}) %>% unlist()
+#rownames(sce_scmerge) <-gsub("\\.[0-9]*", "", rownames(sce_scmerge))
+
+
+#sce_scMerge <- scMerge(
+#  sce_combine = sce_scmerge, 
+#  ctl = segList_ensemblGeneID$mouse$mouse_scSEG,
+#  kmeansK = celltype_vec,
+#  assay_name = "scmerge",
+#    fast_svd = TRUE, 
+#  rsvd_prop = 0.1)
+
+
+#saveRDS(sce_naive, file = paste0(out_path, "/integrated_protocols_mouse_red.rds"))
+sce_naive <- readRDS(file = paste0(out_path, "/integrated_protocols_mouse_red.rds"))
+```
+
+
+
+# Plot combined data
+```{r plot integrated data}
+
+plotReducedDim(sce_naive, use_dimred = "PCA",
+               colour_by = "protocol") + 
+    ggtitle("No batch correction")
+
+plotReducedDim(sce_naive, use_dimred = "UMAP",
+               colour_by = "protocol") + 
+    ggtitle("No batch correction")
+
+plotReducedDim(sce_naive, use_dimred = "harmony",
+               colour_by = "protocol") + 
+    ggtitle("harmony")
+
+#plotReducedDim(sce_naive, use_dimred = "pca_scmerge",
+#               colour_by = "protocol") + 
+#    ggtitle("scmerge")
+
+#plotReducedDim(sce_naive, use_dimred = "umap_scmerge",
+#               colour_by = "protocol") + 
+#    ggtitle("scmerge")
+
+```
+
+
+# Evaluate mixing
+
+```{r evaluate mixing cms}
+## cms all
+sce_naive$protocol <- as.factor(sce_naive$protocol)
+sce_naive <- cms(sce_naive, k = 300, group = "protocol", dim_red = "PCA", res_name = "naive", cell_min = 30, n_dim = 10)
+
+sce_naive <- cms(sce_naive, k = 300, group = "protocol", dim_red = "harmony", res_name = "harmony", cell_min = 30)
+
+sce_naive <- ldfDiff(sce_pre_list = sce_list, sce_combined = sce_naive, group = "protocol", k = 300, dim_combined = "harmony", res_name = "harmony")
+
+saveRDS(sce_naive, file = paste0(out_path, "/cms_all_mouse_red.rds"))
+
+
+```
+
+
+Plot cms all
+```{r plot eval mixing}
+#sce_naive <- readRDS(file = paste0(out_path, "/cms_all_mouse_red.rds"))
+
+#naive
+visHist(sce_naive, n_col = 2)
+visGroup(sce_naive, "protocol", dim_red = "UMAP")
+visMetric(sce_naive, metric_var = "cms_smooth.naive", dim_red = "UMAP")
+visCluster(sce_naive, cluster_var = "protocol", metric_var = "cms_smooth.naive")
+
+#harmony
+visGroup(sce_naive, "protocol", dim_red = "harmony")
+visMetric(sce_naive, metric_var = "cms_smooth.harmony", dim_red = "harmony")
+visCluster(sce_naive, cluster_var = "protocol", metric_var = "cms_smooth.harmony")
+visIntegration(sce_naive, metric_prefix = "cms_smooth")
+
+visMetric(sce_naive, metric_var = "diff_ldf.harmony", dim_red = "harmony")
+visCluster(sce_naive, cluster_var = "protocol", metric_var = "diff_ldf.harmony")
+
+```
+
+## Summarize scores
+```{r summarize scores}
+
+col_group <-c(c(jcolors('pal6'), jcolors('pal8'))[c(1,8,14,5,2:4,6,7)], rev(jcolors('pal4')))
+names(col_group) <- c()
+
+mean_tab <- as_tibble(colData(sce_naive)) %>% dplyr::group_by(protocol) %>% summarize("naive_cms" = mean(cms_smooth.naive), "ldf_mean" = mean(abs(diff_ldf.harmony)), "harmony_cms" = mean(cms.harmony))
+
+
+ggplot(mean_tab, aes(x= ldf_mean, y = harmony_cms, colour = protocol)) + 
+  geom_point(size = 4.5) +
+  scale_color_manual(values = col_group) +
+  theme_bw()
+
+ggplot(mean_tab, aes(x= naive_cms, y = harmony_cms, colour = protocol)) + 
+  geom_point(size = 4.5) +
+  scale_color_manual(values = col_group) +
+  theme_bw()
+
+```
+
+
+Compare protocolwise
+```{r cms protocolwise}
+cms_split_protocol <- function(protocol1){
+  protocol2_list <- protocol_names[-which(protocol_names %in% protocol1)]
+  sce_split_list <- lapply(protocol2_list, function(protocol2){
+      sce_split <- sce_naive[,sce_naive$protocol %in% c(protocol1, protocol2)]
+      sce_split <- cms(sce_split, k = 200, group = "protocol", dim_red = "PCA", 
+                   res_name = paste0("naive_", protocol1, "_", protocol2), cell_min = 30, n_dim = 10)
+      sce_split <- cms(sce_split, k = 200, group = "protocol", dim_red = "harmony", 
+                   res_name = paste0("harmony_", protocol1, "_", protocol2), cell_min = 30)
+      sce_split
+  })
+  names(sce_split_list) <- protocol2_list
+  return(sce_split_list)
+}
+
+
+cms_split_list <- lapply(protocol_names, cms_split_protocol)
+names(cms_split_list) <- protocol_names
+
+saveRDS(sce_naive, file = paste0(out_path, "/cms_split_list.rds"))
+  
+```
+

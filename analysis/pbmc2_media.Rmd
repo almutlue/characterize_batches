@@ -85,7 +85,7 @@ lapply(feature_list, function(feature_name){
 ```
 
 
-# Size/Strength of the batch effcet
+# Size /Strength of the batch effcet
 How much of the variance within data can be attributed to the batch effect?
   
 ## VariancePartitioning

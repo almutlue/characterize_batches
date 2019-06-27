@@ -34,8 +34,9 @@ suppressPackageStartupMessages({
 Dataset
 ```{r load data}
 # data
-out_path <- '/home/zjanna/output_new'
-code_path <- '/home/zjanna'
+data_path <- here::here("data")
+out_path <- here::here("output")
+code_path <- here::here("code")
 dataset_name <- "cellBench"
 
 #Mixology dataset
@@ -81,17 +82,17 @@ cont<-list("sc_10x-sc_celseq" = c(1,-1,0),
 
 ```
 
-<!-- # Visualize batch effect -->
-<!-- ```{r vis batch} -->
-<!-- feature_list <- c(batch, "number_of_genes", celltype) -->
+# Visualize batch effect
+```{r vis batch}
+feature_list <- c(batch, "number_of_genes", celltype)
 
-<!-- lapply(feature_list, function(feature_name){ -->
-<!--   visGroup(sce, feature_name, dim_red= "UMAP") -->
-<!-- }) -->
+lapply(feature_list, function(feature_name){
+  visGroup(sce, feature_name, dim_red= "UMAP")
+})
 
-<!-- ``` -->
+```
 
-# Size/Strength of the batch effcet
+# Size / Strength of the batch effcet
 How much of the variance within data can be attributed to the batch effect?
 
 ## VariancePartitioning

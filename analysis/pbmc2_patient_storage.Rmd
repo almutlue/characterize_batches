@@ -36,9 +36,9 @@ suppressPackageStartupMessages({
 
 ```{r data}
 # data 
-out_path <- '/home/zjanna/output_new'
-code_path <- '/home/zjanna'
-data_path <- '/home/zjanna/output_new'
+data_path <- here::here("data")
+out_path <- here::here("output")
+code_path <- here::here("code")
 dataset_name <- "pbmc2_patient"
 
 sce<-readRDS(paste0(data_path, "/sce_pbmc_Integrated.rds"))
@@ -67,17 +67,17 @@ cont <- list("pat1-pat2" = c(1,-1,0,0))
 
 
 
-# # Visualize batch effect
-# ```{r vis batch}
-# feature_list <-  c(batch, celltype, sample)
-# 
-# lapply(feature_list, function(feature_name){
-#   visGroup(sce, feature_name, dim_red= "tsne")
-# })
-# ```
+# Visualize batch effect
+```{r vis batch}
+feature_list <-  c(batch, celltype, sample)
+
+lapply(feature_list, function(feature_name){
+  visGroup(sce, feature_name, dim_red= "tsne")
+})
+```
 
 
-# Size/Strength of the batch effcet
+# Size /Strength of the batch effcet
 How much of the variance within data can be attributed to the batch effect?
   
 ## VariancePartitioning
