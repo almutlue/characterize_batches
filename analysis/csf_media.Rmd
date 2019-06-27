@@ -91,6 +91,12 @@ vp_sub <- vp[1:3] %>% set_rownames(vp$gene)
 plotPercentBars( vp_sub[1:10,] )
 plotVarPart( vp_sub )
 
+var_genes<-apply(expr,1,var)
+nb<-match(rownames(sce@assays$data$logcounts),vp$gene)
+vp1<-vp[nb,]
+var_batch<-vp1[,batch]*var_genes
+var_cell<-vp1[,celltype]*var_genes
+
 ```
 
 #Deviance explaine by Piere Luc
@@ -145,8 +151,8 @@ n_celltype_gene_mod <- length(which(d_exp_ct > 0.01))/dim(sce)[1]
 n_rel_mod <- n_batch_gene_mod/n_celltype_gene_mod
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
-m_batch <- mean(vp[,batch])
-m_celltype <- mean(vp[,celltype])
+m_batch <- mean(var_batch)
+m_celltype <- mean(var_cell)
 m_rel <- m_batch/m_celltype
 
 m_batch_mod <- mean(d_exp)
@@ -155,8 +161,8 @@ m_rel_mod <- m_batch_mod/m_celltype_mod
 
 
 #The median percentage of the variance that is explained by the batch effect independent from the celltype
-me_batch <- median(vp[, batch])
-me_celltype <- median(vp[, celltype])
+me_batch <- median(var_batch)
+me_celltype <- median(var_cell)
 me_rel <- me_batch/me_celltype
 
 me_batch_mod <- median(d_exp)
@@ -529,14 +535,12 @@ mean_n_genes_lfc1<-mean(unlist(n_genes_lfc1))/dim(sce)[1]
 min_n_genes_lfc1<-min(unlist(n_genes_lfc1))/dim(sce)[1]
 max_n_genes_lfc1<-max(unlist(n_genes_lfc1))/dim(sce)[1]
 
-
 de_overlap<-lapply(result,function(x){
-  which.Null<-lapply(x,function(y) is.null(y))
-  ind<-which.Null=='FALSE'
-  result2<-x[ind]
+  result2<-x[table(colData(sce)[,celltype])>dim(expr)[2]*0.1]
   de_overlap<-length(Reduce(intersect, result2))
   de_overlap
 })
+
 mean_de_overlap<-mean(unlist(de_overlap))/dim(sce)[1]
 min_de_overlap<-min(unlist(de_overlap))/dim(sce)[1]
 max_de_overlap<-max(unlist(de_overlap))/dim(sce)[1]
