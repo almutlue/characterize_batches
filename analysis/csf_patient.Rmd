@@ -271,6 +271,8 @@ plot_abundance <- function(cluster_var, tib, x_var){
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)
 ```
+
+
 ## Celltype abundance - relative difference in abundances
 
 ```{r celltype relative diffrenece in abundance}
@@ -338,7 +340,7 @@ if(MultiSample){
 # Count distribution
 Do the overall counts distribution vary between batches? Clusterwise ploting?
   
-  ```{r count distributions, fig.width = 7, fig.height = 6}
+```{r count distributions, fig.width = 7, fig.height = 6}
 #sample an cluster ids
 sids <- levels(as.factor(colData(sce)[, batch]))
 names(sids) <- sids
@@ -514,13 +516,16 @@ names(m2)<-names(cs)
 
 
 ```
-<!-- # Histograms of p-values -->
 
-<!-- ```{r histograms, fig.height=6} -->
-<!-- source(paste0(code_path, "/diagnostic_plots.R")) -->
-<!-- histogram.gg(res) -->
-<!-- baloonplot.gg(result) -->
-<!-- ``` -->
+
+# Histograms of p-values 
+
+```{r histograms, fig.height=6}
+source(paste0(code_path, "/diagnostic_plots.R")) 
+histogram.gg(res) 
+baloonplot.gg(result) 
+```
+
 
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}

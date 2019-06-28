@@ -123,7 +123,7 @@ h_cms2 <- Heatmap(mat_cms,
 ####################################################################################
 ########################## Heatmap size #############################################
 #vars
-size_vars <- c("mean_var_batch", "mean_var_celltype", "median_var_batch", "median_var_celltype")
+size_vars <- c("mean_var_batch", "mean_var_batch_mod", "mean_var_celltype",   "mean_var_celltype_mod","median_var_batch", "median_var_batch_mod", "median_var_celltype", "median_var_celltype_mod")
 abund_vars <- c("mean_rel_abund_diff", "max_rel_abund_diff", "min_rel_abund_diff")
 abund_vars <- c("mean_rel_abund_diff", "min_rel_abund_diff")
 
@@ -323,7 +323,7 @@ lapply(gene_spec_variables, function(vars){
 ```{r sim para}
 ########################## Heatmap simulation parameterv#########################################
 #vars
-p_be_vars <- c("mean_p_be", "max_p_be", "min_p_be")
+p_be_vars <- c("mean_p_be", "max_p_be", "min_p_be", "p_be_mod")
 lfc_vars <- c("mean_lfc_be", "min_lfc_be", "max_lfc_be")
 rel_be_vars <- c("mean_rel_be", "min_rel_be", "max_rel_be")
 p_ct_vars <- c("mean_p_ct", "min_p_ct", "max_p_ct")

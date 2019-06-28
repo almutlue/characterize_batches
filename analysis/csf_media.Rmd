@@ -514,13 +514,15 @@ names(m2)<-names(cs)
 
 
 ```
-<!-- # Histograms of p-values -->
 
-<!-- ```{r histograms, fig.height=6} -->
-<!-- source(paste0(code_path, "/diagnostic_plots.R")) -->
-<!-- histogram.gg(res) -->
-<!-- baloonplot.gg(result) -->
-<!-- ``` -->
+# Histograms of p-values
+
+
+```{r histograms, fig.height=6} 
+source(paste0(code_path, "/diagnostic_plots.R")) 
+histogram.gg(res)
+ baloonplot.gg(result)
+```
 
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}

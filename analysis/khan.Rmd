@@ -98,11 +98,12 @@ vp_sub <- vp[1:3] %>% set_rownames(vp$gene)
 plotPercentBars( vp_sub[1:10,] )
 plotVarPart( vp_sub )
 
-var_genes<-apply(expr,1,var)
-nb<-match(rownames(sce@assays$data$logcounts),vp$gene)
-vp1<-vp[nb,]
-var_batch<-vp1[,batch]*var_genes
-var_cell<-vp1[,celltype]*var_genes
+var_genes <- apply(expr,1,var)
+nb <- match(rownames(sce@assays$data$logcounts),vp$gene)
+vp1 <- vp[nb,]
+var_batch <- vp1[,batch]*var_genes
+var_cell <- vp1[,celltype]*var_genes
+
 ```
 
 #Deviance explaine by Piere Luc
@@ -520,13 +521,14 @@ names(m2)<-names(cs)
 
 
 ```
-<!-- # Histograms of p-values -->
 
-<!-- ```{r histograms, fig.height=6} -->
-<!-- source(paste0(code_path, "/diagnostic_plots.R")) -->
-<!-- histogram.gg(res) -->
-<!-- baloonplot.gg(result) -->
-<!-- ``` -->
+# Histograms of p-values
+
+```{r histograms, fig.height=6}
+source(paste0(code_path, "/diagnostic_plots.R"))
+histogram.gg(res) 
+baloonplot.gg(result) 
+```
 
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}

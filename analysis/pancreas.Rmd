@@ -560,14 +560,14 @@ baloonplot.gg(result)
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}
 
-n_de<-lapply(res[[1]],function(y) vapply(y, function(x) sum(x$adj.P.Val < 0.05), numeric(1)))
-mean_n_de<-lapply(n_de,function(x) mean(x))
-mean_mean_n_de<-mean(unlist(mean_n_de))/dim(sce)[1]
-min_mean_n_de<-min(unlist(mean_n_de))/dim(sce)[1]
-max_mean_n_de<-max(unlist(mean_n_de))/dim(sce)[1]
-n_genes_lfc1<-lapply(res[[1]],function(y) vapply(y, function(x) sum(abs(x$logFC) > 1), numeric(1)))
-mean_n_genes_lfc1<-mean(unlist(n_genes_lfc1))/dim(sce)[1]
-min_n_genes_lfc1<-min(unlist(n_genes_lfc1))/dim(sce)[1]
+n_de <- lapply(res[[1]],function(y) vapply(y, function(x) sum(x$adj.P.Val < 0.05), numeric(1)))
+mean_n_de <- lapply(n_de,function(x) mean(x))
+mean_mean_n_de <- mean(unlist(mean_n_de))/dim(sce)[1]
+min_mean_n_de <- min(unlist(mean_n_de))/dim(sce)[1]
+max_mean_n_de <- max(unlist(mean_n_de))/dim(sce)[1]
+n_genes_lfc1 <- lapply(res[[1]],function(y) vapply(y, function(x) sum(abs(x$logFC) > 1), numeric(1)))
+mean_n_genes_lfc1 <- mean(unlist(n_genes_lfc1))/dim(sce)[1]
+min_n_genes_lfc1 <-min(unlist(n_genes_lfc1))/dim(sce)[1]
 max_n_genes_lfc1<-max(unlist(n_genes_lfc1))/dim(sce)[1]
 
 

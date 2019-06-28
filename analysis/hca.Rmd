@@ -576,14 +576,14 @@ saveRDS(DEG,file=paste0('deg_',dataset_name,'.rds'))
 ```
 
 
+# Histograms of p-values
 
-<!-- # Histograms of p-values -->
+```{r histograms, fig.height=6}
+source(paste0(code_path, "/diagnostic_plots.R"))
+histogram.gg(res)
+baloonplot.gg(result)
+```
 
-<!-- ```{r histograms, fig.height=6} -->
-<!-- source(paste0(code_path, "/diagnostic_plots.R")) -->
-<!-- histogram.gg(res) -->
-<!-- baloonplot.gg(result) -->
-<!-- ``` -->
 
 # ratio specific cluster of DEG
 ```{r ratio_cluster_specific, fig.height=6}
