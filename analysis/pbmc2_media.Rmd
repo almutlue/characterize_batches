@@ -34,6 +34,7 @@ suppressPackageStartupMessages({
   library(variancePartition)
   library(diffcyt)
   library(ComplexHeatmap)
+  library(ggtern)
 })
 ```
 
@@ -51,6 +52,7 @@ dataset_name <- "pbmc2_media_storage"
 # sce <- saveRDS(paste0(data_path, "/pbmc2_media.rds"))
 
 sce <- readRDS(paste0(data_path, "/pbmc2_media.rds"))
+sce <- runUMAP(sce)
 
 names(colData(sce))[50]<-'cluster.merged'
 cols <-c(c(jcolors('pal6'),jcolors('pal8'))[c(1,8,14,5,2:4,6,7,9:13,15:20)],jcolors('pal4'))
@@ -80,7 +82,7 @@ sce<-sce[,!sce$Sample %in% "CR057"]
 feature_list <-  c(batch, celltype, sample)
 
 lapply(feature_list, function(feature_name){
-  visGroup(sce, feature_name, dim_red= "tsne")
+  visGroup(sce, feature_name, dim_red= "UMAP")
 })
 ```
 
@@ -108,12 +110,6 @@ vp_sub <- vp[1:3] %>% set_rownames(vp$gene)
 plotPercentBars( vp_sub[1:10,] )
 plotVarPart( vp_sub )
 
-
-var_genes<-apply(expr,1,var)
-nb<-match(rownames(sce@assays$data$logcounts),vp$gene)
-vp1<-vp[nb,]
-var_batch<-vp1[,batch]*var_genes
-var_cell<-vp1[,celltype]*var_genes
 ```
 
 #Deviance explaine by Piere Luc
@@ -138,13 +134,13 @@ getDevianceExplained <- function(sce, form.full=~lsize+phenoid, form.null=~lsize
 
 form.full <- as.formula(paste0("~ lsize  + ", batch))
 form.null <- as.formula(paste0("~ lsize"))
-d_exp <- getDevianceExplained(sce, form.full = form.full, form.null = form.null)
+#d_exp <- getDevianceExplained(sce, form.full = form.full, form.null = form.null)
 
 form.full_ct <- as.formula(paste0("~ lsize  + ", celltype))
-d_exp_ct <- getDevianceExplained(sce, form.full = form.full_ct, form.null = form.null)
+#d_exp_ct <- getDevianceExplained(sce, form.full = form.full_ct, form.null = form.null)
 
-saveRDS(d_exp, paste0(out_path,"/d_exp_", dataset_name, ".rds"))
-saveRDS(d_exp_ct, paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
+#saveRDS(d_exp, paste0(out_path,"/d_exp_", dataset_name, ".rds"))
+#saveRDS(d_exp_ct, paste0(out_path,"/d_exp_ct", dataset_name, ".rds"))
 ```
 
 
@@ -168,22 +164,22 @@ n_celltype_gene_mod <- length(which(d_exp_ct > 0.01))/dim(sce)[1]
 n_rel_mod <- n_batch_gene_mod/n_celltype_gene_mod
 
 #The mean percentage of the variance that is explained by the batch effect independent from the celltype
-m_batch <- mean(var_batch)
-m_celltype <- mean(var_cell)
+m_batch <- mean(asin(vp[, batch]))
+m_celltype <- mean(asin(vp[, celltype]))
 m_rel <- m_batch/m_celltype
 
-m_batch_mod <- mean(d_exp)
-m_celltype_mod <- mean(d_exp_ct)
+m_batch_mod <- mean(asin(d_exp))
+m_celltype_mod <- mean(asin(d_exp_ct))
 m_rel_mod <- m_batch_mod/m_celltype_mod
 
 
 #The median percentage of the variance that is explained by the batch effect independent from the celltype
-me_batch <- median(var_batch)
-me_celltype <- median(var_cell)
+me_batch <- median(asin(vp[, batch]))
+me_celltype <- median(asin(vp[, celltype]))
 me_rel <- me_batch/me_celltype
 
-me_batch_mod <- median(d_exp)
-me_celltype_mod <- median(d_exp_ct)
+me_batch_mod <- median(asin(d_exp))
+me_celltype_mod <- median(asin(d_exp_ct))
 me_rel_mod <- me_batch_mod/me_celltype_mod
 ```
 
@@ -408,12 +404,13 @@ lapply(batch_all, function(batch_var){
 # Cellspecific mixing score
 Calculate cms
 ```{r cms}
-# sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10)
+#sce <- runPCA(sce, ncomponents = 10)
+#sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = "PCA")
 #saveRDS(sce, paste0(out_path, "/cms_", dataset_name, ".rds"))
 sce <- readRDS(paste0(out_path, "/cms_", dataset_name, ".rds"))
 
 visHist(sce, n_col = 2)
-visMetric(sce, metric_var = "cms_smooth", dim_red = "tsne")
+visMetric(sce, metric_var = "cms_smooth", dim_red = "UMAP")
 
 #summarize
 mean_cms <- mean(sce$cms)
@@ -486,8 +483,8 @@ doDE <- function(x,lfc_cutoff=log2(1.1)){
        design = design,
        coef = coef)
 }
-# res<-doDE(x,lfc_cutoff=log2(1.1))
-# saveRDS(res, file=paste0(out_path, "/limma_", dataset_name, ".rds"))
+res <- doDE(x,lfc_cutoff=log2(1.1))
+saveRDS(res, file=paste0(out_path, "/limma_", dataset_name, ".rds"))
 
 ```
 
@@ -529,7 +526,7 @@ lapply(m2, function(x) UpSet(x))
 ```
 # Histograms of p-values
 
-```{r histograms, fig.height=6}
+```{r histograms, eval=FALSE, fig.height=6, include=FALSE}
 source(paste0(code_path, "/diagnostic_plots.R"))
 histogram.gg(res)
 baloonplot.gg(result)
