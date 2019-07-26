@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="almutlue" />
@@ -251,48 +252,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -427,7 +389,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -436,7 +398,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -445,17 +407,17 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-07-03
+<strong>Last updated:</strong> 2019-07-26
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>characterize_batches/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
 This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.4.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -476,12 +438,56 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongobjectspresent"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Environment:</strong> objects present </a>
 </p>
 </div>
-<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongobjectspresent" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+<p>
+The global environment had objects present when the code in the R Markdown file was run. These objects can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment. Use <code>wflow_publish</code> or <code>wflow_build</code> to ensure that the code is always run in an empty environment.
+</p>
+<p>
+The following objects were defined in the global environment when these results were created:
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:left;">
+Class
+</th>
+<th style="text-align:left;">
+Size
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+data
+</td>
+<td style="text-align:left;">
+environment
+</td>
+<td style="text-align:left;">
+56 bytes
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+env
+</td>
+<td style="text-align:left;">
+environment
+</td>
+<td style="text-align:left;">
+56 bytes
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -524,10 +530,22 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree5d1581e2f41b7f041876b2d1d2ae6eb9b13e4b89targetblank5d1581ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/5d1581e2f41b7f041876b2d1d2ae6eb9b13e4b89" target="_blank">5d1581e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree5d1581e2f41b7f041876b2d1d2ae6eb9b13e4b89targetblank5d1581ea" class="panel-collapse collapse">
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2e5c1abfd292a050a60c7e5de29a6bcabadcb083targetblank2e5c1aba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/2e5c1abfd292a050a60c7e5de29a6bcabadcb083" target="_blank">2e5c1ab</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2e5c1abfd292a050a60c7e5de29a6bcabadcb083targetblank2e5c1aba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -599,6 +617,8 @@ Untracked files:
     Untracked:  output/limma_pbmc2_media_storage.rds
     Untracked:  output/limma_pbmc2_patient.rds
     Untracked:  output/limma_pbmc_media_storage.rds
+    Untracked:  output/lrt_ct_csf_media_storage.rds
+    Untracked:  output/lrt_ct_csf_patient.rds
     Untracked:  output/pbmc_media_cms.rds
     Untracked:  output/pbmc_media_limma_results.RData
     Untracked:  output/pbmc_media_upset_data.RData
@@ -633,6 +653,10 @@ Untracked files:
     Untracked:  output/vp_pbmc2_media_storage.rds
     Untracked:  output/vp_pbmc2_patient.rds
     Untracked:  output/vp_pbmc_media_storage.rds
+
+Unstaged changes:
+    Modified:   analysis/hca.Rmd
+    Modified:   analysis/khan.Rmd
 
 </code></pre>
 <p>
@@ -671,6 +695,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/cell_bench.html" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -783,6 +824,8 @@ update files
   library(diffcyt)
   library(ComplexHeatmap)
   library(ggtern)
+  library(TruncatedDistributions)
+  library(scran)
 })</code></pre>
 <p>Dataset</p>
 <pre class="r"><code># data
@@ -809,6 +852,8 @@ for(i in 2:length(sc_data)){
 
 colnames(sce) &lt;- paste0(colnames(sce), &quot;_&quot;, sce$protocol)
 
+sce &lt;- computeSumFactors(sce)
+sce &lt;- normalize(sce)
 sce &lt;- runPCA(sce, ncomponents = 20)
 sce &lt;- runTSNE(sce)
 sce &lt;- runUMAP(sce)
@@ -832,7 +877,10 @@ table(colData(sce)[, batch])</code></pre>
 <pre class="r"><code>#contrast
 cont &lt;-list(&quot;sc_10x-sc_celseq&quot; = c(1,-1,0),
            &quot;sc_10x-sc_dropseq&quot; = c(1,0,-1),
-           &quot;sc_celseq-sc_dropseq&quot; = c(0,1,-1))</code></pre>
+           &quot;sc_celseq-sc_dropseq&quot; = c(0,1,-1))
+
+n_genes &lt;- nrow(sce)
+n_cells &lt;- ncol(sce)</code></pre>
 </div>
 <div id="visualize-batch-effect" class="section level1">
 <h1>Visualize batch effect</h1>
@@ -843,12 +891,123 @@ lapply(feature_list, function(feature_name){
 })</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-batch-1">
+Past versions of “vis batch-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/vis batch-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-batch-2">
+Past versions of “vis batch-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-batch-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/vis batch-2.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/vis%20batch-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-batch-3">
+Past versions of “vis batch-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-batch-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/vis batch-3.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="size-strength-of-the-batch-effcet" class="section level1">
 <h1>Size / Strength of the batch effcet</h1>
@@ -858,11 +1017,11 @@ lapply(feature_list, function(feature_name){
 <pre class="r"><code>expr &lt;- as.matrix(assays(sce)$logcounts)
 meta_sub &lt;- as.data.frame(colData(sce)[, c(celltype, batch)])
 form &lt;- as.formula(paste0(&quot;~ (1|&quot;, celltype, &quot;) + (1|&quot;, batch, &quot;)&quot;))
-# varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub)
+#varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub)
 # 
 # #Sort variables (i.e. columns) by median fraction# of variance explained
-# vp &lt;- varPart
-# saveRDS(vp, paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
+#vp &lt;- varPart
+#saveRDS(vp, paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
 vp &lt;- readRDS(paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
 
 vp_names &lt;- rownames(vp)
@@ -875,8 +1034,82 @@ Objekt mehr</code></pre>
 #plot
 plotPercentBars( vp_sub[1:10,] )</code></pre>
 <p><img src="figure/cell_bench.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-variance-part-1">
+Past versions of “variance part-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-variance-part-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/variance part-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plotVarPart( vp_sub )</code></pre>
 <p><img src="figure/cell_bench.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-variance-part-2">
+Past versions of “variance part-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-variance-part-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/variance part-2.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="deviance-explaine-by-piere-luc" class="section level1">
@@ -907,23 +1140,31 @@ form.full_ct &lt;- as.formula(paste0(&quot;~ lsize  + &quot;, celltype))
 #d_exp_ct &lt;- getDevianceExplained(sce, form.full = form.full_ct, form.null = form.null)
 #saveRDS(d_exp, paste0(out_path,&quot;/d_exp_&quot;, dataset_name, &quot;.rds&quot;))
 #saveRDS(d_exp_ct, paste0(out_path,&quot;/d_exp_ct&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
-<p>Summarize variance partitioning</p>
+<div id="summarize-variance-partitioning" class="section level3">
+<h3>Summarize variance partitioning</h3>
 <pre class="r"><code>d_exp &lt;- readRDS(paste0(out_path,&quot;/d_exp_&quot;, dataset_name, &quot;.rds&quot;))
 d_exp_ct &lt;- readRDS(paste0(out_path,&quot;/d_exp_ct&quot;, dataset_name, &quot;.rds&quot;))
 
-#How many genes have a variance component affected by the batch variable with more than 1%
-n_batch_gene &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.01) %&gt;% nrow())/dim(sce)[1]
-n_batch_gene10 &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.1) %&gt;% nrow())/dim(sce)[1]
-n_celltype_gene &lt;- (as_tibble(vp) %&gt;%  dplyr::filter(!! rlang::parse_expr(celltype)&gt; 0.01) %&gt;% nrow())/dim(sce)[1]
+## Summarize vp
+# How many genes have a variance component affected by batch with &gt; 1%
+n_batch_gene &lt;- as_tibble(vp) %&gt;%  
+  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.01) %&gt;% nrow()/n_genes
+
+n_batch_gene10 &lt;- as_tibble(vp) %&gt;%  
+  dplyr::filter(!! rlang::parse_expr(batch) &gt; 0.1) %&gt;% nrow()/n_genes
+
+n_celltype_gene &lt;- as_tibble(vp) %&gt;%  
+  dplyr::filter(!! rlang::parse_expr(celltype)&gt; 0.01) %&gt;% nrow()/n_genes
+
 n_rel &lt;- n_batch_gene/n_celltype_gene
 
-#Deviance modeled
-n_batch_gene_mod &lt;- length(which(d_exp &gt; 0.01))/dim(sce)[1]
-n_batch_gene10_mod &lt;- length(which(d_exp &gt; 0.1))/dim(sce)[1]
-n_celltype_gene_mod &lt;- length(which(d_exp_ct &gt; 0.01))/dim(sce)[1]
+## Sumarize deviance modeled
+n_batch_gene_mod &lt;- length(which(d_exp &gt; 0.01))/n_genes
+n_batch_gene10_mod &lt;- length(which(d_exp &gt; 0.1))/n_genes
+n_celltype_gene_mod &lt;- length(which(d_exp_ct &gt; 0.01))/n_genes
 n_rel_mod &lt;- n_batch_gene_mod/n_celltype_gene_mod
 
-#The mean percentage of the variance that is explained by the batch effect independent from the celltype
+# Mean variance that is explained by the batch effect/celltype
 m_batch &lt;- mean(asin(vp[, batch]))
 m_celltype &lt;- mean(asin(vp[, celltype]))
 m_rel &lt;- m_batch/m_celltype
@@ -933,7 +1174,7 @@ m_celltype_mod &lt;- mean(asin(d_exp_ct))
 m_rel_mod &lt;- m_batch_mod/m_celltype_mod
 
 
-#The median percentage of the variance that is explained by the batch effect independent from the celltype
+#Median variance explained by the batch effect/celltype
 me_batch &lt;- median(asin(vp[, batch]))
 me_celltype &lt;- median(asin(vp[, celltype]))
 me_rel &lt;- me_batch/me_celltype
@@ -942,8 +1183,9 @@ me_batch_mod &lt;- median(asin(d_exp))
 me_celltype_mod &lt;- median(asin(d_exp_ct))
 me_rel_mod &lt;- me_batch_mod/me_celltype_mod</code></pre>
 </div>
-<div id="plot-varinacedeviance-expression" class="section level1">
-<h1>Plot varinace/deviance expression</h1>
+</div>
+<div id="plot-variancedeviance-and-gene-expression" class="section level1">
+<h1>Plot variance/deviance and gene expression</h1>
 <pre class="r"><code>#plot varinace dev-along with expression
 rownames(vp) &lt;- vp$gene
 vp &lt;- vp[rownames(sce),]
@@ -964,22 +1206,168 @@ mid_th &lt;- th[1]
 rowData(sce)$expr_class &lt;- ifelse(rowMeans(assays(sce)$logcounts) &gt; high_th, &quot;high&quot;, ifelse(rowMeans(assays(sce)$logcounts) &lt;= high_th &amp; rowMeans(assays(sce)$logcounts) &gt; mid_th, &quot;medium&quot;, &quot;low&quot;))
 
 
-ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_batch, colour = d_exp)) + 
+plot_dev &lt;- function(var, var_col){
+  ggplot(as.data.frame(rowData(sce)), aes_string(x = &quot;mean_expr&quot;, y = var, colour = var_col)) + 
   geom_point() + 
-  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+  geom_smooth(method = &quot;lm&quot;, se = FALSE)
+}
+
+plot_dev(&quot;vp_batch&quot;, &quot;d_exp&quot;)</code></pre>
 <p><img src="figure/cell_bench.Rmd/var%20dev%20expr-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = d_exp, colour = vp_batch)) + 
-  geom_point() + 
-  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-var-dev-expr-1">
+Past versions of “var dev expr-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-var-dev-expr-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/var dev expr-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_dev(&quot;d_exp&quot;, &quot;vp_batch&quot;)</code></pre>
 <p><img src="figure/cell_bench.Rmd/var%20dev%20expr-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_ct, colour = d_exp_ct)) + 
-  geom_point() + 
-  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-var-dev-expr-2">
+Past versions of “var dev expr-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-var-dev-expr-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/var dev expr-2.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_dev(&quot;vp_ct&quot;, &quot;d_exp_ct&quot;)</code></pre>
 <p><img src="figure/cell_bench.Rmd/var%20dev%20expr-3.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = d_exp_ct, colour = vp_ct)) + 
-  geom_point() + 
-  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-var-dev-expr-3">
+Past versions of “var dev expr-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-var-dev-expr-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/var dev expr-3.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_dev(&quot;d_exp_ct&quot;, &quot;vp_ct&quot;)</code></pre>
 <p><img src="figure/cell_bench.Rmd/var%20dev%20expr-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-var-dev-expr-4">
+Past versions of “var dev expr-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-var-dev-expr-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/var dev expr-4.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ternary-plots" class="section level1">
 <h1>Ternary plots</h1>
@@ -989,23 +1377,132 @@ ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_batch, colour = d_
   guides(color = &quot;none&quot;, fill = &quot;none&quot;, alpha = &quot;none&quot;) +
   geom_point(size= 0.1, alpha = 0.5)  + 
   theme_bw()</code></pre>
-<pre><code>Warning: Removed 464 rows containing non-finite values (StatDensityTern).</code></pre>
+<pre><code>Warning: Removed 681 rows containing non-finite values (StatDensityTern).</code></pre>
 <p><img src="figure/cell_bench.Rmd/tern%20plots-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggtern(data=as.data.frame(rowData(sce)),aes(vp_batch, vp_ct, vp_other)) + 
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-tern-plots-1">
+Past versions of “tern plots-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-tern-plots-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/tern plots-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>t1 &lt;- ggtern(data=as.data.frame(rowData(sce)),aes(vp_batch, vp_ct, vp_other)) + 
   geom_point(size = 0.1) +
   geom_density_tern() + 
-  theme_bw()</code></pre>
-<pre><code>Warning: Removed 464 rows containing non-finite values (StatDensityTern).</code></pre>
+  theme_bw()
+
+t1</code></pre>
+<pre><code>Warning: Removed 681 rows containing non-finite values (StatDensityTern).</code></pre>
 <p><img src="figure/cell_bench.Rmd/tern%20plots-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggtern(data=as.data.frame(rowData(sce)),aes(vp_batch, vp_ct, vp_other)) + 
-  geom_point(size = 0.1) +
-  geom_density_tern() + 
-  theme_bw() + 
-  facet_grid(~expr_class)</code></pre>
-<pre><code>Warning: Removed 52 rows containing non-finite values (StatDensityTern).</code></pre>
-<pre><code>Warning: Removed 298 rows containing non-finite values (StatDensityTern).</code></pre>
-<pre><code>Warning: Removed 114 rows containing non-finite values (StatDensityTern).</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-tern-plots-2">
+Past versions of “tern plots-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-tern-plots-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/tern plots-2.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>t1 + facet_grid(~expr_class)</code></pre>
+<pre><code>Warning: Removed 84 rows containing non-finite values (StatDensityTern).</code></pre>
+<pre><code>Warning: Removed 437 rows containing non-finite values (StatDensityTern).</code></pre>
+<pre><code>Warning: Removed 160 rows containing non-finite values (StatDensityTern).</code></pre>
 <p><img src="figure/cell_bench.Rmd/tern%20plots-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-tern-plots-3">
+Past versions of “tern plots-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-tern-plots-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/tern plots-3.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
   stat_density_tern(aes(fill=..level.., alpha=..level..),geom=&#39;polygon&#39;) +
   scale_fill_gradient2(high = &quot;red&quot;) +
@@ -1013,17 +1510,126 @@ ggplot(as.data.frame(rowData(sce)), aes(x = mean_expr, y = vp_batch, colour = d_
   geom_point(size= 0.1, alpha = 0.5) + 
   theme_bw() </code></pre>
 <p><img src="figure/cell_bench.Rmd/tern%20plots-4.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-tern-plots-4">
+Past versions of “tern plots-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-tern-plots-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/tern plots-4.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>t2 &lt;- ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
   geom_point(size = 0.1) +
   geom_density_tern() + 
-  theme_bw() </code></pre>
+  theme_bw() 
+
+t2</code></pre>
 <p><img src="figure/cell_bench.Rmd/tern%20plots-5.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggtern(data=as.data.frame(rowData(sce)),aes(d_exp, d_exp_ct, d_exp_other)) + 
-  geom_point(size = 0.1) +
-  geom_density_tern() + 
-  theme_bw() + 
-  facet_grid(~expr_class)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-tern-plots-5">
+Past versions of “tern plots-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-tern-plots-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/tern plots-5.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>t2 +  facet_grid(~expr_class)</code></pre>
 <p><img src="figure/cell_bench.Rmd/tern%20plots-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-tern-plots-6">
+Past versions of “tern plots-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-tern-plots-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/tern plots-6.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="celltype-specificity" class="section level1">
 <h1>Celltype specificity</h1>
@@ -1041,6 +1647,43 @@ plot_abundance &lt;- function(cluster_var, tib, x_var){
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
 <p><img src="figure/cell_bench.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-celltype-abundance-1">
+Past versions of “celltype abundance-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-celltype-abundance-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/celltype abundance-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="celltype-abundance---relative-difference-in-abundances" class="section level2">
 <h2>Celltype abundance - relative difference in abundances</h2>
@@ -1058,46 +1701,6 @@ res&lt;-lapply(meta_comb,function(x){
 mean_rel_abund_diff&lt;-mean(unlist(res))
 min_rel_abund_diff&lt;-min(unlist(res))
 max_rel_abund_diff&lt;-max(unlist(res))</code></pre>
-<p>Test for significant changes in celltype abundances. Diffcyt (skip for datasets without replicates)</p>
-<pre class="r"><code>if(MultiSample){
-  #colData
-  col_tib &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(sample, batch)) %&gt;% summarize()
-  col_dat &lt;- data.frame(&quot;sample_id&quot; = col_tib[,sample], &quot;group_id&quot; = col_tib[,batch]) %&gt;% set_rownames(levels(as.factor(colData(sce)[,sample])))
-  
-  
-  #create desing matrix
-  design &lt;- createDesignMatrix(
-    col_dat, cols_design = c(batch)
-  )
-  
-  #create contrast
-  n_contrast &lt;- length(levels(as.factor(colData(sce)[,batch])))
-  contrast &lt;- diag(n_contrast)
-  
-  #create summarizedExperiment for cluster abundance (rows = cluster, columns= samples)
-  cluster_counts &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(c(sample, celltype)) %&gt;% summarize(n=n()) %&gt;%  spread_(sample, &quot;n&quot;)
-  cluster_count &lt;- as.matrix(cluster_counts[,-1])
-  rownames(cluster_count) &lt;- unlist(cluster_counts[, celltype])
-  
-  #rowData
-  row_dat &lt;- as_tibble(colData(sce)) %&gt;% group_by_at(celltype) %&gt;% summarize(n=n()) %&gt;% set_colnames(c(&quot;cluster_id&quot;, &quot;n_cells&quot;))
-  
-  
-  
-  se &lt;- SummarizedExperiment(list(&quot;counts&quot; = cluster_count), rowData= as.data.frame(row_dat), colData= col_dat)
-  
-  
-  #differential abundance
-  res_DA &lt;- testDA_edgeR(se, design, contrast)
-  
-  #summarize - number of differential abundance cluster
-  n_da_cluster &lt;- length(which(rowData(res_DA)$p_adj &lt; 0.01))
-  per_da_cluster &lt;- n_da_cluster/length(levels(as.factor(colData(sce)[,celltype])))
-  
-}else{
-  per_da_cluster &lt;- NA
-  n_da_cluster&lt;-0
-}</code></pre>
 </div>
 </div>
 <div id="count-distribution" class="section level1">
@@ -1126,10 +1729,47 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   facet_wrap( ~ cluster, ncol = 3) +
   scale_colour_manual(values = cols[c(1:3,7)]) +
   scale_x_continuous(limits =  c(0, 7))</code></pre>
-<pre><code>Warning: Removed 491 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>Warning: Removed 530 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="figure/cell_bench.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-count-distributions-1">
+Past versions of “count distributions-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-count-distributions-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/count distributions-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#number of cluster with differnt batch distributions
-per_dist &lt;- 1</code></pre>
+per_dist &lt;- 3</code></pre>
 <p>Mean expression protocols vs each other</p>
 <pre class="r"><code>#mean expression
 mean_expr &lt;- mean_list %&gt;% bind_rows(.id = &quot;sample&quot; ) %&gt;% spread(sample, logcounts)
@@ -1148,25 +1788,247 @@ lapply(batch_all, function(batch_var){
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-mean-expression-1">
+Past versions of “mean expression-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-mean-expression-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/mean expression-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[2]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-mean-expression-2">
+Past versions of “mean expression-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-mean-expression-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/mean expression-2.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/mean%20expression-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-mean-expression-3">
+Past versions of “mean expression-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-mean-expression-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/mean expression-3.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[2]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/mean%20expression-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-mean-expression-4">
+Past versions of “mean expression-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-mean-expression-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/mean expression-4.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/mean%20expression-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-mean-expression-5">
+Past versions of “mean expression-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-mean-expression-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/mean expression-5.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[2]]</code></pre>
 <p><img src="figure/cell_bench.Rmd/mean%20expression-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-mean-expression-6">
+Past versions of “mean expression-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-mean-expression-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/mean expression-6.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cellspecific-mixing-score" class="section level1">
 <h1>Cellspecific mixing score</h1>
@@ -1177,8 +2039,82 @@ sce &lt;- readRDS(paste0(out_path, &quot;/cms_&quot;, dataset_name, &quot;.rds&q
 
 visHist(sce, n_col = 2)</code></pre>
 <p><img src="figure/cell_bench.Rmd/cms-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cms-1">
+Past versions of cms-1.png
+</button>
+</p>
+<div id="fig-cms-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/cms-1.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>visMetric(sce, metric_var = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
 <p><img src="figure/cell_bench.Rmd/cms-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cms-2">
+Past versions of cms-2.png
+</button>
+</p>
+<div id="fig-cms-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/cell_bench.Rmd/cms-2.png" target="_blank">c303fb7</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#summarize
 mean_cms &lt;- mean(sce$cms)
 n_cms_0.01 &lt;- length(which(sce$cms &lt; 0.01))
@@ -1189,7 +2125,7 @@ var_cms &lt;- var(cluster_mean_cms$cms_mean)</code></pre>
 <div id="de-analysis" class="section level1">
 <h1>DE analysis</h1>
 <p>Calculate DEG</p>
-<pre class="r"><code>x&lt;-sce
+<pre class="r"><code>x &lt;- sce
 clust &lt;- as.factor(colData(sce)[,celltype])
 # n_cells &lt;- table(clust,colData(sce)[,sample])
 kids&lt;-levels(clust)
@@ -1251,17 +2187,16 @@ doDE &lt;- function(x,lfc_cutoff=log2(1.1)){
 res&lt;-doDE(x,lfc_cutoff=log2(1.1))</code></pre>
 <pre><code>H1975..H2228..HCC827..</code></pre>
 <pre class="r"><code>saveRDS(res, file=paste0(out_path, &quot;/limma_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
-<div id="some-diagnostics-plot-of-deg" class="section level2">
-<h2>Some diagnostics plot of DEG</h2>
 </div>
+<div id="diagnostics-plot-of-deg" class="section level1">
+<h1>Diagnostics plot of DEG</h1>
 </div>
 <div id="upset-plot" class="section level1">
 <h1>Upset plot</h1>
-<pre class="r"><code>res&lt;-readRDS(paste0(out_path, &quot;/limma_&quot;, dataset_name, &quot;.rds&quot;))
-# count nb. of DE genes by cluster
-# vapply(res[[1]][[2]], function(x) sum(x$adj.P.Val &lt; 0.05), numeric(1))
+<pre class="r"><code>res &lt;- readRDS(paste0(out_path, &quot;/limma_&quot;, dataset_name, &quot;.rds&quot;))
 
-FilterDEGs&lt;-function (degDF=df, filter=c(FDR=5))
+# Filter DEG by pvalue
+FilterDEGs &lt;- function (degDF=df, filter=c(FDR=5))
 {
   rownames(degDF)&lt;-degDF$gene
   pval &lt;- degDF[, grep(&quot;adj.P.Val$&quot;, colnames(degDF)), drop = FALSE]
@@ -1270,108 +2205,159 @@ FilterDEGs&lt;-function (degDF=df, filter=c(FDR=5))
   DEGlistUPorDOWN &lt;- sapply(colnames(pf), function(x) rownames(pf[pf[, x, drop = FALSE], , drop = FALSE]), simplify = FALSE)
 }
 
-result&lt;-list()
-m2&lt;-list()
+result &lt;- list()
+m2 &lt;- list()
 
 for(jj in 1:length(cs)){
-    result[[jj]]&lt;-sapply(res[[1]][[names(cs)[jj]]], function(x) FilterDEGs(x))
-    names(result[[jj]])&lt;-kids
-    m2[[jj]] = make_comb_mat(result[[jj]], mode = &quot;intersect&quot;)
+  result[[jj]] &lt;- sapply(res[[1]][[names(cs)[jj]]], function(x) FilterDEGs(x))
+  names(result[[jj]]) &lt;- kids
+  m2[[jj]] = make_comb_mat(result[[jj]], mode = &quot;intersect&quot;)
 }
-names(result)&lt;-names(cs)
-names(m2)&lt;-names(cs)
-# saveRDS(m2, file=paste0(out_path, &quot;/upset_&quot;, dataset_name, &quot;.rds&quot;))
-# m2&lt;-readRDS(paste0(out_path, &quot;/upset_&quot;, dataset_name, &quot;.rds&quot;))
-# 
-# 
-# lapply(m2, function(x) UpSet(x))</code></pre>
-</div>
-<div id="histograms-of-p-values" class="section level1">
-<h1>Histograms of p-values</h1>
-</div>
-<div id="ratio-specific-cluster-of-deg" class="section level1">
-<h1>ratio specific cluster of DEG</h1>
-<pre class="r"><code>n_de&lt;-lapply(res[[1]],function(y) vapply(y, function(x) sum(x$adj.P.Val &lt; 0.05), numeric(1)))
-mean_n_de&lt;-lapply(n_de,function(x) mean(x))
-mean_mean_n_de&lt;-mean(unlist(mean_n_de))/dim(sce)[1]
-min_mean_n_de&lt;-min(unlist(mean_n_de))/dim(sce)[1]
-max_mean_n_de&lt;-max(unlist(mean_n_de))/dim(sce)[1]
-n_genes_lfc1&lt;-lapply(res[[1]],function(y) vapply(y, function(x) sum(abs(x$logFC) &gt; 1), numeric(1)))
-mean_n_genes_lfc1&lt;-mean(unlist(n_genes_lfc1))/dim(sce)[1]
-min_n_genes_lfc1&lt;-min(unlist(n_genes_lfc1))/dim(sce)[1]
-max_n_genes_lfc1&lt;-max(unlist(n_genes_lfc1))/dim(sce)[1]
+names(result) &lt;- names(cs)
+names(m2) &lt;- names(cs)
 
+#lapply(m2, function(x) UpSet(x))</code></pre>
+<div id="histograms-of-p-values" class="section level2">
+<h2>Histograms of p-values</h2>
+</div>
+</div>
+<div id="summarize-deg" class="section level1">
+<h1>Summarize DEG</h1>
+<pre class="r"><code># DE genes (per cluster and mean)
+n_de &lt;- lapply(res[[1]],function(y) vapply(y, function(x) sum(x$adj.P.Val &lt; 0.05), numeric(1)))
+n_de_cl &lt;- lapply(res[[1]],function(y) vapply(y, function(x) nrow(x), numeric(1)))
+mean_n_de &lt;- lapply(n_de,function(x) mean(x))
+mean_mean_n_de &lt;- mean(unlist(mean_n_de))/n_genes
+min_mean_n_de &lt;- min(unlist(mean_n_de))/n_genes
+max_mean_n_de &lt;- max(unlist(mean_n_de))/n_genes
 
-de_overlap&lt;-lapply(result,function(x){
-  which.Null&lt;-lapply(x,function(y) is.null(y))
-  ind&lt;-which.Null==&#39;FALSE&#39;
-  result2&lt;-x[ind]
-  de_overlap&lt;-length(Reduce(intersect, result2))
+# Genes with lfc &gt; 1
+n_genes_lfc1 &lt;- lapply(res[[1]],function(y) vapply(y, function(x) sum(abs(x$logFC) &gt; 1), numeric(1)))
+mean_n_genes_lfc1 &lt;- mean(unlist(n_genes_lfc1))/n_genes
+min_n_genes_lfc1 &lt;- min(unlist(n_genes_lfc1))/n_genes
+max_n_genes_lfc1 &lt;- max(unlist(n_genes_lfc1))/n_genes
+
+# DE genes overlap between celltypes (celltype specific de genes)
+# Genes are &quot;overlapping&quot; if they are present in all clusters with at least 10% of all cells
+de_overlap &lt;- lapply(result,function(x){
+  result2 &lt;- x[table(colData(sce)[, celltype]) &gt; n_cells * 0.1]
+  de_overlap &lt;- length(Reduce(intersect, result2))
   de_overlap
 })
-mean_de_overlap&lt;-mean(unlist(de_overlap))/dim(sce)[1]
-min_de_overlap&lt;-min(unlist(de_overlap))/dim(sce)[1]
-max_de_overlap&lt;-max(unlist(de_overlap))/dim(sce)[1]
-unique_genes_matrix&lt;-NULL
-unique_genes&lt;-NULL
-cb&lt;-length(names(result[[1]]))
-unique_genes&lt;-lapply(result,function(x){
-  for(i in 1:cb){
-    unique_genes[i]&lt;-as.numeric(length(setdiff(unlist(x[i]),unlist(x[-i]))))
+
+mean_de_overlap &lt;- mean(unlist(de_overlap))/n_genes
+min_de_overlap &lt;- min(unlist(de_overlap))/n_genes
+max_de_overlap &lt;- max(unlist(de_overlap))/n_genes
+
+#Genes unique to single celltypes
+unique_genes_matrix &lt;- NULL
+unique_genes &lt;- NULL
+cb &lt;- length(names(result[[1]]))
+unique_genes &lt;- lapply(result,function(x){
+  for( i in 1:cb ){
+    unique_genes[i] &lt;-as.numeric(length(setdiff(unlist(x[i]),unlist(x[-i]))))
   }
-  unique_genes_matrix&lt;-cbind(unique_genes_matrix,unique_genes)
+  unique_genes_matrix &lt;- cbind(unique_genes_matrix, unique_genes)
   unique_genes_matrix
 })
-unique_genes&lt;-Reduce(&#39;cbind&#39;, unique_genes)
-colnames(unique_genes)&lt;-names(result)
-rownames(unique_genes)&lt;-names(result[[1]])
+unique_genes &lt;- Reduce(&#39;cbind&#39;, unique_genes)
+colnames(unique_genes) &lt;- names(result)
+rownames(unique_genes) &lt;- names(result[[1]])
 
-rel_spec1&lt;-NULL
-for(i in 1:dim(unique_genes)[2]){
-    rel_spec&lt;-unique_genes[,i]/de_overlap[[i]]
-    rel_spec1&lt;-cbind(rel_spec1,rel_spec)
+# Relative cluster specificity (unique/overlapping)
+rel_spec1 &lt;- NULL
+for( i in 1:dim(unique_genes)[2] ){
+  rel_spec &lt;- unique_genes[,i]/de_overlap[[i]]
+  rel_spec1 &lt;- cbind(rel_spec1,rel_spec)
 }
 
-mean_rel_spec=mean(rel_spec1)
-min_rel_spec=min(rel_spec1)
-max_rel_spec=max(rel_spec1)</code></pre>
+mean_rel_spec &lt;- mean(rel_spec1)
+min_rel_spec &lt;- min(rel_spec1)
+max_rel_spec &lt;- max(rel_spec1)</code></pre>
 </div>
-<div id="simulation-parameter" class="section level1">
-<h1>Simulation parameter</h1>
-<pre class="r"><code>#percentage of batch affected genes
-cond &lt;- gsub(&quot;-.*&quot;, &quot;&quot;, names(n_de))
-cond &lt;- c(cond, unique(gsub(&quot;.*-&quot;, &quot;&quot;, names(n_de))))
-cond &lt;- unique(cond)
-de_be_tab &lt;- n_de %&gt;% bind_cols()
-de_be &lt;- cond %&gt;% map(function(x){
-  de_tab &lt;- de_be_tab[, grep(x, colnames(de_be_tab))]
-  de_be &lt;- rowMeans(de_tab)
-}) %&gt;% bind_cols() %&gt;% set_colnames(cond)
+<div id="distribution-of-lfc-by-celltypes" class="section level1">
+<h1>Distribution of lfc by celltypes</h1>
+<p>To simulate a realistic variance by celltype we model the lfc by celltypes from the real underlying distribution. Most lfc follow a gamma distribution with varying parameter, but there seem to be a set of outstanding genes with a distinct higher lfc. To model them we use a second distribution for “type genes”. We need this to cover the maxima, but in general this second distribution does not seem to be sufficient representing ct changes either. So reality still seems to be more complex than classifying cells into 2 groups (“type” and “not type”).</p>
+<pre class="r"><code># Determine lfc by celltype
+block &lt;- colData(sce)[,batch]
+kids &lt;- colData(sce)[,celltype]
+res_ct &lt;- pairwiseTTests(
+        assays(sce)$logcounts, 
+        clusters = kids, block = block,
+        direction = &quot;up&quot;, lfc = 0)
+    
+tbl &lt;- res_ct$statistics %&gt;% map_depth(1, data.frame)
+names(tbl) &lt;- names(tbl) &lt;- res_ct$pairs$first
 
-n_cl &lt;- rep(nrow(sce), ncol(de_be)) %&gt;% set_names(colnames(de_be))
-  
-p_be &lt;- de_be/n_cl
-mean_p_be &lt;- mean(colMeans(p_be))
-min_p_be &lt;- min(colMins(as.matrix(p_be)))
-max_p_be &lt;- max(colMaxs(as.matrix(p_be)))
+lfc_ct_all &lt;- tbl %&gt;% map(function(x){
+    lfc &lt;- x$logFC
+  }) %&gt;% unlist()
 
-#### Could also be inferred from the variance explained by the batches
-p_be_mod &lt;- n_batch_gene_mod
+#variance within celltypes
+lfc_by_k &lt;- tbl %&gt;% map(function(x){
+    lfc &lt;- x$logFC
+  }) %&gt;% bind_cols()
 
-#logFoldchange
-mean_lfc_cl &lt;- lapply(res[[1]],function(y) vapply(y, function(x){
-  de_genes &lt;- which(x$adj.P.Val &lt; 0.01)
-  mean_de &lt;- mean(abs(x[de_genes, &quot;logFC&quot;]))}
+mean_lfc_tib &lt;- tibble(&quot;mean_lfc&quot; = colMeans(lfc_by_k), &quot;cluster&quot; = names(tbl)) %&gt;% 
+  group_by(cluster) %&gt;% summarize(&quot;mean_k&quot; = mean(mean_lfc)) 
+
+#distribution parameter 
+mean_lfc_ct &lt;- mean(lfc_ct_all)
+min_lfc_ct &lt;- min(lfc_ct_all)
+max_lfc_ct &lt;- max(lfc_ct_all)
+
+#Check lfc distribution
+lfc_ct_real &lt;- data.frame(&quot;lfc&quot; = lfc_ct_all, &quot;type&quot; = rep(&quot;real&quot;, length(lfc_ct_all)))
+
+###simulate overall celltype lfc distribution
+#parameter
+lfc_ct_shape &lt;- 1.1
+lfc_ct_scale &lt;- 0.5
+
+signs &lt;- sample(c(-1, 1), length(lfc_ct_all), TRUE, prob = c(0.5, 0.5))
+tgam_ct &lt;- rtgamma(nrow(lfc_ct_real), lfc_ct_shape, lfc_ct_scale, a=min_lfc_ct, b=max_lfc_ct)*signs*0.5
+lfc_sim_ct &lt;- data.frame(&quot;lfc&quot; = tgam_ct, &quot;type&quot; = rep(&quot;sim&quot;, nrow(lfc_ct_real)))
+
+
+##### &quot;type genes&quot; distribution
+type_gene &lt;- which(lfc_ct_all &gt; max(tgam_ct) | lfc_ct_all &lt; min(tgam_ct))
+length(type_gene)</code></pre>
+<pre><code>[1] 325</code></pre>
+<pre class="r"><code>lfc_type &lt;- data.frame(&quot;lfc&quot; = lfc_ct_all[type_gene], &quot;type&quot; = rep(&quot;type&quot;, length(type_gene)))
+
+type_by_ct &lt;- colnames(lfc_by_k) %&gt;% map(function(x){
+  v &lt;- lfc_by_k[,x]
+  type &lt;- length(which(v &gt; max(tgam_ct) | v &lt; min(tgam_ct)))
+}) %&gt;% unlist() %&gt;% set_names(names(tbl))
+
+type_var &lt;- tibble(&quot;type_gene&quot; = type_by_ct, &quot;cluster&quot; = as.numeric(names(type_by_ct))) %&gt;% group_by(cluster) %&gt;% summarise(&quot;n_type&quot; = sum(type_gene)) %&gt;% mutate(&quot;p&quot; = n_type/(nrow(lfc_by_k) * ncol(lfc_by_k)/nrow(.)))</code></pre>
+<pre><code>Warning in eval_tidy(xs[[i]], unique_output): NAs durch Umwandlung erzeugt</code></pre>
+<pre class="r"><code>#Plot
+lfc_comb &lt;- rbind(lfc_sim_ct, lfc_ct_real, lfc_type)
+ggplot(lfc_comb, aes(lfc, colour = type)) + geom_density()</code></pre>
+<p><img src="figure/cell_bench.Rmd/lfc%20ct-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Simulation parameter
+mean_lfc_type &lt;- mean(abs(lfc_ct_all[type_gene]))
+sd_lfc_type &lt;- sd(abs(lfc_ct_all[type_gene]))
+n_type &lt;- length(type_gene)/length(lfc_ct_all)</code></pre>
+</div>
+<div id="distribution-of-lfc-by-batches" class="section level1">
+<h1>Distribution of lfc by batches</h1>
+<p>Again we model 2 lfc distributions to cover the extremes as well.</p>
+<pre class="r"><code>#logFoldchange batch effect distribution
+mean_lfc_cl &lt;- lapply(res[[1]], function(y) vapply(y, function(x){
+  de_genes &lt;- which(x$adj.P.Val &lt; 0.05)
+  mean_de &lt;- mean(abs(x[, &quot;logFC&quot;]))}
   , numeric(1))) %&gt;% bind_cols()
 
 min_lfc_cl &lt;- lapply(res[[1]],function(y) vapply(y, function(x){
-  de_genes &lt;- which(x$adj.P.Val &lt; 0.01)
-  min_de &lt;- min(abs(x[de_genes, &quot;logFC&quot;]))}
+  de_genes &lt;- which(x$adj.P.Val &lt; 0.05)
+  min_de &lt;- min(x[, &quot;logFC&quot;])}
   , numeric(1))) %&gt;% bind_cols()
 
 max_lfc_cl &lt;- lapply(res[[1]],function(y) vapply(y, function(x){
-  de_genes &lt;- which(x$adj.P.Val &lt; 0.01)
-  max_de &lt;- max(abs(x[de_genes, &quot;logFC&quot;]))}
+  de_genes &lt;- which(x$adj.P.Val &lt; 0.05)
+  max_de &lt;- max(x[, &quot;logFC&quot;])}
   , numeric(1))) %&gt;% bind_cols()
 
 mean_lfc_be &lt;- mean(colMeans(mean_lfc_cl, na.rm = TRUE))
@@ -1379,28 +2365,94 @@ min_lfc_be &lt;- min(colMins(as.matrix(min_lfc_cl), na.rm = TRUE))
 max_lfc_be &lt;- max(colMaxs(as.matrix(max_lfc_cl), na.rm = TRUE))
 
 
-#rel_be
-var_lfc_cl &lt;- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
-rel_be &lt;- (var_lfc_cl + colMeans(mean_lfc_cl, na.rm = TRUE))/colMeans(mean_lfc_cl, na.rm = TRUE)
-mean_rel_be &lt;- mean(rel_be)
-min_rel_be &lt;- min(rel_be)
-max_rel_be &lt;- max(rel_be)
+#Check lfc distribution
+lfc_dist &lt;- lapply(res[[1]], function(y){
+  lapply(y, function(x){
+  mean_de &lt;- x[, &quot;logFC&quot;]})
+  }) %&gt;% unlist() %&gt;% as.data.frame() %&gt;% set_colnames(&quot;test&quot;) %&gt;% mutate(&quot;type&quot; = rep(&quot;real&quot;, nrow(.)))
 
-#p_ct
+#Simulation parameter
+lfc_be_shape &lt;- 1.2
+lfc_be_scale &lt;- 0.35
+
+signs &lt;- sample(c(-1, 1), nrow(lfc_dist), TRUE, prob = c(0.4, 0.6))
+tgam &lt;- rtgamma(nrow(lfc_dist), lfc_be_shape, scale=lfc_be_scale, a=min_lfc_be, b=max_lfc_be)*signs
+lfc_sim &lt;- data.frame(&quot;test&quot; = tgam, &quot;type&quot; = rep(&quot;sim&quot;, nrow(lfc_dist)))
+
+#&quot;batch genes&quot;
+batch_gene &lt;- which(lfc_dist$test &gt; max(tgam) | lfc_dist$test &lt; min(tgam))
+length(batch_gene)</code></pre>
+<pre><code>[1] 260</code></pre>
+<pre class="r"><code>lfc_batch &lt;- data.frame(&quot;test&quot; = lfc_dist$test[batch_gene], &quot;type&quot; = rep(&quot;batch&quot;, length(batch_gene)))
+
+mean_lfc_batch &lt;- mean(abs(lfc_dist$test[batch_gene]))
+sd_lfc_batch &lt;- sd(abs(lfc_dist$test[batch_gene]))
+n_batch_genes &lt;- length(batch_gene)/nrow(lfc_dist)
+
+signs &lt;- sample(c(-1, 1), length(batch_gene), TRUE, prob = c(0.4, 0.6))
+tnorm &lt;- rnorm(length(batch_gene), mean = mean_lfc_batch, sd = sd_lfc_batch) * signs
+lfc_batch_sim &lt;- data.frame(&quot;test&quot; = tnorm, &quot;type&quot; = rep(&quot;batch_sim&quot;, length(batch_gene)))
+
+lfc_comb &lt;- rbind(lfc_sim, lfc_dist, lfc_batch, lfc_batch_sim)
+ggplot(lfc_comb, aes(test, colour = type)) + geom_density()</code></pre>
+<p><img src="figure/cell_bench.Rmd/lfc%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="simulation-parameter" class="section level1">
+<h1>Simulation parameter</h1>
+<p>Define parameter to describe the dataset for simulation</p>
+<pre class="r"><code>#percentage of batch affected genes
+cond &lt;- gsub(&quot;-.*&quot;, &quot;&quot;, names(n_de))
+cond &lt;- c(cond, unique(gsub(&quot;.*-&quot;, &quot;&quot;, names(n_de))))
+cond &lt;- unique(cond)
+de_be_tab &lt;- n_de %&gt;% bind_cols()
+de_cl_tab &lt;- n_de_cl %&gt;% bind_cols()
+de_be &lt;- cond %&gt;% map(function(x){
+  de_tab &lt;- de_be_tab[, grep(x, colnames(de_be_tab))]
+  de_be &lt;- rowMeans(de_tab)
+}) %&gt;% bind_cols() %&gt;% set_colnames(cond)
+
+n_cl &lt;- cond %&gt;% map(function(x){
+  cl_tab &lt;- de_cl_tab[, grep(x, colnames(de_cl_tab))]
+  de_cl &lt;- rowMeans(cl_tab)
+}) %&gt;% bind_cols() %&gt;% set_colnames(cond)
+
+
+p_be &lt;- de_be/n_cl
+mean_p_be &lt;- mean(colMeans(p_be))
+min_p_be &lt;- min(colMins(as.matrix(p_be)))
+max_p_be &lt;- max(colMaxs(as.matrix(p_be)))
+sd_p_be &lt;- mean(colSds(as.matrix(p_be)))
+if(is.na(sd_p_be)){ sd_p_be &lt;- 0 }
+
+## Could also be inferred from the variance explained by the batches? (also arbitrary threshold)
+p_be_mod &lt;- n_batch_gene_mod
+
+
+#### How much does the batch fold change vary between celltypes? &quot;rel_be&quot;
+var_lfc_cl &lt;- colSds(as.matrix(mean_lfc_cl), na.rm = TRUE)
+rel_be &lt;- mean(var_lfc_cl)
+
+#### How much does the celltype fold change vary between celltypes? &quot;rel_ct&quot;
+rel_ct &lt;- sd(mean_lfc_tib$mean_k)
+
+#### Percentage of celltype specific genes &quot;p_ct&quot;
 n_de_unique &lt;- lapply(result,function(x){
   de_genes &lt;- unlist(x) %&gt;% unique() %&gt;% length()
+  de_genes &lt;- de_genes/length(x)
 }) %&gt;% bind_cols()
 
 
 rel_spec2 &lt;- NULL
 for(i in 1:length(de_overlap)){
-  rel_spec &lt;- de_overlap[[i]]/n_de_unique[[i]]
+  rel_spec &lt;- de_overlap[[i]]/mean(n_de[[i]][table(colData(sce)[,celltype])&gt;dim(expr)[2]*0.1])
   rel_spec2 &lt;- cbind(rel_spec2,rel_spec)
 }
 
 mean_p_ct &lt;- 1 - mean(rel_spec2)
 max_p_ct &lt;- 1 - min(rel_spec2)
-min_p_ct &lt;- 1 - max(rel_spec2)</code></pre>
+min_p_ct &lt;- 1 - max(rel_spec2)
+sd_p_ct &lt;- sd(rel_spec2)
+if(is.na(sd_p_ct)){ sd_p_ct &lt;- 0 }</code></pre>
 </div>
 <div id="summarize-results" class="section level1">
 <h1>Summarize results</h1>
@@ -1426,8 +2478,7 @@ size &lt;- data.frame(&quot;batch_genes_1per&quot; = n_batch_gene,
 
 
 #Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
-celltype &lt;- data.frame(&quot;DA_celltypes&quot; = per_da_cluster,
-                       &quot;per_count_dist&quot; = per_dist,
+celltype &lt;- data.frame(&quot;per_count_dist&quot; = per_dist,
                        &quot;mean_cms&quot; = mean_cms,
                        &#39;mean_rel_abund_diff&#39; = mean_rel_abund_diff,
                        &#39;min_rel_abund_diff&#39; = min_rel_abund_diff,
@@ -1437,33 +2488,47 @@ celltype &lt;- data.frame(&quot;DA_celltypes&quot; = per_da_cluster,
 
 #Gene-specificity? How do they effect genes? Single genes? All genes? Which genes?
 gene &lt;- data.frame(&quot;mean_mean_n_de_genes&quot; = mean_mean_n_de,
-                    &quot;max_mean_n_de_genes&quot; = max_mean_n_de,
-                    &quot;min_mean_n_de_genes&quot; = min_mean_n_de,
-                    &quot;mean_n_genes_lfc1&quot; = mean_n_genes_lfc1,
-                    &quot;min_n_genes_lfc1&quot; = min_n_genes_lfc1,
-                    &quot;max_n_genes_lfc1&quot; = max_n_genes_lfc1,
-                     &quot;mean_de_overlap&quot; = mean_de_overlap,
+                   &quot;max_mean_n_de_genes&quot; = max_mean_n_de,
+                   &quot;min_mean_n_de_genes&quot; = min_mean_n_de,
+                   &quot;mean_n_genes_lfc1&quot; = mean_n_genes_lfc1,
+                   &quot;min_n_genes_lfc1&quot; = min_n_genes_lfc1,
+                   &quot;max_n_genes_lfc1&quot; = max_n_genes_lfc1,
+                   &quot;mean_de_overlap&quot; = mean_de_overlap,
                    &quot;min_de_overlap&quot; = min_de_overlap,
                    &quot;max_de_overlap&quot; = max_de_overlap,
-                  &quot;mean_rel_cluster_spec&quot;= mean_rel_spec,
-                  &quot;min_rel_cluster_spec&quot;= min_rel_spec,
-                  &quot;max_rel_cluster_spec&quot;= max_rel_spec
-                  )
+                   &quot;mean_rel_cluster_spec&quot;= mean_rel_spec,
+                   &quot;min_rel_cluster_spec&quot;= min_rel_spec,
+                   &quot;max_rel_cluster_spec&quot;= max_rel_spec
+)
 # Cell-specificity? How cell-specific are batche effects? Are their differences in within celltype variation between batches?
 
 sim &lt;- data.frame(&quot;mean_p_be&quot; = mean_p_be,
-                   &quot;max_p_be&quot; = max_p_be,
-                   &quot;min_p_be&quot; = min_p_be,
-                   &quot;p_be_mod&quot; = p_be_mod,
-                   &quot;mean_lfc_be&quot; = mean_lfc_be,
-                   &quot;min_lfc_be&quot; = min_lfc_be,
-                   &quot;max_lfc_be&quot; = max_lfc_be,
-                   &quot;mean_rel_be&quot; = mean_rel_be,
-                   &quot;min_rel_be&quot; = min_rel_be,
-                   &quot;max_rel_be&quot; = max_rel_be,
-                   &quot;mean_p_ct&quot;= mean_p_ct,
-                   &quot;min_p_ct&quot;= min_p_ct,
-                   &quot;max_p_ct&quot;= max_p_ct)
+                  &quot;max_p_be&quot; = max_p_be,
+                  &quot;min_p_be&quot; = min_p_be,
+                  &quot;sd_p_be&quot; = sd_p_be,
+                  &quot;p_be_mod&quot; = p_be_mod,
+                  &quot;mean_lfc_be&quot; = mean_lfc_be,
+                  &quot;min_lfc_be&quot; = min_lfc_be,
+                  &quot;max_lfc_be&quot; = max_lfc_be,
+                  &quot;mean_lfc_ct&quot; = mean_lfc_ct,
+                  &quot;min_lfc_ct&quot; = min_lfc_ct,
+                  &quot;max_lfc_ct&quot; = max_lfc_ct,
+                  &quot;mean_rel_be&quot; = rel_be,
+                  &quot;rel_ct&quot; = rel_ct,
+                  &quot;mean_p_ct&quot;= mean_p_ct,
+                  &quot;min_p_ct&quot;= min_p_ct,
+                  &quot;max_p_ct&quot;= max_p_ct,
+                  &quot;sd_p_ct&quot; = sd_p_ct,
+                  &quot;mean_lfc_batch&quot; = mean_lfc_batch,
+                  &quot;sd_lfc_batch&quot; = 0,
+                  &quot;n_batch_gene&quot; = n_batch_genes,
+                  &quot;mean_lfc_type&quot; = mean_lfc_type,
+                  &quot;sd_lfc_type&quot; = sd_lfc_type,
+                  &quot;n_type&quot; = n_type,
+                  &quot;lfc_ct_shape&quot; = lfc_ct_shape,
+                  &quot;lfc_ct_scale&quot; = lfc_ct_scale,
+                  &quot;lfc_be_shape&quot; = lfc_be_shape,
+                  &quot;lfc_be_scale&quot; = lfc_be_scale)
 
 summary &lt;- cbind(size, celltype, gene, sim) %&gt;% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, &quot;/summary_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
@@ -1475,7 +2540,7 @@ saveRDS(summary, paste0(out_path, &quot;/summary_&quot;, dataset_name, &quot;.rd
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.0 (2019-04-26)
+<pre><code>R version 3.6.1 (2019-07-05)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 18.04.2 LTS
 
@@ -1496,87 +2561,91 @@ attached base packages:
  [8] datasets  methods   base     
 
 other attached packages:
- [1] ggtern_3.1.0                ComplexHeatmap_2.1.0       
- [3] diffcyt_1.4.3               variancePartition_1.14.0   
- [5] scales_1.0.0                foreach_1.4.4              
- [7] limma_3.40.2                stringr_1.4.0              
- [9] dplyr_0.8.1                 tidyr_0.8.3                
-[11] here_0.1                    purrr_0.3.2                
-[13] gridExtra_2.3               CellMixS_1.1.0             
-[15] kSamples_1.2-9              SuppDists_1.1-9.4          
-[17] jcolors_0.0.4               scater_1.12.2              
-[19] ggplot2_3.1.1               CellBench_1.0.0            
-[21] tibble_2.1.2                magrittr_1.5               
-[23] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
-[25] DelayedArray_0.10.0         BiocParallel_1.18.0        
-[27] matrixStats_0.54.0          Biobase_2.44.0             
-[29] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
-[31] IRanges_2.18.1              S4Vectors_0.22.0           
-[33] BiocGenerics_0.30.0        
+ [1] scran_1.12.1                TruncatedDistributions_1.0 
+ [3] ggtern_3.1.0                ComplexHeatmap_2.1.0       
+ [5] diffcyt_1.4.3               variancePartition_1.14.0   
+ [7] scales_1.0.0                foreach_1.4.4              
+ [9] limma_3.40.2                stringr_1.4.0              
+[11] dplyr_0.8.3                 tidyr_0.8.3                
+[13] here_0.1                    purrr_0.3.2                
+[15] gridExtra_2.3               CellMixS_1.1.0             
+[17] kSamples_1.2-9              SuppDists_1.1-9.4          
+[19] jcolors_0.0.4               scater_1.12.2              
+[21] ggplot2_3.2.0               CellBench_1.0.0            
+[23] tibble_2.1.3                magrittr_1.5               
+[25] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
+[27] DelayedArray_0.10.0         BiocParallel_1.18.0        
+[29] matrixStats_0.54.0          Biobase_2.44.0             
+[31] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
+[33] IRanges_2.18.1              S4Vectors_0.22.0           
+[35] BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
-  [1] backports_1.1.4             circlize_0.4.6             
-  [3] workflowr_1.3.0             BiocFileCache_1.8.0        
-  [5] plyr_1.8.4                  igraph_1.2.4.1             
-  [7] ConsensusClusterPlus_1.48.0 lazyeval_0.2.2             
-  [9] splines_3.6.0               flowCore_1.50.0            
- [11] TH.data_1.0-10              digest_0.6.19              
- [13] htmltools_0.3.6             viridis_0.5.1              
- [15] gdata_2.18.0                memoise_1.1.0              
- [17] cluster_2.1.0               doParallel_1.0.14          
- [19] RcppParallel_4.4.3          bayesm_3.1-1               
- [21] sandwich_2.5-1              prettyunits_1.0.2          
- [23] colorspace_1.4-1            blob_1.1.1                 
- [25] rappdirs_0.3.1              rrcov_1.4-7                
- [27] xfun_0.7                    crayon_1.3.4               
- [29] RCurl_1.95-4.12             graph_1.62.0               
- [31] lme4_1.1-21                 survival_2.44-1.1          
- [33] zoo_1.8-6                   iterators_1.0.10           
- [35] glue_1.3.1                  gtable_0.3.0               
- [37] zlibbioc_1.30.0             XVector_0.24.0             
- [39] compositions_1.40-2         listarrays_0.2.0           
- [41] GetoptLong_0.1.7            BiocSingular_1.0.0         
- [43] shape_1.4.4                 DEoptimR_1.0-8             
- [45] mvtnorm_1.0-11              DBI_1.0.0                  
- [47] edgeR_3.26.4                Rcpp_1.0.1                 
- [49] viridisLite_0.3.0           progress_1.2.2             
- [51] clue_0.3-57                 latex2exp_0.4.0            
- [53] bit_1.1-14                  rsvd_1.0.1                 
- [55] FlowSOM_1.16.0              tsne_0.1-3                 
- [57] httr_1.4.0                  FNN_1.1.3                  
- [59] gplots_3.0.1.1              RColorBrewer_1.1-2         
- [61] pkgconfig_2.0.2             XML_3.98-1.19              
- [63] uwot_0.1.3                  dbplyr_1.4.0               
- [65] locfit_1.5-9.1              labeling_0.3               
- [67] tidyselect_0.2.5            rlang_0.3.4                
- [69] reshape2_1.4.3              munsell_0.5.0              
- [71] tools_3.6.0                 RSQLite_2.1.1              
- [73] ggridges_0.5.1              evaluate_0.14              
- [75] yaml_2.2.0                  knitr_1.23                 
- [77] bit64_0.9-7                 fs_1.3.1                   
- [79] robustbase_0.93-5           caTools_1.17.1.2           
- [81] nlme_3.1-140                whisker_0.3-2              
- [83] compiler_3.6.0              pbkrtest_0.4-7             
- [85] beeswarm_0.2.3              curl_3.3                   
- [87] png_0.1-7                   pcaPP_1.9-73               
- [89] stringi_1.4.3               lattice_0.20-38            
- [91] Matrix_1.2-17               nloptr_1.2.1               
- [93] tensorA_0.36.1              pillar_1.4.1               
- [95] GlobalOptions_0.1.0         BiocNeighbors_1.2.0        
- [97] cowplot_0.9.4               bitops_1.0-6               
- [99] irlba_2.3.3                 corpcor_1.6.9              
-[101] colorRamps_2.3              R6_2.4.0                   
-[103] KernSmooth_2.23-15          vipor_0.4.5                
-[105] codetools_0.2-16            energy_1.7-5               
-[107] boot_1.3-22                 MASS_7.3-51.4              
-[109] gtools_3.8.1                assertthat_0.2.1           
-[111] proto_1.0.0                 rprojroot_1.3-2            
-[113] rjson_0.2.20                withr_2.1.2                
-[115] multcomp_1.4-10             GenomeInfoDbData_1.2.1     
-[117] hms_0.4.2                   minqa_1.2.4                
-[119] rmarkdown_1.13              DelayedMatrixStats_1.6.0   
-[121] Rtsne_0.15                  git2r_0.25.2               
-[123] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
+  [1] proto_1.0.0                 tidyselect_0.2.5           
+  [3] lme4_1.1-21                 RSQLite_2.1.1              
+  [5] Rtsne_0.15                  flowCore_1.50.0            
+  [7] munsell_0.5.0               codetools_0.2-16           
+  [9] statmod_1.4.32              withr_2.1.2                
+ [11] colorspace_1.4-1            energy_1.7-6               
+ [13] highr_0.8                   knitr_1.23                 
+ [15] robustbase_0.93-5           bayesm_3.1-2               
+ [17] labeling_0.3                git2r_0.26.1               
+ [19] GenomeInfoDbData_1.2.1      bit64_0.9-7                
+ [21] rprojroot_1.3-2             vctrs_0.2.0                
+ [23] TH.data_1.0-10              xfun_0.8                   
+ [25] BiocFileCache_1.8.0         R6_2.4.0                   
+ [27] doParallel_1.0.14           ggbeeswarm_0.6.0           
+ [29] clue_0.3-57                 rsvd_1.0.1                 
+ [31] locfit_1.5-9.1              bitops_1.0-6               
+ [33] assertthat_0.2.1            multcomp_1.4-10            
+ [35] beeswarm_0.2.3              gtable_0.3.0               
+ [37] sandwich_2.5-1              workflowr_1.4.0            
+ [39] rlang_0.4.0                 zeallot_0.1.0              
+ [41] GlobalOptions_0.1.0         splines_3.6.1              
+ [43] lazyeval_0.2.2              yaml_2.2.0                 
+ [45] reshape2_1.4.3              backports_1.1.4            
+ [47] tensorA_0.36.1              tools_3.6.1                
+ [49] gplots_3.0.1.1              RColorBrewer_1.1-2         
+ [51] dynamicTreeCut_1.63-1       ggridges_0.5.1             
+ [53] latex2exp_0.4.0             Rcpp_1.0.1                 
+ [55] plyr_1.8.4                  progress_1.2.2             
+ [57] zlibbioc_1.30.0             RCurl_1.95-4.12            
+ [59] FlowSOM_1.16.0              prettyunits_1.0.2          
+ [61] GetoptLong_0.1.7            viridis_0.5.1              
+ [63] cowplot_1.0.0               zoo_1.8-6                  
+ [65] cluster_2.1.0               colorRamps_2.3             
+ [67] fs_1.3.1                    circlize_0.4.6             
+ [69] mvtnorm_1.0-11              whisker_0.3-2              
+ [71] hms_0.5.0                   evaluate_0.14              
+ [73] pbkrtest_0.4-7              XML_3.98-1.20              
+ [75] shape_1.4.4                 compiler_3.6.1             
+ [77] KernSmooth_2.23-15          crayon_1.3.4               
+ [79] minqa_1.2.4                 htmltools_0.3.6            
+ [81] corpcor_1.6.9               pcaPP_1.9-73               
+ [83] rrcov_1.4-7                 RcppParallel_4.4.3         
+ [85] lubridate_1.7.4             DBI_1.0.0                  
+ [87] dbplyr_1.4.2                MASS_7.3-51.4              
+ [89] rappdirs_0.3.1              boot_1.3-23                
+ [91] compositions_1.40-2         Matrix_1.2-17              
+ [93] gdata_2.18.0                igraph_1.2.4.1             
+ [95] pkgconfig_2.0.2             vipor_0.4.5                
+ [97] dqrng_0.2.1                 XVector_0.24.0             
+ [99] digest_0.6.20               tsne_0.1-3                 
+[101] ConsensusClusterPlus_1.48.0 graph_1.62.0               
+[103] rmarkdown_1.14              uwot_0.1.3                 
+[105] edgeR_3.26.5                DelayedMatrixStats_1.6.0   
+[107] listarrays_0.2.0            curl_3.3                   
+[109] gtools_3.8.1                rjson_0.2.20               
+[111] nloptr_1.2.1                nlme_3.1-140               
+[113] BiocNeighbors_1.2.0         viridisLite_0.3.0          
+[115] pillar_1.4.2                lattice_0.20-38            
+[117] httr_1.4.0                  DEoptimR_1.0-8             
+[119] survival_2.44-1.1           glue_1.3.1                 
+[121] FNN_1.1.3                   png_0.1-7                  
+[123] iterators_1.0.10            bit_1.1-14                 
+[125] stringi_1.4.3               blob_1.2.0                 
+[127] BiocSingular_1.0.0          caTools_1.17.1.2           
+[129] memoise_1.1.0               irlba_2.3.3                </code></pre>
 </div>
 </div>
 
@@ -1610,6 +2679,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
