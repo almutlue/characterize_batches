@@ -407,7 +407,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-07-26
+<strong>Last updated:</strong> 2019-07-30
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -426,68 +426,24 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongobjectspresent"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Environment:</strong> objects present </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
-<div id="strongEnvironmentstrongobjectspresent" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>
-The global environment had objects present when the code in the R Markdown file was run. These objects can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment. Use <code>wflow_publish</code> or <code>wflow_build</code> to ensure that the code is always run in an empty environment.
-</p>
-<p>
-The following objects were defined in the global environment when these results were created:
-</p>
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th style="text-align:left;">
-Name
-</th>
-<th style="text-align:left;">
-Class
-</th>
-<th style="text-align:left;">
-Size
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-data
-</td>
-<td style="text-align:left;">
-environment
-</td>
-<td style="text-align:left;">
-56 bytes
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-env
-</td>
-<td style="text-align:left;">
-environment
-</td>
-<td style="text-align:left;">
-56 bytes
-</td>
-</tr>
-</tbody>
-</table>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
 </div>
 </div>
 </div>
@@ -542,10 +498,10 @@ environment
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2e5c1abfd292a050a60c7e5de29a6bcabadcb083targetblank2e5c1aba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/2e5c1abfd292a050a60c7e5de29a6bcabadcb083" target="_blank">2e5c1ab</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreeaf75f2c83ba0807a7af708a4f5d7c9a2d04fae67targetblankaf75f2ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67" target="_blank">af75f2c</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2e5c1abfd292a050a60c7e5de29a6bcabadcb083targetblank2e5c1aba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreeaf75f2c83ba0807a7af708a4f5d7c9a2d04fae67targetblankaf75f2ca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -654,6 +610,7 @@ Untracked files:
     Untracked:  output/vp_pbmc_media_storage.rds
 
 Unstaged changes:
+    Modified:   analysis/csf_patient.Rmd
     Modified:   analysis/hca.Rmd
     Modified:   analysis/khan.Rmd
 
@@ -694,6 +651,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/csf_patient.html" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1117,6 +1091,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/vis batch-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/134054b67d17dd1a14e26b1e93e287c2fe6e1432/docs/figure/csf_patient.Rmd/vis batch-1.png" target="_blank">134054b</a>
 </td>
 <td>
@@ -1179,6 +1164,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/vis batch-2.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/134054b67d17dd1a14e26b1e93e287c2fe6e1432/docs/figure/csf_patient.Rmd/vis batch-2.png" target="_blank">134054b</a>
 </td>
 <td>
@@ -1239,6 +1235,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/vis batch-3.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/134054b67d17dd1a14e26b1e93e287c2fe6e1432/docs/figure/csf_patient.Rmd/vis batch-3.png" target="_blank">134054b</a>
@@ -1326,6 +1333,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/variance part-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/f0f935c3dce69dd57f855501d74437a5e01c813a/docs/figure/csf_patient.Rmd/variance part-1.png" target="_blank">f0f935c</a>
 </td>
 <td>
@@ -1385,6 +1403,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/variance part-2.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/f0f935c3dce69dd57f855501d74437a5e01c813a/docs/figure/csf_patient.Rmd/variance part-2.png" target="_blank">f0f935c</a>
@@ -1550,6 +1579,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/var dev expr-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/var dev expr-1.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -1587,6 +1627,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/var dev expr-2.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/var dev expr-2.png" target="_blank">c303fb7</a>
@@ -1628,6 +1679,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/var dev expr-3.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/var dev expr-3.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -1665,6 +1727,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/var dev expr-4.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/var dev expr-4.png" target="_blank">c303fb7</a>
@@ -1715,6 +1788,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/tern plots-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/tern plots-1.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -1760,6 +1844,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/tern plots-2.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/tern plots-2.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -1800,6 +1895,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/tern plots-3.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/tern plots-3.png" target="_blank">c303fb7</a>
@@ -1847,6 +1953,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/tern plots-4.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/tern plots-4.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -1892,6 +2009,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/tern plots-5.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/tern plots-5.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -1930,6 +2058,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/tern plots-6.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/tern plots-6.png" target="_blank">c303fb7</a>
@@ -1984,6 +2123,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/celltype abundance-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/celltype abundance-1.png" target="_blank">c303fb7</a>
@@ -2093,6 +2243,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/count distributions-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/count distributions-1.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -2173,6 +2334,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/mean expression-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/f6bfe34e35bbd5c83c6f4bd42d37c5b1b0516806/docs/figure/csf_patient.Rmd/mean expression-1.png" target="_blank">f6bfe34</a>
 </td>
 <td>
@@ -2224,6 +2396,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/mean expression-2.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/f6bfe34e35bbd5c83c6f4bd42d37c5b1b0516806/docs/figure/csf_patient.Rmd/mean expression-2.png" target="_blank">f6bfe34</a>
@@ -2291,6 +2474,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/cms-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/f0f935c3dce69dd57f855501d74437a5e01c813a/docs/figure/csf_patient.Rmd/cms-1.png" target="_blank">f0f935c</a>
 </td>
 <td>
@@ -2350,6 +2544,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/cms-2.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/cms-2.png" target="_blank">c303fb7</a>
@@ -2422,6 +2627,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/cms-3.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_patient.Rmd/cms-3.png" target="_blank">c303fb7</a>
@@ -2518,6 +2734,7 @@ doDE &lt;- function(x,lfc_cutoff=0){
 res &lt;- doDE(x,lfc_cutoff = 0)</code></pre>
 <pre><code>0..1..2..3..4..5..6..7..</code></pre>
 <pre class="r"><code>saveRDS(res, file = paste0(out_path, &quot;/limma_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
+<p>Differential expression using limma</p>
 </div>
 <div id="diagnostics-plot-of-deg" class="section level1">
 <h1>Diagnostics plot of DEG</h1>
@@ -2642,18 +2859,18 @@ lfc_ct_real &lt;- data.frame(&quot;lfc&quot; = lfc_ct_all, &quot;type&quot; = re
 
 ###simulate overall celltype lfc distribution
 #parameter
-lfc_ct_shape &lt;- 0.72
-lfc_ct_scale &lt;- 0.5
+lfc_ct_shape &lt;- 0.6
+lfc_ct_scale &lt;- 0.35
 
 signs &lt;- sample(c(-1, 1), length(lfc_ct_all), TRUE, prob = c(0.5, 0.5))
-tgam_ct &lt;- rtgamma(nrow(lfc_ct_real), lfc_ct_shape, lfc_ct_scale, a=min_lfc_ct, b=max_lfc_ct)*signs*0.5
+tgam_ct &lt;- rtgamma(nrow(lfc_ct_real), lfc_ct_shape, lfc_ct_scale, a=min_lfc_ct, b=max_lfc_ct)*signs
 lfc_sim_ct &lt;- data.frame(&quot;lfc&quot; = tgam_ct, &quot;type&quot; = rep(&quot;sim&quot;, nrow(lfc_ct_real)))
 
 
 ##### &quot;type genes&quot; distribution
 type_gene &lt;- which(lfc_ct_all &gt; max(tgam_ct) | lfc_ct_all &lt; min(tgam_ct))
 length(type_gene)</code></pre>
-<pre><code>[1] 544</code></pre>
+<pre><code>[1] 235</code></pre>
 <pre class="r"><code>lfc_type &lt;- data.frame(&quot;lfc&quot; = lfc_ct_all[type_gene], &quot;type&quot; = rep(&quot;type&quot;, length(type_gene)))
 
 type_by_ct &lt;- colnames(lfc_by_k) %&gt;% map(function(x){
@@ -2668,6 +2885,43 @@ type_var &lt;- tibble(&quot;type_gene&quot; = type_by_ct, &quot;cluster&quot; = 
 lfc_comb &lt;- rbind(lfc_sim_ct, lfc_ct_real, lfc_type)
 ggplot(lfc_comb, aes(lfc, colour = type)) + geom_density()</code></pre>
 <p><img src="figure/csf_patient.Rmd/lfc%20ct-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-lfc-ct-1">
+Past versions of “lfc ct-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-lfc-ct-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/lfc ct-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># Simulation parameter
 mean_lfc_type &lt;- mean(abs(lfc_ct_all[type_gene]))
 sd_lfc_type &lt;- sd(abs(lfc_ct_all[type_gene]))
@@ -2726,6 +2980,162 @@ lfc_batch_sim &lt;- data.frame(&quot;test&quot; = tnorm, &quot;type&quot; = rep(
 lfc_comb &lt;- rbind(lfc_sim, lfc_dist, lfc_batch, lfc_batch_sim)
 ggplot(lfc_comb, aes(test, colour = type)) + geom_density()</code></pre>
 <p><img src="figure/csf_patient.Rmd/lfc%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-lfc-batch-1">
+Past versions of “lfc batch-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-lfc-batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_patient.Rmd/lfc batch-1.png" target="_blank">af75f2c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="batch-type" class="section level1">
+<h1>Batch type</h1>
+<p>(idea and implementation from Charlotte)</p>
+<p>The idea here is to investigate how batch effects can manifest in single-cell data by testing what method is necessary to remove them. Basically, if batch effects are “simply” mean shifts of expression levels for some genes for all the cells in a given celltype and batch, then we should be able to remove them by looking at residuals from some linear model involving batch and/or cell type. Of course, in a real data set we don’t know the cell type in advance, so this is not really intended to be a way of removing batch effects in practice, but rather the aim is to figure out how they manifest (and thus how we should include them in a simulation), based on some data sets where we “know” the batch as well as the cell type.</p>
+<p>Below we illustrate the approach using idealized data matrices, each with 150 genes and 100 cells, spread over two batches and three cell types. We first define three functions that we will use to remove the batch effect - the difference between them is which linear model we fit, and thus which residuals we use. Throughout, we will assume that X is a matrix with log-expression values, ct is a cell type vector, and bt is a batch vector.</p>
+<p>We will see that if the batch effect is a simple (possibly batch- and cell type-specific) shift in mean, one of these functions will remove it (adj3 should remove it regardless of the complexity/cell type specificity, whereas the other functions will only remove batch effects with a simpler structure). If none of these functions remove the batch effect, it is more complex than a mean shift.</p>
+<pre class="r"><code>## This function will remove the batch effect if it is constant for all cell
+## types, and the cell type composition is the same across batches. It will not
+## work if the cell type compositions differ, since it is basically just
+## equalizing the overall means across the batches
+adj1 &lt;- function(X, bt, ct) {
+  mm &lt;- model.matrix(~ bt)
+  fit &lt;- lmFit(X, mm)
+  beta &lt;- fit$coefficients
+  beta[, 1] &lt;- 0
+  X - beta %*% t(mm)
+}
+
+## This function will remove the batch effect if it is constant for all cell
+## types, even if the cell type composition is not the same across batches. It
+## will not work for cell type-specific batch effects, since we don&#39;t include an
+## interaction effect between batch and cell type
+adj2 &lt;- function(X, bt, ct) {
+  mm &lt;- model.matrix(~ ct + bt)
+  fit &lt;- lmFit(X, mm)
+  beta &lt;- fit$coefficients
+  beta[, grep(&quot;^bt&quot;, colnames(beta), invert = TRUE)] &lt;- 0
+  X - beta %*% t(mm)
+}
+
+## This function will remove the batch effect even if it is cell type specific
+adj3 &lt;- function(X, bt, ct) {
+  mm &lt;- model.matrix(~ ct / bt)
+  fit &lt;- lmFit(X, mm)
+  beta &lt;- fit$coefficients
+  beta[, union(grep(&quot;^ct&quot;, colnames(beta), invert = TRUE), 
+               grep(&quot;:bt&quot;, colnames(beta), invert = TRUE))] &lt;- 0
+  X - beta %*% t(mm)
+}
+
+
+Xadj1 &lt;- adj1(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj2 &lt;- adj2(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj3 &lt;- adj3(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+
+#plot PCAs
+plot_pca &lt;-function(X){
+  pca &lt;- prcomp(t(X))
+  ggplot(data.frame(pca$x) %&gt;% 
+           dplyr::mutate(batch = colData(sce)[, batch], celltype = colData(sce)[, celltype]),
+       aes(x = PC1, y = PC2, color = batch, shape = celltype)) + 
+  geom_point(size = 2) + theme_bw()
+}
+
+plot_pca(counts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values
+because more than 6 becomes difficult to discriminate; you have 8.
+Consider specifying shapes manually if you must have them.</code></pre>
+<pre><code>Warning: Removed 76 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_pca(Xadj1) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values
+because more than 6 becomes difficult to discriminate; you have 8.
+Consider specifying shapes manually if you must have them.
+
+Warning: Removed 76 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_pca(Xadj2) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values
+because more than 6 becomes difficult to discriminate; you have 8.
+Consider specifying shapes manually if you must have them.
+
+Warning: Removed 76 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_pca(Xadj3) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values
+because more than 6 becomes difficult to discriminate; you have 8.
+Consider specifying shapes manually if you must have them.
+
+Warning: Removed 76 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#umap
+plot_umap &lt;- function(X, sce){
+  assays(sce)$removed_batch &lt;- X
+  sce &lt;- runUMAP(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;)
+  visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
+}
+
+plot_umap(Xadj1, sce) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-5.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_umap(Xadj2, sce) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-6.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot_umap(Xadj3, sce) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-7.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>visGroup(sce, batch, dim_red = &quot;UMAP&quot;)</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-8.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#cms
+get_cms &lt;- function(X, sce, method_nam){
+  assays(sce)$removed_batch &lt;- X
+  sce &lt;- runPCA(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
+  sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = &quot;PCA&quot;, 
+             res_name = method_nam)
+}
+
+sce &lt;- get_cms(Xadj1, sce, &quot;Xadj1&quot;)</code></pre>
+<pre><code>Warning in (function (jobs, data, centers, info, distance, k, get.index, :
+tied distances detected in nearest-neighbor calculation</code></pre>
+<pre class="r"><code>sce &lt;- get_cms(Xadj2, sce, &quot;Xadj2&quot;)</code></pre>
+<pre><code>Warning in (function (jobs, data, centers, info, distance, k, get.index, :
+tied distances detected in nearest-neighbor calculation</code></pre>
+<pre class="r"><code>sce &lt;- get_cms(Xadj3, sce, &quot;Xadj3&quot;)</code></pre>
+<pre><code>Warning in (function (jobs, data, centers, info, distance, k, get.index, :
+tied distances detected in nearest-neighbor calculation</code></pre>
+<pre class="r"><code>saveRDS(sce, file = paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
+sce &lt;- readRDS(paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
+
+visHist(sce, metric_prefix = &quot;cms.&quot;)</code></pre>
+<p><img src="figure/csf_patient.Rmd/batch%20type-9.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="simulation-parameter" class="section level1">
 <h1>Simulation parameter</h1>
@@ -2808,7 +3218,7 @@ size &lt;- data.frame(&quot;batch_genes_1per&quot; = n_batch_gene,
 
 
 #Celltype-specificity? How celltype/cluster specific are batch effects? Differences in sample variation between batches?
-celltype &lt;- data.frame(&quot;per_count_dist&quot; = per_dist,
+celltype_spec &lt;- data.frame(&quot;per_count_dist&quot; = per_dist,
                        &quot;mean_cms&quot; = mean_cms,
                        &#39;mean_rel_abund_diff&#39; = mean_rel_abund_diff,
                        &#39;min_rel_abund_diff&#39; = min_rel_abund_diff,
@@ -2860,7 +3270,7 @@ sim &lt;- data.frame(&quot;mean_p_be&quot; = mean_p_be,
                   &quot;lfc_be_shape&quot; = lfc_be_shape,
                   &quot;lfc_be_scale&quot; = lfc_be_scale)
 
-summary &lt;- cbind(size, celltype, gene, sim) %&gt;% set_rownames(dataset_name)
+summary &lt;- cbind(size, celltype_spec, gene, sim) %&gt;% set_rownames(dataset_name)
 saveRDS(summary, paste0(out_path, &quot;/summary_&quot;, dataset_name, &quot;.rds&quot;))</code></pre>
 <br>
 <p>
@@ -2911,71 +3321,70 @@ other attached packages:
 [35] S4Vectors_0.22.0            BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
-  [1] proto_1.0.0                 tidyselect_0.2.5           
-  [3] lme4_1.1-21                 RSQLite_2.1.1              
-  [5] flowCore_1.50.0             munsell_0.5.0              
-  [7] codetools_0.2-16            statmod_1.4.32             
-  [9] withr_2.1.2                 colorspace_1.4-1           
- [11] energy_1.7-6                highr_0.8                  
- [13] knitr_1.23                  robustbase_0.93-5          
- [15] bayesm_3.1-2                labeling_0.3               
- [17] git2r_0.26.1                GenomeInfoDbData_1.2.1     
- [19] bit64_0.9-7                 rprojroot_1.3-2            
- [21] vctrs_0.2.0                 TH.data_1.0-10             
- [23] xfun_0.8                    BiocFileCache_1.8.0        
- [25] R6_2.4.0                    doParallel_1.0.14          
- [27] ggbeeswarm_0.6.0            clue_0.3-57                
- [29] rsvd_1.0.1                  locfit_1.5-9.1             
- [31] bitops_1.0-6                assertthat_0.2.1           
- [33] multcomp_1.4-10             beeswarm_0.2.3             
- [35] gtable_0.3.0                sandwich_2.5-1             
- [37] workflowr_1.4.0             rlang_0.4.0                
- [39] zeallot_0.1.0               GlobalOptions_0.1.0        
- [41] splines_3.6.1               lazyeval_0.2.2             
- [43] yaml_2.2.0                  reshape2_1.4.3             
- [45] backports_1.1.4             tensorA_0.36.1             
- [47] tools_3.6.1                 gplots_3.0.1.1             
- [49] RColorBrewer_1.1-2          dynamicTreeCut_1.63-1      
- [51] ggridges_0.5.1              latex2exp_0.4.0            
- [53] Rcpp_1.0.1                  plyr_1.8.4                 
- [55] progress_1.2.2              zlibbioc_1.30.0            
- [57] RCurl_1.95-4.12             FlowSOM_1.16.0             
- [59] prettyunits_1.0.2           GetoptLong_0.1.7           
- [61] viridis_0.5.1               cowplot_1.0.0              
- [63] zoo_1.8-6                   cluster_2.1.0              
- [65] colorRamps_2.3              fs_1.3.1                   
- [67] RSpectra_0.15-0             circlize_0.4.6             
- [69] mvtnorm_1.0-11              whisker_0.3-2              
- [71] hms_0.5.0                   evaluate_0.14              
- [73] pbkrtest_0.4-7              XML_3.98-1.20              
- [75] shape_1.4.4                 compiler_3.6.1             
- [77] KernSmooth_2.23-15          crayon_1.3.4               
- [79] minqa_1.2.4                 htmltools_0.3.6            
- [81] corpcor_1.6.9               pcaPP_1.9-73               
- [83] rrcov_1.4-7                 RcppParallel_4.4.3         
- [85] lubridate_1.7.4             DBI_1.0.0                  
- [87] dbplyr_1.4.2                MASS_7.3-51.4              
- [89] rappdirs_0.3.1              boot_1.3-23                
- [91] compositions_1.40-2         Matrix_1.2-17              
- [93] gdata_2.18.0                igraph_1.2.4.1             
- [95] pkgconfig_2.0.2             vipor_0.4.5                
- [97] dqrng_0.2.1                 XVector_0.24.0             
- [99] digest_0.6.20               tsne_0.1-3                 
-[101] ConsensusClusterPlus_1.48.0 graph_1.62.0               
-[103] rmarkdown_1.14              uwot_0.1.3                 
-[105] DelayedMatrixStats_1.6.0    listarrays_0.2.0           
-[107] curl_3.3                    gtools_3.8.1               
-[109] rjson_0.2.20                nloptr_1.2.1               
-[111] nlme_3.1-140                BiocNeighbors_1.2.0        
-[113] viridisLite_0.3.0           pillar_1.4.2               
-[115] lattice_0.20-38             httr_1.4.0                 
-[117] DEoptimR_1.0-8              survival_2.44-1.1          
-[119] glue_1.3.1                  FNN_1.1.3                  
-[121] png_0.1-7                   iterators_1.0.10           
-[123] bit_1.1-14                  stringi_1.4.3              
-[125] blob_1.2.0                  BiocSingular_1.0.0         
-[127] caTools_1.17.1.2            memoise_1.1.0              
-[129] irlba_2.3.3                </code></pre>
+  [1] backports_1.1.4             circlize_0.4.6             
+  [3] workflowr_1.4.0             BiocFileCache_1.8.0        
+  [5] plyr_1.8.4                  igraph_1.2.4.1             
+  [7] ConsensusClusterPlus_1.48.0 lazyeval_0.2.2             
+  [9] splines_3.6.1               flowCore_1.50.0            
+ [11] TH.data_1.0-10              digest_0.6.20              
+ [13] htmltools_0.3.6             viridis_0.5.1              
+ [15] gdata_2.18.0                memoise_1.1.0              
+ [17] cluster_2.1.0               doParallel_1.0.14          
+ [19] RcppParallel_4.4.3          bayesm_3.1-2               
+ [21] sandwich_2.5-1              prettyunits_1.0.2          
+ [23] colorspace_1.4-1            blob_1.2.0                 
+ [25] rappdirs_0.3.1              rrcov_1.4-7                
+ [27] xfun_0.8                    crayon_1.3.4               
+ [29] RCurl_1.95-4.12             graph_1.62.0               
+ [31] lme4_1.1-21                 zeallot_0.1.0              
+ [33] survival_2.44-1.1           zoo_1.8-6                  
+ [35] iterators_1.0.10            glue_1.3.1                 
+ [37] gtable_0.3.0                zlibbioc_1.30.0            
+ [39] XVector_0.24.0              compositions_1.40-2        
+ [41] listarrays_0.2.0            GetoptLong_0.1.7           
+ [43] BiocSingular_1.0.0          shape_1.4.4                
+ [45] DEoptimR_1.0-8              mvtnorm_1.0-11             
+ [47] DBI_1.0.0                   Rcpp_1.0.1                 
+ [49] viridisLite_0.3.0           progress_1.2.2             
+ [51] clue_0.3-57                 dqrng_0.2.1                
+ [53] latex2exp_0.4.0             bit_1.1-14                 
+ [55] rsvd_1.0.1                  FlowSOM_1.16.0             
+ [57] tsne_0.1-3                  httr_1.4.0                 
+ [59] FNN_1.1.3                   gplots_3.0.1.1             
+ [61] RColorBrewer_1.1-2          pkgconfig_2.0.2            
+ [63] XML_3.98-1.20               uwot_0.1.3                 
+ [65] dbplyr_1.4.2                dynamicTreeCut_1.63-1      
+ [67] locfit_1.5-9.1              labeling_0.3               
+ [69] tidyselect_0.2.5            rlang_0.4.0                
+ [71] reshape2_1.4.3              munsell_0.5.0              
+ [73] tools_3.6.1                 RSQLite_2.1.1              
+ [75] ggridges_0.5.1              evaluate_0.14              
+ [77] yaml_2.2.0                  knitr_1.23                 
+ [79] bit64_0.9-7                 fs_1.3.1                   
+ [81] robustbase_0.93-5           caTools_1.17.1.2           
+ [83] nlme_3.1-140                whisker_0.3-2              
+ [85] compiler_3.6.1              pbkrtest_0.4-7             
+ [87] beeswarm_0.2.3              curl_3.3                   
+ [89] png_0.1-7                   statmod_1.4.32             
+ [91] pcaPP_1.9-73                stringi_1.4.3              
+ [93] RSpectra_0.15-0             lattice_0.20-38            
+ [95] Matrix_1.2-17               nloptr_1.2.1               
+ [97] tensorA_0.36.1              vctrs_0.2.0                
+ [99] pillar_1.4.2                GlobalOptions_0.1.0        
+[101] BiocNeighbors_1.2.0         cowplot_1.0.0              
+[103] bitops_1.0-6                irlba_2.3.3                
+[105] corpcor_1.6.9               colorRamps_2.3             
+[107] R6_2.4.0                    KernSmooth_2.23-15         
+[109] vipor_0.4.5                 codetools_0.2-16           
+[111] energy_1.7-6                boot_1.3-23                
+[113] MASS_7.3-51.4               gtools_3.8.1               
+[115] assertthat_0.2.1            proto_1.0.0                
+[117] rprojroot_1.3-2             rjson_0.2.20               
+[119] withr_2.1.2                 multcomp_1.4-10            
+[121] GenomeInfoDbData_1.2.1      hms_0.5.0                  
+[123] minqa_1.2.4                 rmarkdown_1.14             
+[125] DelayedMatrixStats_1.6.0    git2r_0.26.1               
+[127] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
 </div>
 </div>
 
