@@ -22,7 +22,7 @@ A systematic analysis of different kinds of unwanted varaition in single cell RN
 + [patient_storage_pbmc](pbmc2_patient.html) 
 + [patient_storage_csf](csf_patient.html)
 + [khan_patient](khan.html)
-+ [cell_bench](cellbench_seq_protocols.html)
++ [cell_bench](cellbench.html)
 + [pancreas_protocols](pancreas.html)
 + [hca_protocols](hca.html)
 + [summarize_results](summarize_batch_characteristics.html)
