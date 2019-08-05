@@ -710,9 +710,9 @@ adj3 <- function(X, bt, ct) {
 }
 
 
-Xadj1 <- adj1(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj2 <- adj2(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj3 <- adj3(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj1 <- adj1(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj2 <- adj2(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj3 <- adj3(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
 
 #plot PCAs
 plot_pca <-function(X){
