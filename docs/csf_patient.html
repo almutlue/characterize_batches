@@ -447,7 +447,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-08-05
+<strong>Last updated:</strong> 2019-08-06
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree7f9447b87e3a9f26c36caa2f4e56e350454eabfatargetblank7f9447ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/7f9447b87e3a9f26c36caa2f4e56e350454eabfa" target="_blank">7f9447b</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef7327985752f49217ae0cc5e305fd53840319c73targetblankf732798a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/f7327985752f49217ae0cc5e305fd53840319c73" target="_blank">f732798</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree7f9447b87e3a9f26c36caa2f4e56e350454eabfatargetblank7f9447ba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreef7327985752f49217ae0cc5e305fd53840319c73targetblankf732798a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -538,6 +538,7 @@ Great! You are using Git for version control. Tracking code development and conn
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
 
 Untracked files:
     Untracked:  data/PBMC_media_merged_clusters_seurat.rds
@@ -641,8 +642,8 @@ Untracked files:
     Untracked:  output/vp_pbmc_media_storage.rds
 
 Unstaged changes:
+    Modified:   analysis/cell_bench.Rmd
     Deleted:    analysis/cellbench_seq_protocols.Rmd
-    Modified:   analysis/csf_media.Rmd
     Modified:   analysis/pancreas.Rmd
     Modified:   analysis/pbmc2_media.Rmd
     Modified:   analysis/pbmc2_patient.Rmd
@@ -685,6 +686,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f7327985752f49217ae0cc5e305fd53840319c73/analysis/csf_patient.Rmd" target="_blank">f732798</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+<td>
+wflow_publish(“analysis/csf_patient.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/csf_patient.html" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1190,6 +1225,7 @@ wflow_publish(c(“analysis/pbmc2_media.Rmd”, “analysis/csf_patient.Rmd”,
   library(TruncatedDistributions)
   library(scran)
   library(edgeR)
+  library(cowplot)
 })</code></pre>
 </div>
 <div id="data" class="section level1">
@@ -3506,7 +3542,7 @@ plot_pca &lt;-function(X){
   geom_point(size = 2) + theme_bw()
 }
 
-plot_pca(counts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
+plot_pca(logcounts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
 <p><img src="figure/csf_patient.Rmd/batch%20type-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-1">
@@ -3571,6 +3607,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-2.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-2.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -3608,6 +3655,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-3.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-3.png" target="_blank">6a4732c</a>
@@ -3649,6 +3707,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-4.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-4.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -3662,14 +3731,7 @@ almutlue
 </table>
 </div>
 </div>
-<pre class="r"><code>#umap
-plot_umap &lt;- function(X, sce){
-  assays(sce)$removed_batch &lt;- X
-  sce &lt;- runUMAP(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;)
-  visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
-}
-
-plot_umap(Xadj1, sce) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<pre class="r"><code>visOverview(sce, batch, metric_prefix = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
 <p><img src="figure/csf_patient.Rmd/batch%20type-5.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-5">
@@ -3695,6 +3757,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-5.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-5.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -3708,7 +3781,31 @@ almutlue
 </table>
 </div>
 </div>
-<pre class="r"><code>plot_umap(Xadj2, sce) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
+<pre class="r"><code>#cms
+get_cms &lt;- function(X, sce, method_nam){
+  assays(sce)$removed_batch &lt;- X
+  sce &lt;- runPCA(sce, ntop = 4000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
+  sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = &quot;PCA&quot;, 
+             res_name = method_nam)
+}
+
+sce &lt;- get_cms(Xadj1, sce, &quot;Xadj1&quot;)
+sce &lt;- get_cms(Xadj2, sce, &quot;Xadj2&quot;)
+sce &lt;- get_cms(Xadj3, sce, &quot;Xadj3&quot;)
+
+saveRDS(sce, file = paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
+sce &lt;- readRDS(paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
+
+#umap
+plot_umap &lt;- function(X, sce, X_name){
+  assays(sce)$removed_batch &lt;- X
+  sce &lt;- runUMAP(sce, ntop = 4000, exprs_values = &quot;removed_batch&quot;)
+  p1 &lt;- visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
+  p2 &lt;- visMetric(sce, metric_var = paste0(&quot;cms_smooth.&quot;, X_name), dim_red = &quot;UMAP&quot;)
+  plot_grid(p1, p2)
+}
+
+plot_umap(Xadj1, sce, &quot;Xadj1&quot;) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
 <p><img src="figure/csf_patient.Rmd/batch%20type-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-6">
@@ -3734,6 +3831,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-6.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-6.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -3747,7 +3855,7 @@ almutlue
 </table>
 </div>
 </div>
-<pre class="r"><code>plot_umap(Xadj3, sce) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
+<pre class="r"><code>plot_umap(Xadj2, sce, &quot;Xadj2&quot;) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
 <p><img src="figure/csf_patient.Rmd/batch%20type-7.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-7">
@@ -3773,6 +3881,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-7.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-7.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -3786,7 +3905,7 @@ almutlue
 </table>
 </div>
 </div>
-<pre class="r"><code>visGroup(sce, batch, dim_red = &quot;UMAP&quot;)</code></pre>
+<pre class="r"><code>plot_umap(Xadj3, sce, &quot;Xadj3&quot;) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
 <p><img src="figure/csf_patient.Rmd/batch%20type-8.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-8">
@@ -3825,22 +3944,7 @@ almutlue
 </table>
 </div>
 </div>
-<pre class="r"><code>#cms
-get_cms &lt;- function(X, sce, method_nam){
-  assays(sce)$removed_batch &lt;- X
-  sce &lt;- runPCA(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
-  sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = &quot;PCA&quot;, 
-             res_name = method_nam)
-}
-
-sce &lt;- get_cms(Xadj1, sce, &quot;Xadj1&quot;)
-sce &lt;- get_cms(Xadj2, sce, &quot;Xadj2&quot;)
-sce &lt;- get_cms(Xadj3, sce, &quot;Xadj3&quot;)
-
-saveRDS(sce, file = paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
-sce &lt;- readRDS(paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
-
-visHist(sce, metric_prefix = &quot;cms.&quot;)</code></pre>
+<pre class="r"><code>visHist(sce, metric_prefix = &quot;cms&quot;, n_col = 2)</code></pre>
 <p><img src="figure/csf_patient.Rmd/batch%20type-9.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-9">
@@ -3864,6 +3968,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/f78582d19f39d2a4bf63e8e1245c10e30d446719/docs/figure/csf_patient.Rmd/batch type-9.png" target="_blank">f78582d</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-05
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_patient.Rmd/batch type-9.png" target="_blank">6a4732c</a>
@@ -4044,24 +4159,25 @@ attached base packages:
  [8] datasets  methods   base     
 
 other attached packages:
- [1] edgeR_3.26.5                scran_1.12.1               
- [3] TruncatedDistributions_1.0  ggtern_3.1.0               
- [5] ComplexHeatmap_2.0.0        diffcyt_1.4.0              
- [7] variancePartition_1.14.0    scales_1.0.0               
- [9] foreach_1.4.4               limma_3.40.2               
-[11] stringr_1.4.0               dplyr_0.8.1                
-[13] tidyr_0.8.3                 here_0.1                   
-[15] purrr_0.3.2                 gridExtra_2.3              
-[17] CellMixS_1.0.0              kSamples_1.2-9             
-[19] SuppDists_1.1-9.4           jcolors_0.0.4              
-[21] scater_1.12.2               ggplot2_3.2.0              
-[23] CellBench_1.0.0             tibble_2.1.3               
-[25] magrittr_1.5                SingleCellExperiment_1.6.0 
-[27] SummarizedExperiment_1.14.0 DelayedArray_0.10.0        
-[29] BiocParallel_1.18.0         matrixStats_0.54.0         
-[31] Biobase_2.44.0              GenomicRanges_1.36.0       
-[33] GenomeInfoDb_1.20.0         IRanges_2.18.1             
-[35] S4Vectors_0.22.0            BiocGenerics_0.30.0        
+ [1] cowplot_0.9.4               edgeR_3.26.5               
+ [3] scran_1.12.1                TruncatedDistributions_1.0 
+ [5] ggtern_3.1.0                ComplexHeatmap_2.0.0       
+ [7] diffcyt_1.4.0               variancePartition_1.14.0   
+ [9] scales_1.0.0                foreach_1.4.4              
+[11] limma_3.40.2                stringr_1.4.0              
+[13] dplyr_0.8.1                 tidyr_0.8.3                
+[15] here_0.1                    purrr_0.3.2                
+[17] gridExtra_2.3               CellMixS_1.0.0             
+[19] kSamples_1.2-9              SuppDists_1.1-9.4          
+[21] jcolors_0.0.4               scater_1.12.2              
+[23] ggplot2_3.2.0               CellBench_1.0.0            
+[25] tibble_2.1.3                magrittr_1.5               
+[27] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
+[29] DelayedArray_0.10.0         BiocParallel_1.18.0        
+[31] matrixStats_0.54.0          Biobase_2.44.0             
+[33] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
+[35] IRanges_2.18.1              S4Vectors_0.22.0           
+[37] BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
   [1] backports_1.1.4             circlize_0.4.6             
@@ -4098,12 +4214,12 @@ loaded via a namespace (and not attached):
  [63] uwot_0.1.3                  dbplyr_1.4.0               
  [65] dynamicTreeCut_1.63-1       locfit_1.5-9.1             
  [67] labeling_0.3                tidyselect_0.2.5           
- [69] rlang_0.3.4                 reshape2_1.4.3             
+ [69] rlang_0.4.0                 reshape2_1.4.3             
  [71] munsell_0.5.0               tools_3.6.0                
  [73] RSQLite_2.1.1               ggridges_0.5.1             
  [75] evaluate_0.14               yaml_2.2.0                 
  [77] knitr_1.23                  bit64_0.9-7                
- [79] fs_1.3.1                    robustbase_0.93-4          
+ [79] fs_1.3.0                    robustbase_0.93-4          
  [81] caTools_1.17.1.2            nlme_3.1-139               
  [83] whisker_0.3-2               compiler_3.6.0             
  [85] pbkrtest_0.4-7              beeswarm_0.2.3             
@@ -4113,20 +4229,20 @@ loaded via a namespace (and not attached):
  [93] lattice_0.20-38             Matrix_1.2-17              
  [95] nloptr_1.2.1                tensorA_0.36.1             
  [97] pillar_1.4.1                GlobalOptions_0.1.0        
- [99] BiocNeighbors_1.2.0         cowplot_0.9.4              
-[101] bitops_1.0-6                irlba_2.3.3                
-[103] corpcor_1.6.9               colorRamps_2.3             
-[105] R6_2.4.0                    KernSmooth_2.23-15         
-[107] vipor_0.4.5                 codetools_0.2-16           
-[109] energy_1.7-5                boot_1.3-22                
-[111] MASS_7.3-51.4               gtools_3.8.1               
-[113] assertthat_0.2.1            proto_1.0.0                
-[115] rprojroot_1.3-2             rjson_0.2.20               
-[117] withr_2.1.2                 multcomp_1.4-10            
-[119] GenomeInfoDbData_1.2.1      hms_0.4.2                  
-[121] minqa_1.2.4                 rmarkdown_1.12             
-[123] DelayedMatrixStats_1.6.0    git2r_0.25.2               
-[125] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
+ [99] BiocNeighbors_1.2.0         bitops_1.0-6               
+[101] irlba_2.3.3                 corpcor_1.6.9              
+[103] colorRamps_2.3              R6_2.4.0                   
+[105] KernSmooth_2.23-15          vipor_0.4.5                
+[107] codetools_0.2-16            energy_1.7-5               
+[109] boot_1.3-22                 MASS_7.3-51.4              
+[111] gtools_3.8.1                assertthat_0.2.1           
+[113] proto_1.0.0                 rprojroot_1.3-2            
+[115] rjson_0.2.20                withr_2.1.2                
+[117] multcomp_1.4-10             GenomeInfoDbData_1.2.1     
+[119] hms_0.4.2                   minqa_1.2.4                
+[121] rmarkdown_1.12              DelayedMatrixStats_1.6.0   
+[123] git2r_0.25.2                lubridate_1.7.4            
+[125] ggbeeswarm_0.6.0           </code></pre>
 </div>
 </div>
 
