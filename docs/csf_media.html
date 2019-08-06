@@ -429,7 +429,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -438,7 +438,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -447,10 +447,10 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-07-31
+<strong>Last updated:</strong> 2019-08-06
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>characterize_batches/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -466,12 +466,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreeb1aabd43e1b720092487f3fbdfd83bd3918935f4targetblankb1aabd4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/b1aabd43e1b720092487f3fbdfd83bd3918935f4" target="_blank">b1aabd4</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreea7cf70a777e42331a18f2f4a1b3b007d91d9b2bbtargetblanka7cf70aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/a7cf70a777e42331a18f2f4a1b3b007d91d9b2bb" target="_blank">a7cf70a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreeb1aabd43e1b720092487f3fbdfd83bd3918935f4targetblankb1aabd4a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestreea7cf70a777e42331a18f2f4a1b3b007d91d9b2bbtargetblanka7cf70aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -554,6 +554,8 @@ Untracked files:
     Untracked:  output/cms_adjMod_csf_media_storage.rds
     Untracked:  output/cms_adjMod_csf_patient.rds
     Untracked:  output/cms_adjMod_pancreas.rds
+    Untracked:  output/cms_adjMod_pbmc2_media_storage.rds
+    Untracked:  output/cms_adjMod_pbmc2_patient.rds
     Untracked:  output/cms_adjMod_pbmc_media_storage.rds
     Untracked:  output/cms_all_mouse_red.rds
     Untracked:  output/cms_cellBench.rds
@@ -639,7 +641,9 @@ Untracked files:
     Untracked:  output/vp_pbmc_media_storage.rds
 
 Unstaged changes:
+    Modified:   analysis/cell_bench.Rmd
     Deleted:    analysis/cellbench_seq_protocols.Rmd
+    Modified:   analysis/csf_media.Rmd
     Modified:   analysis/pancreas.Rmd
     Modified:   analysis/pbmc2_media.Rmd
     Modified:   analysis/pbmc2_patient.Rmd
@@ -682,6 +686,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/csf_media.html" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1253,6 +1274,7 @@ wflow_publish(“analysis/csf_media.Rmd”)
   library(ggtern)
   library(TruncatedDistributions)
   library(scran)
+  library(cowplot)
 })</code></pre>
 <pre class="r"><code># data 
 # data
@@ -1293,7 +1315,7 @@ lapply(feature_list, function(feature_name){
   visGroup(sce, feature_name, dim_red= &quot;UMAP&quot;)
 })</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/csf_media.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/vis batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-1">
 Past versions of vis batch-1.png
@@ -1316,6 +1338,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/vis batch-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/vis batch-1.png" target="_blank">af75f2c</a>
@@ -1377,7 +1410,7 @@ zjanna
 </div>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/csf_media.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/vis batch-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-2">
 Past versions of vis batch-2.png
@@ -1400,6 +1433,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/vis batch-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/vis batch-2.png" target="_blank">af75f2c</a>
@@ -1461,7 +1505,7 @@ zjanna
 </div>
 <pre><code>
 [[3]]</code></pre>
-<p><img src="figure/csf_media.Rmd/vis%20batch-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/vis batch-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-3">
 Past versions of vis batch-3.png
@@ -1484,6 +1528,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/vis batch-3.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/vis batch-3.png" target="_blank">af75f2c</a>
@@ -1568,7 +1623,7 @@ object</code></pre>
 
 #plot
 plotPercentBars( vp_sub[1:10,] )</code></pre>
-<p><img src="figure/csf_media.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/variance part-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-1">
 Past versions of variance part-1.png
@@ -1591,6 +1646,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/variance part-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/variance part-1.png" target="_blank">af75f2c</a>
@@ -1629,7 +1695,7 @@ zjanna
 </div>
 </div>
 <pre class="r"><code>plotVarPart( vp_sub )</code></pre>
-<p><img src="figure/csf_media.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/variance part-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-2">
 Past versions of variance part-2.png
@@ -1652,6 +1718,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/variance part-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/variance part-2.png" target="_blank">af75f2c</a>
@@ -1766,7 +1843,7 @@ plot_dev &lt;- function(var, var_col){
 }
 
 plot_dev(&quot;vp_batch&quot;, &quot;d_exp&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/var%20dev%20expr-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/var dev expr-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-1">
 Past versions of var dev expr-1.png
@@ -1789,6 +1866,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/var dev expr-1.png" target="_blank">af75f2c</a>
@@ -1816,7 +1904,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;d_exp&quot;, &quot;vp_batch&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/var%20dev%20expr-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/var dev expr-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-2">
 Past versions of var dev expr-2.png
@@ -1839,6 +1927,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/var dev expr-2.png" target="_blank">af75f2c</a>
@@ -1866,7 +1965,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;vp_ct&quot;, &quot;d_exp_ct&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/var%20dev%20expr-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/var dev expr-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-3">
 Past versions of var dev expr-3.png
@@ -1889,6 +1988,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-3.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/var dev expr-3.png" target="_blank">af75f2c</a>
@@ -1916,7 +2026,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;d_exp_ct&quot;, &quot;vp_ct&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/var%20dev%20expr-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/var dev expr-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-4">
 Past versions of var dev expr-4.png
@@ -1939,6 +2049,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-4.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/var dev expr-4.png" target="_blank">af75f2c</a>
@@ -1975,7 +2096,7 @@ almutlue
   geom_point(size= 0.1, alpha = 0.5)  + 
   theme_bw()</code></pre>
 <pre><code>Warning: Removed 797 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/csf_media.Rmd/tern%20plots-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/tern plots-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-1">
 Past versions of tern plots-1.png
@@ -1998,6 +2119,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/tern plots-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/tern plots-1.png" target="_blank">af75f2c</a>
@@ -2031,7 +2163,7 @@ almutlue
 
 t1</code></pre>
 <pre><code>Warning: Removed 797 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/csf_media.Rmd/tern%20plots-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/tern plots-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-2">
 Past versions of tern plots-2.png
@@ -2054,6 +2186,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/tern plots-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/tern plots-2.png" target="_blank">af75f2c</a>
@@ -2084,7 +2227,7 @@ almutlue
 <pre><code>Warning: Removed 175 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 339 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 283 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/csf_media.Rmd/tern%20plots-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/tern plots-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-3">
 Past versions of tern plots-3.png
@@ -2107,6 +2250,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/tern plots-3.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/tern plots-3.png" target="_blank">af75f2c</a>
@@ -2140,7 +2294,7 @@ almutlue
   geom_point(size= 0.1, alpha = 0.5) + 
   theme_bw() </code></pre>
 <pre><code>Warning: Removed 4 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/csf_media.Rmd/tern%20plots-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/tern plots-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-4">
 Past versions of tern plots-4.png
@@ -2165,6 +2319,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/tern plots-4.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_media.Rmd/tern plots-4.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -2185,7 +2350,7 @@ almutlue
 
 t2</code></pre>
 <pre><code>Warning: Removed 4 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/csf_media.Rmd/tern%20plots-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/tern plots-5.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-5">
 Past versions of tern plots-5.png
@@ -2210,6 +2375,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/tern plots-5.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/csf_media.Rmd/tern plots-5.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -2225,7 +2401,7 @@ almutlue
 </div>
 <pre class="r"><code>t2 +  facet_grid(~expr_class)</code></pre>
 <pre><code>Warning: Removed 4 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/csf_media.Rmd/tern%20plots-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/tern plots-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-6">
 Past versions of tern plots-6.png
@@ -2248,6 +2424,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/tern plots-6.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/tern plots-6.png" target="_blank">af75f2c</a>
@@ -2290,7 +2477,7 @@ plot_abundance &lt;- function(cluster_var, tib, x_var){
 }
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
-<p><img src="figure/csf_media.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/celltype abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-celltype abundance-1">
 Past versions of celltype abundance-1.png
@@ -2313,6 +2500,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/celltype abundance-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/celltype abundance-1.png" target="_blank">af75f2c</a>
@@ -2408,7 +2606,7 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   scale_colour_manual(values = cols[c(1:3,7)]) +
   scale_x_continuous(limits =  c(0, 7))</code></pre>
 <pre><code>Warning: Removed 9 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="figure/csf_media.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/count distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-count distributions-1">
 Past versions of count distributions-1.png
@@ -2431,6 +2629,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/count distributions-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/count distributions-1.png" target="_blank">af75f2c</a>
@@ -2498,7 +2707,7 @@ lapply(batch_all, function(batch_var){
 })</code></pre>
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
-<p><img src="figure/csf_media.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/mean expression-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-1">
 Past versions of mean expression-1.png
@@ -2521,6 +2730,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/mean expression-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/mean expression-1.png" target="_blank">af75f2c</a>
@@ -2562,7 +2782,7 @@ zjanna
 
 [[2]]
 [[2]][[1]]</code></pre>
-<p><img src="figure/csf_media.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/mean expression-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-2">
 Past versions of mean expression-2.png
@@ -2585,6 +2805,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/mean expression-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/mean expression-2.png" target="_blank">af75f2c</a>
@@ -2662,6 +2893,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/cms-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/cms-1.png" target="_blank">af75f2c</a>
 </td>
 <td>
@@ -2721,6 +2963,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/cms-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/cms-2.png" target="_blank">af75f2c</a>
@@ -2793,6 +3046,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/cms-3.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/cms-3.png" target="_blank">af75f2c</a>
@@ -3060,7 +3324,7 @@ type_var &lt;- tibble(&quot;type_gene&quot; = type_by_ct, &quot;cluster&quot; = 
 #Plot
 lfc_comb &lt;- rbind(lfc_sim_ct, lfc_ct_real, lfc_type)
 ggplot(lfc_comb, aes(lfc, colour = type)) + geom_density()</code></pre>
-<p><img src="figure/csf_media.Rmd/lfc%20ct-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/lfc ct-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lfc ct-1">
 Past versions of lfc ct-1.png
@@ -3083,6 +3347,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/lfc ct-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/lfc ct-1.png" target="_blank">af75f2c</a>
@@ -3155,7 +3430,7 @@ lfc_batch_sim &lt;- data.frame(&quot;test&quot; = tnorm, &quot;type&quot; = rep(
 
 lfc_comb &lt;- rbind(lfc_sim, lfc_dist, lfc_batch, lfc_batch_sim)
 ggplot(lfc_comb, aes(test, colour = type)) + geom_density()</code></pre>
-<p><img src="figure/csf_media.Rmd/lfc%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/csf_media.Rmd/lfc batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lfc batch-1">
 Past versions of lfc batch-1.png
@@ -3178,6 +3453,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/lfc batch-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/csf_media.Rmd/lfc batch-1.png" target="_blank">af75f2c</a>
@@ -3235,9 +3521,9 @@ adj3 &lt;- function(X, bt, ct) {
 }
 
 
-Xadj1 &lt;- adj1(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj2 &lt;- adj2(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj3 &lt;- adj3(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj1 &lt;- adj1(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj2 &lt;- adj2(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj3 &lt;- adj3(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
 
 #plot PCAs
 plot_pca &lt;-function(X){
@@ -3248,46 +3534,384 @@ plot_pca &lt;-function(X){
   geom_point(size = 2) + theme_bw()
 }
 
-plot_pca(counts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
+plot_pca(logcounts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
 <p><img src="figure/csf_media.Rmd/batch%20type-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-1">
+Past versions of batch type-1.png
+</button>
+</p>
+<div id="fig-batch type-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-1.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_pca(Xadj1) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
 <p><img src="figure/csf_media.Rmd/batch%20type-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-2">
+Past versions of batch type-2.png
+</button>
+</p>
+<div id="fig-batch type-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-2.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_pca(Xadj2) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
 <p><img src="figure/csf_media.Rmd/batch%20type-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-3">
+Past versions of batch type-3.png
+</button>
+</p>
+<div id="fig-batch type-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-3.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_pca(Xadj3) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
 <p><img src="figure/csf_media.Rmd/batch%20type-4.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#umap
-plot_umap &lt;- function(X, sce){
-  assays(sce)$removed_batch &lt;- X
-  sce &lt;- runUMAP(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;)
-  visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
-}
-
-plot_umap(Xadj1, sce) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-4">
+Past versions of batch type-4.png
+</button>
+</p>
+<div id="fig-batch type-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-4.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>visOverview(sce, batch, metric_prefix = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
 <p><img src="figure/csf_media.Rmd/batch%20type-5.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plot_umap(Xadj2, sce) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/batch%20type-6.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plot_umap(Xadj3, sce) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/batch%20type-7.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>visGroup(sce, batch, dim_red = &quot;UMAP&quot;)</code></pre>
-<p><img src="figure/csf_media.Rmd/batch%20type-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-5">
+Past versions of batch type-5.png
+</button>
+</p>
+<div id="fig-batch type-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-5.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#cms
 get_cms &lt;- function(X, sce, method_nam){
   assays(sce)$removed_batch &lt;- X
-  sce &lt;- runPCA(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
+  sce &lt;- runPCA(sce, ntop = 4000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
   sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = &quot;PCA&quot;, 
              res_name = method_nam)
 }
 
-sce &lt;- get_cms(Xadj1, sce, &quot;Xadj1&quot;)
-sce &lt;- get_cms(Xadj2, sce, &quot;Xadj2&quot;)
-sce &lt;- get_cms(Xadj3, sce, &quot;Xadj3&quot;)
+#sce &lt;- get_cms(Xadj1, sce, &quot;Xadj1&quot;)
+#sce &lt;- get_cms(Xadj2, sce, &quot;Xadj2&quot;)
+#sce &lt;- get_cms(Xadj3, sce, &quot;Xadj3&quot;)
 
-saveRDS(sce, file = paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
+#saveRDS(sce, file = paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
 sce &lt;- readRDS(paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
 
-visHist(sce, metric_prefix = &quot;cms.&quot;)</code></pre>
+#umap
+plot_umap &lt;- function(X, sce, X_name){
+  assays(sce)$removed_batch &lt;- X
+  sce &lt;- runUMAP(sce, ntop = 4000, exprs_values = &quot;removed_batch&quot;)
+  p1 &lt;- visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
+  p2 &lt;- visMetric(sce, metric_var = paste0(&quot;cms_smooth.&quot;, X_name), dim_red = &quot;UMAP&quot;)
+  plot_grid(p1, p2)
+}
+
+plot_umap(Xadj1, sce, &quot;Xadj1&quot;) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<p><img src="figure/csf_media.Rmd/batch%20type-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-6">
+Past versions of batch type-6.png
+</button>
+</p>
+<div id="fig-batch type-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-6.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_umap(Xadj2, sce, &quot;Xadj2&quot;) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
+<p><img src="figure/csf_media.Rmd/batch%20type-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-7">
+Past versions of batch type-7.png
+</button>
+</p>
+<div id="fig-batch type-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-7.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_umap(Xadj3, sce, &quot;Xadj3&quot;) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
+<p><img src="figure/csf_media.Rmd/batch%20type-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-8">
+Past versions of batch type-8.png
+</button>
+</p>
+<div id="fig-batch type-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-8.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>visHist(sce, metric_prefix = &quot;cms&quot;, n_col = 2)</code></pre>
 <p><img src="figure/csf_media.Rmd/batch%20type-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-9">
+Past versions of batch type-9.png
+</button>
+</p>
+<div id="fig-batch type-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/batch type-9.png" target="_blank">6a4732c</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-07-31
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>visIntegration(sce, metric_prefix = &quot;cms_smooth&quot;)</code></pre>
+<pre><code>Picking joint bandwidth of 0.0085</code></pre>
+<p><img src="figure/csf_media.Rmd/batch%20type-10.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="simulation-parameter" class="section level1">
 <h1>Simulation parameter</h1>
@@ -3453,23 +4077,24 @@ attached base packages:
  [8] datasets  methods   base     
 
 other attached packages:
- [1] scran_1.12.1                TruncatedDistributions_1.0 
- [3] ggtern_3.1.0                ComplexHeatmap_2.0.0       
- [5] variancePartition_1.14.0    scales_1.0.0               
- [7] foreach_1.4.4               limma_3.40.2               
- [9] stringr_1.4.0               dplyr_0.8.1                
-[11] tidyr_0.8.3                 here_0.1                   
-[13] purrr_0.3.2                 gridExtra_2.3              
-[15] CellMixS_1.0.0              kSamples_1.2-9             
-[17] SuppDists_1.1-9.4           jcolors_0.0.4              
-[19] scater_1.12.2               ggplot2_3.2.0              
-[21] CellBench_1.0.0             tibble_2.1.3               
-[23] magrittr_1.5                SingleCellExperiment_1.6.0 
-[25] SummarizedExperiment_1.14.0 DelayedArray_0.10.0        
-[27] BiocParallel_1.18.0         matrixStats_0.54.0         
-[29] Biobase_2.44.0              GenomicRanges_1.36.0       
-[31] GenomeInfoDb_1.20.0         IRanges_2.18.1             
-[33] S4Vectors_0.22.0            BiocGenerics_0.30.0        
+ [1] cowplot_0.9.4               scran_1.12.1               
+ [3] TruncatedDistributions_1.0  ggtern_3.1.0               
+ [5] ComplexHeatmap_2.0.0        variancePartition_1.14.0   
+ [7] scales_1.0.0                foreach_1.4.4              
+ [9] limma_3.40.2                stringr_1.4.0              
+[11] dplyr_0.8.1                 tidyr_0.8.3                
+[13] here_0.1                    purrr_0.3.2                
+[15] gridExtra_2.3               CellMixS_1.0.0             
+[17] kSamples_1.2-9              SuppDists_1.1-9.4          
+[19] jcolors_0.0.4               scater_1.12.2              
+[21] ggplot2_3.2.0               CellBench_1.0.0            
+[23] tibble_2.1.3                magrittr_1.5               
+[25] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
+[27] DelayedArray_0.10.0         BiocParallel_1.18.0        
+[29] matrixStats_0.54.0          Biobase_2.44.0             
+[31] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
+[33] IRanges_2.18.1              S4Vectors_0.22.0           
+[35] BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
   [1] backports_1.1.4          circlize_0.4.6          
@@ -3500,12 +4125,12 @@ loaded via a namespace (and not attached):
  [51] pkgconfig_2.0.2          uwot_0.1.3              
  [53] dbplyr_1.4.0             locfit_1.5-9.1          
  [55] dynamicTreeCut_1.63-1    labeling_0.3            
- [57] tidyselect_0.2.5         rlang_0.3.4             
+ [57] tidyselect_0.2.5         rlang_0.4.0             
  [59] reshape2_1.4.3           munsell_0.5.0           
  [61] tools_3.6.0              RSQLite_2.1.1           
  [63] ggridges_0.5.1           evaluate_0.14           
  [65] yaml_2.2.0               knitr_1.23              
- [67] bit64_0.9-7              fs_1.3.1                
+ [67] bit64_0.9-7              fs_1.3.0                
  [69] robustbase_0.93-4        caTools_1.17.1.2        
  [71] nlme_3.1-139             whisker_0.3-2           
  [73] compiler_3.6.0           pbkrtest_0.4-7          
@@ -3515,19 +4140,19 @@ loaded via a namespace (and not attached):
  [81] lattice_0.20-38          Matrix_1.2-17           
  [83] nloptr_1.2.1             tensorA_0.36.1          
  [85] pillar_1.4.1             GlobalOptions_0.1.0     
- [87] BiocNeighbors_1.2.0      cowplot_0.9.4           
- [89] bitops_1.0-6             irlba_2.3.3             
- [91] colorRamps_2.3           R6_2.4.0                
- [93] KernSmooth_2.23-15       vipor_0.4.5             
- [95] codetools_0.2-16         boot_1.3-22             
- [97] energy_1.7-5             MASS_7.3-51.4           
- [99] gtools_3.8.1             assertthat_0.2.1        
-[101] proto_1.0.0              rprojroot_1.3-2         
-[103] rjson_0.2.20             withr_2.1.2             
-[105] GenomeInfoDbData_1.2.1   hms_0.4.2               
-[107] minqa_1.2.4              rmarkdown_1.12          
-[109] DelayedMatrixStats_1.6.0 git2r_0.25.2            
-[111] lubridate_1.7.4          ggbeeswarm_0.6.0        </code></pre>
+ [87] BiocNeighbors_1.2.0      bitops_1.0-6            
+ [89] irlba_2.3.3              colorRamps_2.3          
+ [91] R6_2.4.0                 KernSmooth_2.23-15      
+ [93] vipor_0.4.5              codetools_0.2-16        
+ [95] boot_1.3-22              energy_1.7-5            
+ [97] MASS_7.3-51.4            gtools_3.8.1            
+ [99] assertthat_0.2.1         proto_1.0.0             
+[101] rprojroot_1.3-2          rjson_0.2.20            
+[103] withr_2.1.2              GenomeInfoDbData_1.2.1  
+[105] hms_0.4.2                minqa_1.2.4             
+[107] rmarkdown_1.12           DelayedMatrixStats_1.6.0
+[109] git2r_0.25.2             lubridate_1.7.4         
+[111] ggbeeswarm_0.6.0        </code></pre>
 </div>
 </div>
 
