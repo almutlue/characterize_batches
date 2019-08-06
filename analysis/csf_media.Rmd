@@ -755,7 +755,7 @@ plot_umap(Xadj2, sce, "Xadj2") + ggtitle("constant batch effect, different ct co
 plot_umap(Xadj3, sce, "Xadj3") + ggtitle("celltype specific batch effect")
 
 visHist(sce, metric_prefix = "cms", n_col = 2)
-
+visIntegration(sce, metric_prefix = "cms_smooth")
 
 ```
 
