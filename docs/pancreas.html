@@ -447,7 +447,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-08-04
+<strong>Last updated:</strong> 2019-08-06
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2a4bde47ac81cd47e64736b5b537bb7d6f700f0etargetblank2a4bde4a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/2a4bde47ac81cd47e64736b5b537bb7d6f700f0e" target="_blank">2a4bde4</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree6f2f25565e23657ddcb457a92e60d7560ce11c3dtargetblank6f2f255a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/6f2f25565e23657ddcb457a92e60d7560ce11c3d" target="_blank">6f2f255</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2a4bde47ac81cd47e64736b5b537bb7d6f700f0etargetblank2a4bde4a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree6f2f25565e23657ddcb457a92e60d7560ce11c3dtargetblank6f2f255a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -642,6 +642,7 @@ Untracked files:
     Untracked:  output/vp_pbmc_media_storage.rds
 
 Unstaged changes:
+    Modified:   analysis/cell_bench.Rmd
     Deleted:    analysis/cellbench_seq_protocols.Rmd
     Modified:   analysis/pbmc2_media.Rmd
     Modified:   analysis/pbmc2_patient.Rmd
@@ -684,6 +685,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/6f2f25565e23657ddcb457a92e60d7560ce11c3d/analysis/pancreas.Rmd" target="_blank">6f2f255</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+<td>
+wflow_publish(“analysis/pancreas.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/pancreas.html" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1154,6 +1189,7 @@ wflow_publish(“analysis/pancreas.Rmd”)
   library(ggtern)
   library(TruncatedDistributions)
   library(scran)
+  library(cowplot)
 })</code></pre>
 <p>Dataset</p>
 <pre class="r"><code># data
@@ -1199,7 +1235,7 @@ lapply(feature_list, function(feature_name){
   visGroup(sce, feature_name, dim_red= &quot;UMAP&quot;)
 })</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/pancreas.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/vis batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-1">
 Past versions of vis batch-1.png
@@ -1222,6 +1258,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/vis batch-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/vis batch-1.png" target="_blank">af75f2c</a>
@@ -1305,7 +1352,7 @@ zjanna
 </div>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/pancreas.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/vis batch-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-2">
 Past versions of vis batch-2.png
@@ -1328,6 +1375,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/vis batch-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/vis batch-2.png" target="_blank">af75f2c</a>
@@ -1419,23 +1477,11 @@ zjanna
 meta_sub &lt;- as.data.frame(colData(sce)[, c(celltype, batch)])
 form &lt;- as.formula(paste0(&quot;~ (1|&quot;, celltype, &quot;) + (1|&quot;, batch, &quot;)&quot;))
 
-varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub)</code></pre>
-<pre><code>Warning: executing %dopar% sequentially: no parallel backend registered</code></pre>
-<pre><code>Loading required package: Matrix</code></pre>
-<pre><code>
-Attaching package: &#39;Matrix&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:tidyr&#39;:
+#varPart &lt;- fitExtractVarPartModel(expr, form, meta_sub)
 
-    expand</code></pre>
-<pre><code>The following object is masked from &#39;package:S4Vectors&#39;:
-
-    expand</code></pre>
-<pre><code>
-Finished...
-Total: 2522 s</code></pre>
-<pre class="r"><code>#Sort variables (i.e. columns) by median fraction# of variance explained
-vp &lt;- varPart
-saveRDS(vp, paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
+#Sort variables (i.e. columns) by median fraction# of variance explained
+#vp &lt;- varPart
+#saveRDS(vp, paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
 vp &lt;- readRDS(paste0(out_path,&quot;/vp_&quot;, dataset_name, &quot;.rds&quot;))
 
 vp_names &lt;- rownames(vp)
@@ -1447,7 +1493,7 @@ object</code></pre>
 
 #plot
 plotPercentBars( vp_sub[1:10,] )</code></pre>
-<p><img src="figure/pancreas.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/variance part-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-1">
 Past versions of variance part-1.png
@@ -1470,6 +1516,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/variance part-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/variance part-1.png" target="_blank">af75f2c</a>
@@ -1530,7 +1587,7 @@ zjanna
 </div>
 </div>
 <pre class="r"><code>plotVarPart( vp_sub )</code></pre>
-<p><img src="figure/pancreas.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/variance part-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-2">
 Past versions of variance part-2.png
@@ -1553,6 +1610,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/variance part-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/variance part-2.png" target="_blank">af75f2c</a>
@@ -1700,7 +1768,7 @@ plot_dev &lt;- function(var, var_col){
 }
 
 plot_dev(&quot;vp_batch&quot;, &quot;d_exp&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/var%20dev%20expr-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/var dev expr-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-1">
 Past versions of var dev expr-1.png
@@ -1723,6 +1791,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/var dev expr-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/var dev expr-1.png" target="_blank">af75f2c</a>
@@ -1750,7 +1829,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;d_exp&quot;, &quot;vp_batch&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/var%20dev%20expr-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/var dev expr-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-2">
 Past versions of var dev expr-2.png
@@ -1773,6 +1852,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/var dev expr-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/var dev expr-2.png" target="_blank">af75f2c</a>
@@ -1800,7 +1890,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;vp_ct&quot;, &quot;d_exp_ct&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/var%20dev%20expr-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/var dev expr-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-3">
 Past versions of var dev expr-3.png
@@ -1823,6 +1913,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/var dev expr-3.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/var dev expr-3.png" target="_blank">af75f2c</a>
@@ -1850,7 +1951,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;d_exp_ct&quot;, &quot;vp_ct&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/var%20dev%20expr-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/var dev expr-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-4">
 Past versions of var dev expr-4.png
@@ -1873,6 +1974,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/var dev expr-4.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/var dev expr-4.png" target="_blank">af75f2c</a>
@@ -1909,7 +2021,7 @@ almutlue
   geom_point(size= 0.1, alpha = 0.5)  + 
   theme_bw()</code></pre>
 <pre><code>Warning: Removed 852 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/pancreas.Rmd/tern%20plots-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/tern plots-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-1">
 Past versions of tern plots-1.png
@@ -1932,6 +2044,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/tern plots-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/tern plots-1.png" target="_blank">af75f2c</a>
@@ -1965,7 +2088,7 @@ almutlue
 
 t1</code></pre>
 <pre><code>Warning: Removed 852 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/pancreas.Rmd/tern%20plots-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/tern plots-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-2">
 Past versions of tern plots-2.png
@@ -1988,6 +2111,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/tern plots-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/tern plots-2.png" target="_blank">af75f2c</a>
@@ -2018,7 +2152,7 @@ almutlue
 <pre><code>Warning: Removed 18 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 758 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 76 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/pancreas.Rmd/tern%20plots-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/tern plots-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-3">
 Past versions of tern plots-3.png
@@ -2041,6 +2175,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/tern plots-3.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/tern plots-3.png" target="_blank">af75f2c</a>
@@ -2074,7 +2219,7 @@ almutlue
   geom_point(size= 0.1, alpha = 0.5) + 
   theme_bw() </code></pre>
 <pre><code>Warning: Removed 11 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/pancreas.Rmd/tern%20plots-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/tern plots-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-4">
 Past versions of tern plots-4.png
@@ -2099,6 +2244,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/tern plots-4.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/pancreas.Rmd/tern plots-4.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -2119,7 +2275,7 @@ almutlue
 
 t2</code></pre>
 <pre><code>Warning: Removed 11 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/pancreas.Rmd/tern%20plots-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/tern plots-5.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-5">
 Past versions of tern plots-5.png
@@ -2144,6 +2300,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/tern plots-5.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/c303fb7ac19b5809e1acf7fa2d0c8b937b1d77eb/docs/figure/pancreas.Rmd/tern plots-5.png" target="_blank">c303fb7</a>
 </td>
 <td>
@@ -2160,7 +2327,7 @@ almutlue
 <pre class="r"><code>t2 +  facet_grid(~expr_class)</code></pre>
 <pre><code>Warning: Removed 8 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 3 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/pancreas.Rmd/tern%20plots-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/tern plots-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-6">
 Past versions of tern plots-6.png
@@ -2183,6 +2350,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/tern plots-6.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/tern plots-6.png" target="_blank">af75f2c</a>
@@ -2225,7 +2403,7 @@ plot_abundance &lt;- function(cluster_var, tib, x_var){
 }
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
-<p><img src="figure/pancreas.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/celltype abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-celltype abundance-1">
 Past versions of celltype abundance-1.png
@@ -2248,6 +2426,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/celltype abundance-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/celltype abundance-1.png" target="_blank">af75f2c</a>
@@ -2354,7 +2543,7 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   scale_colour_manual(values = cols[c(1:3,7)]) +
   scale_x_continuous(limits =  c(0, 7))</code></pre>
 <pre><code>Warning: Removed 4429 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="figure/pancreas.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/count distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-count distributions-1">
 Past versions of count distributions-1.png
@@ -2377,6 +2566,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/count distributions-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/count distributions-1.png" target="_blank">af75f2c</a>
@@ -2455,7 +2655,7 @@ lapply(batch_all, function(batch_var){
 })</code></pre>
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
-<p><img src="figure/pancreas.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/mean expression-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-1">
 Past versions of mean expression-1.png
@@ -2478,6 +2678,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/mean expression-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/mean expression-1.png" target="_blank">af75f2c</a>
@@ -2528,7 +2739,7 @@ zjanna
 </div>
 <pre><code>
 [[1]][[2]]</code></pre>
-<p><img src="figure/pancreas.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/mean expression-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-2">
 Past versions of mean expression-2.png
@@ -2551,6 +2762,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/mean expression-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/mean expression-2.png" target="_blank">af75f2c</a>
@@ -2603,7 +2825,7 @@ zjanna
 
 [[2]]
 [[2]][[1]]</code></pre>
-<p><img src="figure/pancreas.Rmd/mean%20expression-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/mean expression-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-3">
 Past versions of mean expression-3.png
@@ -2626,6 +2848,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/mean expression-3.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/mean expression-3.png" target="_blank">af75f2c</a>
@@ -2676,7 +2909,7 @@ zjanna
 </div>
 <pre><code>
 [[2]][[2]]</code></pre>
-<p><img src="figure/pancreas.Rmd/mean%20expression-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/mean expression-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-4">
 Past versions of mean expression-4.png
@@ -2699,6 +2932,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/mean expression-4.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/mean expression-4.png" target="_blank">af75f2c</a>
@@ -2751,7 +2995,7 @@ zjanna
 
 [[3]]
 [[3]][[1]]</code></pre>
-<p><img src="figure/pancreas.Rmd/mean%20expression-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/mean expression-5.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-5">
 Past versions of mean expression-5.png
@@ -2774,6 +3018,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/mean expression-5.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/mean expression-5.png" target="_blank">af75f2c</a>
@@ -2824,7 +3079,7 @@ zjanna
 </div>
 <pre><code>
 [[3]][[2]]</code></pre>
-<p><img src="figure/pancreas.Rmd/mean%20expression-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/mean expression-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-6">
 Past versions of mean expression-6.png
@@ -2847,6 +3102,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/mean expression-6.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/mean expression-6.png" target="_blank">af75f2c</a>
@@ -2935,6 +3201,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/cms-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/cms-1.png" target="_blank">af75f2c</a>
 </td>
 <td>
@@ -3018,6 +3295,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/cms-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/cms-2.png" target="_blank">af75f2c</a>
 </td>
 <td>
@@ -3099,6 +3387,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/cms-3.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/cms-3.png" target="_blank">af75f2c</a>
@@ -3373,7 +3672,7 @@ type_var &lt;- tibble(&quot;type_gene&quot; = type_by_ct, &quot;cluster&quot; = 
 <pre class="r"><code>#Plot
 lfc_comb &lt;- rbind(lfc_sim_ct, lfc_ct_real, lfc_type)
 ggplot(lfc_comb, aes(lfc, colour = type)) + geom_density()</code></pre>
-<p><img src="figure/pancreas.Rmd/lfc%20ct-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/lfc ct-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lfc ct-1">
 Past versions of lfc ct-1.png
@@ -3396,6 +3695,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/lfc ct-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/lfc ct-1.png" target="_blank">af75f2c</a>
@@ -3471,7 +3781,7 @@ lfc_batch_sim &lt;- data.frame(&quot;test&quot; = tnorm, &quot;type&quot; = rep(
 
 lfc_comb &lt;- rbind(lfc_sim, lfc_dist, lfc_batch, lfc_batch_sim)
 ggplot(lfc_comb, aes(test, colour = type)) + geom_density()</code></pre>
-<p><img src="figure/pancreas.Rmd/lfc%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/pancreas.Rmd/lfc batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lfc batch-1">
 Past versions of lfc batch-1.png
@@ -3494,6 +3804,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/lfc batch-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/af75f2c83ba0807a7af708a4f5d7c9a2d04fae67/docs/figure/pancreas.Rmd/lfc batch-1.png" target="_blank">af75f2c</a>
@@ -3551,9 +3872,9 @@ adj3 &lt;- function(X, bt, ct) {
 }
 
 
-Xadj1 &lt;- adj1(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj2 &lt;- adj2(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj3 &lt;- adj3(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj1 &lt;- adj1(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj2 &lt;- adj2(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj3 &lt;- adj3(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
 
 #plot PCAs
 plot_pca &lt;-function(X){
@@ -3564,33 +3885,205 @@ plot_pca &lt;-function(X){
   geom_point(size = 2) + theme_bw()
 }
 
-plot_pca(counts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
+plot_pca(logcounts(sce)) + ggtitle(&quot;unadjusted&quot;)</code></pre>
 <p><img src="figure/pancreas.Rmd/batch%20type-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-1">
+Past versions of batch type-1.png
+</button>
+</p>
+<div id="fig-batch type-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-1.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_pca(Xadj1) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
 <p><img src="figure/pancreas.Rmd/batch%20type-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-2">
+Past versions of batch type-2.png
+</button>
+</p>
+<div id="fig-batch type-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-2.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_pca(Xadj2) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
 <p><img src="figure/pancreas.Rmd/batch%20type-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-3">
+Past versions of batch type-3.png
+</button>
+</p>
+<div id="fig-batch type-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-3.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plot_pca(Xadj3) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
 <p><img src="figure/pancreas.Rmd/batch%20type-4.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>#umap
-plot_umap &lt;- function(X, sce){
-  assays(sce)$removed_batch &lt;- X
-  sce &lt;- runUMAP(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;)
-  visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
-}
-
-plot_umap(Xadj1, sce) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-4">
+Past versions of batch type-4.png
+</button>
+</p>
+<div id="fig-batch type-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-4.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>visOverview(sce, batch, metric_prefix = &quot;cms_smooth&quot;, dim_red = &quot;UMAP&quot;)</code></pre>
 <p><img src="figure/pancreas.Rmd/batch%20type-5.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plot_umap(Xadj2, sce) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/batch%20type-6.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plot_umap(Xadj3, sce) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/batch%20type-7.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>visGroup(sce, batch, dim_red = &quot;UMAP&quot;)</code></pre>
-<p><img src="figure/pancreas.Rmd/batch%20type-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-5">
+Past versions of batch type-5.png
+</button>
+</p>
+<div id="fig-batch type-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-5.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#cms
 get_cms &lt;- function(X, sce, method_nam){
   assays(sce)$removed_batch &lt;- X
-  sce &lt;- runPCA(sce, ntop = 2000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
+  sce &lt;- runPCA(sce, ntop = 4000, exprs_values = &quot;removed_batch&quot;, ncomponents = 10)
   sce &lt;- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = &quot;PCA&quot;, 
              res_name = method_nam)
 }
@@ -3602,8 +4095,171 @@ sce &lt;- get_cms(Xadj3, sce, &quot;Xadj3&quot;)
 saveRDS(sce, file = paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
 sce &lt;- readRDS(paste0(out_path, &quot;/cms_adjMod_&quot;, dataset_name, &quot;.rds&quot;))
 
-visHist(sce, metric_prefix = &quot;cms.&quot;)</code></pre>
+#umap
+plot_umap &lt;- function(X, sce, X_name){
+  assays(sce)$removed_batch &lt;- X
+  sce &lt;- runUMAP(sce, ntop = 4000, exprs_values = &quot;removed_batch&quot;)
+  p1 &lt;- visGroup(sce, batch, dim_red = &quot;UMAP&quot;)
+  p2 &lt;- visMetric(sce, metric_var = paste0(&quot;cms_smooth.&quot;, X_name), dim_red = &quot;UMAP&quot;)
+  plot_grid(p1, p2)
+}
+
+plot_umap(Xadj1, sce, &quot;Xadj1&quot;) + ggtitle(&quot;constant batch effect&quot;)</code></pre>
+<p><img src="figure/pancreas.Rmd/batch%20type-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-6">
+Past versions of batch type-6.png
+</button>
+</p>
+<div id="fig-batch type-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-6.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_umap(Xadj2, sce, &quot;Xadj2&quot;) + ggtitle(&quot;constant batch effect, different ct composition&quot;)</code></pre>
+<p><img src="figure/pancreas.Rmd/batch%20type-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-7">
+Past versions of batch type-7.png
+</button>
+</p>
+<div id="fig-batch type-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-7.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_umap(Xadj3, sce, &quot;Xadj3&quot;) + ggtitle(&quot;celltype specific batch effect&quot;)</code></pre>
+<p><img src="figure/pancreas.Rmd/batch%20type-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-8">
+Past versions of batch type-8.png
+</button>
+</p>
+<div id="fig-batch type-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-8.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>visHist(sce, metric_prefix = &quot;cms&quot;, n_col = 2)</code></pre>
 <p><img src="figure/pancreas.Rmd/batch%20type-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-9">
+Past versions of batch type-9.png
+</button>
+</p>
+<div id="fig-batch type-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/65f3be0806e49291d1b7bcef1e1824337e81503f/docs/figure/pancreas.Rmd/batch type-9.png" target="_blank">65f3be0</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-04
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="simulation-parameter" class="section level1">
 <h1>Simulation parameter</h1>
@@ -3765,93 +4421,93 @@ locale:
 [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
- [1] splines   grid      parallel  stats4    stats     graphics  grDevices
- [8] utils     datasets  methods   base     
+ [1] grid      parallel  stats4    stats     graphics  grDevices utils    
+ [8] datasets  methods   base     
 
 other attached packages:
- [1] lme4_1.1-21                 Matrix_1.2-17              
- [3] scran_1.12.1                TruncatedDistributions_1.0 
- [5] ggtern_3.1.0                variancePartition_1.14.0   
- [7] scales_1.0.0                foreach_1.4.4              
- [9] limma_3.40.2                ComplexHeatmap_2.0.0       
-[11] diffcyt_1.4.0               stringr_1.4.0              
-[13] dplyr_0.8.1                 tidyr_0.8.3                
-[15] here_0.1                    purrr_0.3.2                
-[17] gridExtra_2.3               CellMixS_1.0.0             
-[19] kSamples_1.2-9              SuppDists_1.1-9.4          
-[21] jcolors_0.0.4               scater_1.12.2              
-[23] ggplot2_3.2.0               CellBench_1.0.0            
-[25] tibble_2.1.3                magrittr_1.5               
-[27] SingleCellExperiment_1.6.0  SummarizedExperiment_1.14.0
-[29] DelayedArray_0.10.0         BiocParallel_1.18.0        
-[31] matrixStats_0.54.0          Biobase_2.44.0             
-[33] GenomicRanges_1.36.0        GenomeInfoDb_1.20.0        
-[35] IRanges_2.18.1              S4Vectors_0.22.0           
-[37] BiocGenerics_0.30.0        
+ [1] cowplot_0.9.4               scran_1.12.1               
+ [3] TruncatedDistributions_1.0  ggtern_3.1.0               
+ [5] variancePartition_1.14.0    scales_1.0.0               
+ [7] foreach_1.4.4               limma_3.40.2               
+ [9] ComplexHeatmap_2.0.0        diffcyt_1.4.0              
+[11] stringr_1.4.0               dplyr_0.8.1                
+[13] tidyr_0.8.3                 here_0.1                   
+[15] purrr_0.3.2                 gridExtra_2.3              
+[17] CellMixS_1.0.0              kSamples_1.2-9             
+[19] SuppDists_1.1-9.4           jcolors_0.0.4              
+[21] scater_1.12.2               ggplot2_3.2.0              
+[23] CellBench_1.0.0             tibble_2.1.3               
+[25] magrittr_1.5                SingleCellExperiment_1.6.0 
+[27] SummarizedExperiment_1.14.0 DelayedArray_0.10.0        
+[29] BiocParallel_1.18.0         matrixStats_0.54.0         
+[31] Biobase_2.44.0              GenomicRanges_1.36.0       
+[33] GenomeInfoDb_1.20.0         IRanges_2.18.1             
+[35] S4Vectors_0.22.0            BiocGenerics_0.30.0        
 
 loaded via a namespace (and not attached):
   [1] backports_1.1.4             circlize_0.4.6             
   [3] workflowr_1.3.0             BiocFileCache_1.8.0        
   [5] plyr_1.8.4                  igraph_1.2.4.1             
   [7] ConsensusClusterPlus_1.48.0 lazyeval_0.2.2             
-  [9] flowCore_1.50.0             TH.data_1.0-10             
- [11] digest_0.6.19               htmltools_0.3.6            
- [13] viridis_0.5.1               gdata_2.18.0               
- [15] memoise_1.1.0               cluster_2.0.9              
- [17] doParallel_1.0.14           RcppParallel_4.4.3         
- [19] bayesm_3.1-1                sandwich_2.5-1             
- [21] prettyunits_1.0.2           colorspace_1.4-1           
- [23] blob_1.1.1                  rappdirs_0.3.1             
- [25] rrcov_1.4-7                 xfun_0.8                   
- [27] crayon_1.3.4                RCurl_1.95-4.12            
- [29] graph_1.62.0                survival_2.44-1.1          
- [31] zoo_1.8-5                   iterators_1.0.10           
- [33] glue_1.3.1                  gtable_0.3.0               
- [35] zlibbioc_1.30.0             XVector_0.24.0             
- [37] compositions_1.40-2         listarrays_0.2.0           
- [39] GetoptLong_0.1.7            BiocSingular_1.0.0         
- [41] shape_1.4.4                 DEoptimR_1.0-8             
- [43] mvtnorm_1.0-10              DBI_1.0.0                  
- [45] edgeR_3.26.5                Rcpp_1.0.1                 
- [47] progress_1.2.2              viridisLite_0.3.0          
- [49] clue_0.3-57                 dqrng_0.2.1                
- [51] latex2exp_0.4.0             bit_1.1-14                 
- [53] rsvd_1.0.1                  FlowSOM_1.16.0             
- [55] tsne_0.1-3                  httr_1.4.0                 
- [57] gplots_3.0.1.1              RColorBrewer_1.1-2         
- [59] pkgconfig_2.0.2             XML_3.98-1.20              
- [61] uwot_0.1.3                  dbplyr_1.4.0               
- [63] dynamicTreeCut_1.63-1       locfit_1.5-9.1             
- [65] labeling_0.3                tidyselect_0.2.5           
- [67] rlang_0.3.4                 reshape2_1.4.3             
- [69] munsell_0.5.0               tools_3.6.0                
- [71] RSQLite_2.1.1               ggridges_0.5.1             
- [73] evaluate_0.14               yaml_2.2.0                 
- [75] knitr_1.23                  bit64_0.9-7                
- [77] fs_1.3.1                    robustbase_0.93-4          
- [79] caTools_1.17.1.2            nlme_3.1-139               
- [81] whisker_0.3-2               pbkrtest_0.4-7             
- [83] compiler_3.6.0              beeswarm_0.2.3             
- [85] curl_3.3                    png_0.1-7                  
- [87] statmod_1.4.32              pcaPP_1.9-73               
- [89] stringi_1.4.3               RSpectra_0.14-0            
- [91] lattice_0.20-38             nloptr_1.2.1               
- [93] tensorA_0.36.1              pillar_1.4.1               
- [95] GlobalOptions_0.1.0         RcppAnnoy_0.0.12           
- [97] BiocNeighbors_1.2.0         cowplot_0.9.4              
- [99] bitops_1.0-6                irlba_2.3.3                
-[101] corpcor_1.6.9               colorRamps_2.3             
-[103] R6_2.4.0                    KernSmooth_2.23-15         
-[105] vipor_0.4.5                 codetools_0.2-16           
-[107] energy_1.7-5                boot_1.3-22                
-[109] MASS_7.3-51.4               gtools_3.8.1               
-[111] assertthat_0.2.1            proto_1.0.0                
-[113] rprojroot_1.3-2             rjson_0.2.20               
-[115] withr_2.1.2                 multcomp_1.4-10            
-[117] GenomeInfoDbData_1.2.1      hms_0.4.2                  
-[119] minqa_1.2.4                 rmarkdown_1.12             
-[121] DelayedMatrixStats_1.6.0    git2r_0.25.2               
-[123] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
+  [9] splines_3.6.0               flowCore_1.50.0            
+ [11] TH.data_1.0-10              digest_0.6.19              
+ [13] htmltools_0.3.6             viridis_0.5.1              
+ [15] gdata_2.18.0                memoise_1.1.0              
+ [17] cluster_2.0.9               doParallel_1.0.14          
+ [19] RcppParallel_4.4.3          bayesm_3.1-1               
+ [21] sandwich_2.5-1              prettyunits_1.0.2          
+ [23] colorspace_1.4-1            blob_1.1.1                 
+ [25] rappdirs_0.3.1              rrcov_1.4-7                
+ [27] xfun_0.8                    crayon_1.3.4               
+ [29] RCurl_1.95-4.12             graph_1.62.0               
+ [31] lme4_1.1-21                 survival_2.44-1.1          
+ [33] zoo_1.8-5                   iterators_1.0.10           
+ [35] glue_1.3.1                  gtable_0.3.0               
+ [37] zlibbioc_1.30.0             XVector_0.24.0             
+ [39] compositions_1.40-2         listarrays_0.2.0           
+ [41] GetoptLong_0.1.7            BiocSingular_1.0.0         
+ [43] shape_1.4.4                 DEoptimR_1.0-8             
+ [45] mvtnorm_1.0-10              DBI_1.0.0                  
+ [47] edgeR_3.26.5                Rcpp_1.0.1                 
+ [49] progress_1.2.2              viridisLite_0.3.0          
+ [51] clue_0.3-57                 dqrng_0.2.1                
+ [53] latex2exp_0.4.0             bit_1.1-14                 
+ [55] rsvd_1.0.1                  FlowSOM_1.16.0             
+ [57] tsne_0.1-3                  httr_1.4.0                 
+ [59] gplots_3.0.1.1              RColorBrewer_1.1-2         
+ [61] pkgconfig_2.0.2             XML_3.98-1.20              
+ [63] uwot_0.1.3                  dbplyr_1.4.0               
+ [65] dynamicTreeCut_1.63-1       locfit_1.5-9.1             
+ [67] labeling_0.3                tidyselect_0.2.5           
+ [69] rlang_0.4.0                 reshape2_1.4.3             
+ [71] munsell_0.5.0               tools_3.6.0                
+ [73] RSQLite_2.1.1               ggridges_0.5.1             
+ [75] evaluate_0.14               yaml_2.2.0                 
+ [77] knitr_1.23                  bit64_0.9-7                
+ [79] fs_1.3.0                    robustbase_0.93-4          
+ [81] caTools_1.17.1.2            nlme_3.1-139               
+ [83] whisker_0.3-2               pbkrtest_0.4-7             
+ [85] compiler_3.6.0              beeswarm_0.2.3             
+ [87] curl_3.3                    png_0.1-7                  
+ [89] statmod_1.4.32              pcaPP_1.9-73               
+ [91] stringi_1.4.3               RSpectra_0.14-0            
+ [93] lattice_0.20-38             Matrix_1.2-17              
+ [95] nloptr_1.2.1                tensorA_0.36.1             
+ [97] pillar_1.4.1                GlobalOptions_0.1.0        
+ [99] RcppAnnoy_0.0.12            BiocNeighbors_1.2.0        
+[101] bitops_1.0-6                irlba_2.3.3                
+[103] corpcor_1.6.9               colorRamps_2.3             
+[105] R6_2.4.0                    KernSmooth_2.23-15         
+[107] vipor_0.4.5                 codetools_0.2-16           
+[109] energy_1.7-5                boot_1.3-22                
+[111] MASS_7.3-51.4               gtools_3.8.1               
+[113] assertthat_0.2.1            proto_1.0.0                
+[115] rprojroot_1.3-2             rjson_0.2.20               
+[117] withr_2.1.2                 multcomp_1.4-10            
+[119] GenomeInfoDbData_1.2.1      hms_0.4.2                  
+[121] minqa_1.2.4                 rmarkdown_1.12             
+[123] DelayedMatrixStats_1.6.0    git2r_0.25.2               
+[125] lubridate_1.7.4             ggbeeswarm_0.6.0           </code></pre>
 </div>
 </div>
 
