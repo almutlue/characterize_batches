@@ -429,7 +429,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -438,7 +438,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -450,7 +450,7 @@ div.section {
 <strong>Last updated:</strong> 2019-08-06
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>characterize_batches/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -466,12 +466,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree729f0a8bc781a097fa724656a5f2e0e392ff72fdtargetblank729f0a8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/729f0a8bc781a097fa724656a5f2e0e392ff72fd" target="_blank">729f0a8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2a42bd3afdb7b82361f6e562f07957a909a08c4etargetblank2a42bd3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/2a42bd3afdb7b82361f6e562f07957a909a08c4e" target="_blank">2a42bd3</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree729f0a8bc781a097fa724656a5f2e0e392ff72fdtargetblank729f0a8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree2a42bd3afdb7b82361f6e562f07957a909a08c4etargetblank2a42bd3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -641,9 +641,7 @@ Untracked files:
     Untracked:  output/vp_pbmc_media_storage.rds
 
 Unstaged changes:
-    Modified:   analysis/cell_bench.Rmd
     Deleted:    analysis/cellbench_seq_protocols.Rmd
-    Modified:   analysis/csf_media.Rmd
     Modified:   analysis/csf_patient.Rmd
     Modified:   analysis/pancreas.Rmd
     Modified:   analysis/pbmc2_media.Rmd
@@ -687,6 +685,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/1597efcbe6abd71dcc53177682a46e6db11cd550/analysis/csf_media.Rmd" target="_blank">1597efc</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+<td>
+wflow_publish(c(“analysis/cell_bench.Rmd”, “analysis/csf_media.Rmd”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/csf_media.html" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1903,6 +1935,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/var dev expr-1.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-1.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -1962,6 +2005,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/var dev expr-2.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-2.png" target="_blank">6a4732c</a>
@@ -2025,6 +2079,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/var dev expr-3.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-3.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -2084,6 +2149,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/var dev expr-4.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/var dev expr-4.png" target="_blank">6a4732c</a>
@@ -2767,6 +2843,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/mean expression-1.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/mean expression-1.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -2840,6 +2927,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/mean expression-2.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/mean expression-2.png" target="_blank">6a4732c</a>
@@ -3384,6 +3482,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/lfc ct-1.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/lfc ct-1.png" target="_blank">6a4732c</a>
 </td>
 <td>
@@ -3488,6 +3597,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/csf_media.Rmd/lfc batch-1.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/almutlue/characterize_batches/blob/6a4732c7c4c12acd2101f20eef0be7d78b24c1db/docs/figure/csf_media.Rmd/lfc batch-1.png" target="_blank">6a4732c</a>

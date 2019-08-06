@@ -526,10 +526,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree729f0a8bc781a097fa724656a5f2e0e392ff72fdtargetblank729f0a8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/729f0a8bc781a097fa724656a5f2e0e392ff72fd" target="_blank">729f0a8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree1597efcbe6abd71dcc53177682a46e6db11cd550targetblank1597efca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/almutlue/characterize_batches/tree/1597efcbe6abd71dcc53177682a46e6db11cd550" target="_blank">1597efc</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree729f0a8bc781a097fa724656a5f2e0e392ff72fdtargetblank729f0a8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomalmutluecharacterizebatchestree1597efcbe6abd71dcc53177682a46e6db11cd550targetblank1597efca" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -642,6 +642,7 @@ Untracked files:
 
 Unstaged changes:
     Deleted:    analysis/cellbench_seq_protocols.Rmd
+    Modified:   analysis/csf_patient.Rmd
     Modified:   analysis/pancreas.Rmd
     Modified:   analysis/pbmc2_media.Rmd
     Modified:   analysis/pbmc2_patient.Rmd
@@ -684,6 +685,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/1597efcbe6abd71dcc53177682a46e6db11cd550/analysis/cell_bench.Rmd" target="_blank">1597efc</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+<td>
+wflow_publish(c(“analysis/cell_bench.Rmd”, “analysis/csf_media.Rmd”))
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/almutlue/characterize_batches/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/cell_bench.html" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1072,7 +1107,7 @@ lapply(feature_list, function(feature_name){
   visGroup(sce, feature_name, dim_red= &quot;UMAP&quot;)
 })</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/vis batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-1">
 Past versions of vis batch-1.png
@@ -1134,7 +1169,7 @@ almutlue
 </div>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/vis%20batch-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/vis batch-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-2">
 Past versions of vis batch-2.png
@@ -1196,7 +1231,7 @@ almutlue
 </div>
 <pre><code>
 [[3]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/vis%20batch-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/vis batch-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-vis batch-3">
 Past versions of vis batch-3.png
@@ -1281,7 +1316,7 @@ object</code></pre>
 
 #plot
 plotPercentBars( vp_sub[1:10,] )</code></pre>
-<p><img src="figure/cell_bench.Rmd/variance%20part-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/variance part-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-1">
 Past versions of variance part-1.png
@@ -1342,7 +1377,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plotVarPart( vp_sub )</code></pre>
-<p><img src="figure/cell_bench.Rmd/variance%20part-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/variance part-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-variance part-2">
 Past versions of variance part-2.png
@@ -1503,7 +1538,7 @@ plot_dev &lt;- function(var, var_col){
 }
 
 plot_dev(&quot;vp_batch&quot;, &quot;d_exp&quot;)</code></pre>
-<p><img src="figure/cell_bench.Rmd/var%20dev%20expr-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/var dev expr-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-1">
 Past versions of var dev expr-1.png
@@ -1575,7 +1610,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;d_exp&quot;, &quot;vp_batch&quot;)</code></pre>
-<p><img src="figure/cell_bench.Rmd/var%20dev%20expr-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/var dev expr-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-2">
 Past versions of var dev expr-2.png
@@ -1647,7 +1682,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;vp_ct&quot;, &quot;d_exp_ct&quot;)</code></pre>
-<p><img src="figure/cell_bench.Rmd/var%20dev%20expr-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/var dev expr-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-3">
 Past versions of var dev expr-3.png
@@ -1719,7 +1754,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>plot_dev(&quot;d_exp_ct&quot;, &quot;vp_ct&quot;)</code></pre>
-<p><img src="figure/cell_bench.Rmd/var%20dev%20expr-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/var dev expr-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-var dev expr-4">
 Past versions of var dev expr-4.png
@@ -1800,7 +1835,7 @@ almutlue
   geom_point(size= 0.1, alpha = 0.5)  + 
   theme_bw()</code></pre>
 <pre><code>Warning: Removed 681 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/cell_bench.Rmd/tern%20plots-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/tern plots-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-1">
 Past versions of tern plots-1.png
@@ -1867,7 +1902,7 @@ almutlue
 
 t1</code></pre>
 <pre><code>Warning: Removed 681 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/cell_bench.Rmd/tern%20plots-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/tern plots-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-2">
 Past versions of tern plots-2.png
@@ -1931,7 +1966,7 @@ almutlue
 <pre><code>Warning: Removed 84 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 437 rows containing non-finite values (StatDensityTern).</code></pre>
 <pre><code>Warning: Removed 160 rows containing non-finite values (StatDensityTern).</code></pre>
-<p><img src="figure/cell_bench.Rmd/tern%20plots-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/tern plots-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-3">
 Past versions of tern plots-3.png
@@ -1997,7 +2032,7 @@ almutlue
   guides(color = &quot;none&quot;, fill = &quot;none&quot;, alpha = &quot;none&quot;) +
   geom_point(size= 0.1, alpha = 0.5) + 
   theme_bw() </code></pre>
-<p><img src="figure/cell_bench.Rmd/tern%20plots-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/tern plots-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-4">
 Past versions of tern plots-4.png
@@ -2052,7 +2087,7 @@ almutlue
   theme_bw() 
 
 t2</code></pre>
-<p><img src="figure/cell_bench.Rmd/tern%20plots-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/tern plots-5.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-5">
 Past versions of tern plots-5.png
@@ -2102,7 +2137,7 @@ almutlue
 </div>
 </div>
 <pre class="r"><code>t2 +  facet_grid(~expr_class)</code></pre>
-<p><img src="figure/cell_bench.Rmd/tern%20plots-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/tern plots-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tern plots-6">
 Past versions of tern plots-6.png
@@ -2178,7 +2213,7 @@ plot_abundance &lt;- function(cluster_var, tib, x_var){
 }
 
 plot_abundance(cluster_var = celltype, tib = meta_tib, x_var = batch)</code></pre>
-<p><img src="figure/cell_bench.Rmd/celltype%20abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/celltype abundance-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-celltype abundance-1">
 Past versions of celltype abundance-1.png
@@ -2284,7 +2319,7 @@ ggplot(mean_expr, aes(x=logcounts, colour=sample)) + geom_density(alpha=.3) +
   scale_colour_manual(values = cols[c(1:3,7)]) +
   scale_x_continuous(limits =  c(0, 7))</code></pre>
 <pre><code>Warning: Removed 530 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="figure/cell_bench.Rmd/count%20distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/count distributions-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-count distributions-1">
 Past versions of count distributions-1.png
@@ -2363,7 +2398,7 @@ lapply(batch_all, function(batch_var){
 })</code></pre>
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/mean%20expression-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/mean expression-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-1">
 Past versions of mean expression-1.png
@@ -2436,7 +2471,7 @@ almutlue
 </div>
 <pre><code>
 [[1]][[2]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/mean%20expression-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/mean expression-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-2">
 Past versions of mean expression-2.png
@@ -2511,7 +2546,7 @@ almutlue
 
 [[2]]
 [[2]][[1]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/mean%20expression-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/mean expression-3.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-3">
 Past versions of mean expression-3.png
@@ -2584,7 +2619,7 @@ almutlue
 </div>
 <pre><code>
 [[2]][[2]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/mean%20expression-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/mean expression-4.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-4">
 Past versions of mean expression-4.png
@@ -2659,7 +2694,7 @@ almutlue
 
 [[3]]
 [[3]][[1]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/mean%20expression-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/mean expression-5.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-5">
 Past versions of mean expression-5.png
@@ -2732,7 +2767,7 @@ almutlue
 </div>
 <pre><code>
 [[3]][[2]]</code></pre>
-<p><img src="figure/cell_bench.Rmd/mean%20expression-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/mean expression-6.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-mean expression-6">
 Past versions of mean expression-6.png
@@ -3153,7 +3188,7 @@ type_var &lt;- tibble(&quot;type_gene&quot; = type_by_ct, &quot;cluster&quot; = 
 <pre class="r"><code>#Plot
 lfc_comb &lt;- rbind(lfc_sim_ct, lfc_ct_real, lfc_type)
 ggplot(lfc_comb, aes(lfc, colour = type)) + geom_density()</code></pre>
-<p><img src="figure/cell_bench.Rmd/lfc%20ct-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/lfc ct-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lfc ct-1">
 Past versions of lfc ct-1.png
@@ -3272,7 +3307,7 @@ lfc_batch_sim &lt;- data.frame(&quot;test&quot; = tnorm, &quot;type&quot; = rep(
 
 lfc_comb &lt;- rbind(lfc_sim, lfc_dist, lfc_batch, lfc_batch_sim)
 ggplot(lfc_comb, aes(test, colour = type)) + geom_density()</code></pre>
-<p><img src="figure/cell_bench.Rmd/lfc%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/cell_bench.Rmd/lfc batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-lfc batch-1">
 Past versions of lfc batch-1.png
@@ -3908,6 +3943,43 @@ almutlue
 <pre class="r"><code>visIntegration(sce, metric_prefix = &quot;cms_smooth&quot;)</code></pre>
 <pre><code>Picking joint bandwidth of 0.0144</code></pre>
 <p><img src="figure/cell_bench.Rmd/batch%20type-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-batch type-10">
+Past versions of batch type-10.png
+</button>
+</p>
+<div id="fig-batch type-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/almutlue/characterize_batches/blob/2b7a5804f848a27f6a127b6d7334dbe93302acfe/docs/figure/cell_bench.Rmd/batch type-10.png" target="_blank">2b7a580</a>
+</td>
+<td>
+almutlue
+</td>
+<td>
+2019-08-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="simulation-parameter" class="section level1">
 <h1>Simulation parameter</h1>
@@ -4032,7 +4104,7 @@ sim &lt;- data.frame(&quot;mean_p_be&quot; = mean_p_be,
                   &quot;max_p_ct&quot;= max_p_ct,
                   &quot;sd_p_ct&quot; = sd_p_ct,
                   &quot;mean_lfc_batch&quot; = mean_lfc_batch,
-                  &quot;sd_lfc_batch&quot; = 0,
+                  &quot;sd_lfc_batch&quot; = sd_lfc_batch,
                   &quot;n_batch_gene&quot; = n_batch_genes,
                   &quot;mean_lfc_type&quot; = mean_lfc_type,
                   &quot;sd_lfc_type&quot; = sd_lfc_type,
