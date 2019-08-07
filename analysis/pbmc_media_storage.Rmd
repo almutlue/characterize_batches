@@ -30,6 +30,7 @@ suppressPackageStartupMessages({
   library(ggtern)
   library(TruncatedDistributions)
   library(scran)
+  library(cowplot)
 })
 ```
 
@@ -440,8 +441,8 @@ doDE <- function(x,lfc_cutoff=log2(1.1)){
        design = design,
        coef = coef)
 }
-res <- doDE(x,lfc_cutoff=log2(1.1))
-saveRDS(res, file=paste0(out_path, "/limma_", dataset_name, ".rds"))
+#res <- doDE(x,lfc_cutoff=log2(1.1))
+#saveRDS(res, file=paste0(out_path, "/limma_", dataset_name, ".rds"))
 ```
 
 # Diagnostics plot of DEG
@@ -720,9 +721,9 @@ adj3 <- function(X, bt, ct) {
 }
 
 
-Xadj1 <- adj1(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj2 <- adj2(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
-Xadj3 <- adj3(counts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj1 <- adj1(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj2 <- adj2(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
+Xadj3 <- adj3(logcounts(sce), colData(sce)[, batch], colData(sce)[, celltype])
 
 #plot PCAs
 plot_pca <-function(X){
@@ -733,42 +734,44 @@ plot_pca <-function(X){
   geom_point(size = 2) + theme_bw()
 }
 
-# plot_pca(counts(sce)) + ggtitle("unadjusted")
-# plot_pca(Xadj1) + ggtitle("constant batch effect")
-# plot_pca(Xadj2) + ggtitle("constant batch effect, different ct composition")
-# plot_pca(Xadj3) + ggtitle("celltype specific batch effect")
+plot_pca(logcounts(sce)) + ggtitle("unadjusted")
+plot_pca(Xadj1) + ggtitle("constant batch effect")
+plot_pca(Xadj2) + ggtitle("constant batch effect, different ct composition")
+plot_pca(Xadj3) + ggtitle("celltype specific batch effect")
 
 
-#umap
-plot_umap <- function(X, sce){
-  assays(sce)$removed_batch <- X
-  sce <- runUMAP(sce, ntop = 2000, exprs_values = "removed_batch")
-  visGroup(sce, batch, dim_red = "UMAP")
-}
-
-plot_umap(Xadj1, sce) + ggtitle("constant batch effect")
-plot_umap(Xadj2, sce) + ggtitle("constant batch effect, different ct composition")
-plot_umap(Xadj3, sce) + ggtitle("celltype specific batch effect")
-
-visGroup(sce, batch, dim_red = "UMAP")
-
+visOverview(sce, batch, metric_prefix = "cms_smooth", dim_red = "UMAP")
 
 #cms
 get_cms <- function(X, sce, method_nam){
   assays(sce)$removed_batch <- X
-  sce <- runPCA(sce, ntop = 2000, exprs_values = "removed_batch", ncomponents = 10)
+  sce <- runPCA(sce, ntop = 4000, exprs_values = "removed_batch", ncomponents = 10)
   sce <- cms(sce, group = batch, k = 120, cell_min = 10, n_dim = 10, dim_red = "PCA", 
              res_name = method_nam)
 }
 
-#sce <- get_cms(Xadj1, sce, "Xadj1")
-#sce <- get_cms(Xadj2, sce, "Xadj2")
-#sce <- get_cms(Xadj3, sce, "Xadj3")
+sce <- get_cms(Xadj1, sce, "Xadj1")
+sce <- get_cms(Xadj2, sce, "Xadj2")
+sce <- get_cms(Xadj3, sce, "Xadj3")
 
-#saveRDS(sce, file = paste0(out_path, "/cms_adjMod_", dataset_name, ".rds"))
+saveRDS(sce, file = paste0(out_path, "/cms_adjMod_", dataset_name, ".rds"))
 sce <- readRDS(paste0(out_path, "/cms_adjMod_", dataset_name, ".rds"))
 
-visHist(sce, metric_prefix = "cms.")
+#umap
+plot_umap <- function(X, sce, X_name){
+  assays(sce)$removed_batch <- X
+  sce <- runUMAP(sce, ntop = 4000, exprs_values = "removed_batch")
+  p1 <- visGroup(sce, batch, dim_red = "UMAP")
+  p2 <- visMetric(sce, metric_var = paste0("cms_smooth.", X_name), dim_red = "UMAP")
+  plot_grid(p1, p2)
+}
+
+plot_umap(Xadj1, sce, "Xadj1") + ggtitle("constant batch effect")
+plot_umap(Xadj2, sce, "Xadj2") + ggtitle("constant batch effect, different ct composition")
+plot_umap(Xadj3, sce, "Xadj3") + ggtitle("celltype specific batch effect")
+
+visHist(sce, metric_prefix = "cms", n_col = 2)
+visIntegration(sce, metric_prefix = "cms_smooth")
 
 ```
 
@@ -901,7 +904,7 @@ sim <- data.frame("mean_p_be" = mean_p_be,
                   "max_p_ct"= max_p_ct,
                   "sd_p_ct" = sd_p_ct,
                   "mean_lfc_batch" = mean_lfc_batch,
-                  "sd_lfc_batch" = 0,
+                  "sd_lfc_batch" = sd_lfc_batch,
                   "n_batch_gene" = n_batch_genes,
                   "mean_lfc_type" = mean_lfc_type,
                   "sd_lfc_type" = sd_lfc_type,
