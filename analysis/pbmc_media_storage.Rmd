@@ -28,7 +28,7 @@ suppressPackageStartupMessages({
   library(diffcyt)
   library(ComplexHeatmap)
   library(ggtern)
-  library(TruncatedDistributions)
+  library(TruncatedDistributions) #UB: not available for R 3.6
   library(scran)
   library(cowplot)
 })
@@ -75,7 +75,28 @@ n_cells <- ncol(sce)
 
 ```
 
+```{r size factors with clustering}
+#UB: compute size factors with clustering - different size factors maybe optimal for different cell types
+set.seed(1000)
+clusters <- quickCluster(sce, use.ranks=FALSE, BSPARAM=IrlbaParam())
+table(clusters)
+sce_c <- computeSumFactors(sce, min.mean=0.1, cluster=clusters) ##cluster information added
+sce_c <- normalize(sce_c)
 
+#plot size factors versus library size with cell type information in color 
+color_vector <- sce$cluster.merged
+new_color <- c("red", "blue", "yellow", "orange", "blue", "lightblue", "lightgreen")
+for (i in c(0:6))
+{
+    color_vector <- gsub(i, new_color[i+1], color_vector)}
+
+plot(sce_c$total_counts, sizeFactors(sce_c), log="xy", col=color_vector)
+```
+
+```{r size factors no clustering}
+#UB: for comparison plot size factors computed without cluster information
+plot(sce$total_counts, sizeFactors(sce), log="xy", col=color_vector)
+```
 
 # Visualize batch effect
 ```{r vis batch}
@@ -173,7 +194,7 @@ n_celltype_gene_mod <- length(which(d_exp_ct > 0.01))/n_genes
 n_rel_mod <- n_batch_gene_mod/n_celltype_gene_mod
 
 # Mean variance that is explained by the batch effect/celltype
-m_batch <- mean(asin(vp[, batch]))
+m_batch <- mean(asin(vp[, batch])) #UB:why do you use asin here?
 m_celltype <- mean(asin(vp[, celltype]))
 m_rel <- m_batch/m_celltype
 
@@ -308,7 +329,7 @@ max_rel_abund_diff <- max(unlist(res))
 
 # Count distribution
 Do the overall counts distribution vary between batches? Clusterwise ploting?
-  
+UB: what is confusing in this chunk is that "batch" is now called "sample"   
 ```{r count distributions, fig.width = 7, fig.height = 6}
 #sample an cluster ids
 sids <- levels(as.factor(colData(sce)[, batch]))
@@ -380,6 +401,25 @@ var_cms <- var(cluster_mean_cms$cms_mean)
 
 ```
 
+```{r cms dist}
+#UB:look at distributions of mixing score per cell type - are some cell types more effected by batch effect - less well mixed?
+
+ggplot(as.data.frame(colData(sce)), aes(x=cms, color=cluster.merged)) +facet_wrap( ~cluster.merged, ncol = 3)+ geom_density(alpha=.3)
+```
+```{r cms hist}
+#UB:distributions of mixing score per cell type with histogram
+p <- ggplot(as.data.frame(colData(sce)), aes(x=cms, fill=cluster.merged))+ geom_histogram()+facet_wrap( ~cluster.merged,scales="free_y", ncol = 3)
+p + geom_vline(aes(xintercept=cms_mean, colour=cluster.merged),cluster_mean_cms, linetype=2) 
+```
+```{r cms_smooth dist}
+#UB:distributions of cms_smooth per cell type
+ggplot(as.data.frame(colData(sce)), aes(x=cms_smooth, color=cluster.merged)) +facet_wrap( ~cluster.merged, ncol = 3)+ geom_density(alpha=.3)
+```
+```{r cms_smooth q-q}
+#UB:distributions of cms_smooth per cell type with q-q plot: the less batch effect the more normal distribution should be 
+ggplot(as.data.frame(colData(sce)), aes(sample=cms_smooth, color=cluster.merged)) +facet_wrap( ~cluster.merged, ncol = 3)+stat_qq()
+```
+
 # DE analysis
 Calculate DEG
 ```{r deg}
@@ -430,7 +470,8 @@ doDE <- function(x,lfc_cutoff=log2(1.1)){
   kids <- kids[names(res)]
   
   # re-organize by contrast &
-  # do global p-value adjustment
+  # do global p-value adjustment 
+  #UB: where is the glabl p-value adjustment done?
   tt <- lapply(res, "[[", "tt")
   tt <- lapply(cs, function(c) map(tt, c))
   
@@ -478,6 +519,65 @@ names(m2) <- names(cs)
 
 ```
 
+#UB: Idea from Charlotte: Correlation of batch effect (log2fold changes) between cell types - how similar is the batch effect between cell types? This could determine how to sample the batch logFCs in the simulation (from independent distributions, or a joint distribution).
+
+```{r batch log2fold corr,  fig.height=8}
+#for each batch comparison create a table of log2fold changes across cell types
+my_table <- res$table
+combine_folds <- function(x){
+#extract the contrast of interest and change log2fold colums names to be unique
+B <- my_table[[x]] 
+new_name <- function(p){
+                        colnames(B[[p]])[3] <- paste0("logFC_", p)
+                        return(B[[p]][,c(1,3)])
+                        }
+B_new_names <- lapply(names(B),new_name)
+names(B_new_names) <- names(B)
+#combine log2fold colums
+Folds <- Reduce(function(...){inner_join(..., by="gene")}, B_new_names)
+return(Folds)
+}
+
+all_folds <- lapply(cs,combine_folds)
+
+#define pannels for pairs() function
+panel.cor <- function(x, y, digits=2, cex.cor)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y))
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  test <- cor.test(x,y)
+  Signif <- ifelse(round(test$p.value,3)<0.001,"p<0.001",paste("p=",round(test$p.value,3)))  
+  text(0.5, 0.25, paste("r=",txt), cex=1.5)
+  text(.5, .75, Signif, cex=1.5)
+}
+
+panel.smooth<-function (x, y, col = "blue", bg = NA, pch = 18, 
+                        cex = 0.8, col.smooth = "red", span = 2/3, iter = 3, ...) 
+{
+  points(x, y, pch = pch, col = col, bg = bg, cex = cex)
+  ok <- is.finite(x) & is.finite(y)
+  if (any(ok)) 
+    lines(stats::lowess(x[ok], y[ok], f = span, iter = iter), 
+          col = col.smooth, ...)
+}
+
+panel.hist <- function(x, ...)
+{
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(usr[1:2], 0, 1.5) )
+  h <- hist(x, plot = FALSE)
+  breaks <- h$breaks; nB <- length(breaks)
+  y <- h$counts; y <- y/max(y)
+  rect(breaks[-nB], 0, breaks[-1], y, col="cyan", ...)
+}
+
+#plot correlations
+
+lapply(names(all_folds), function(x) pairs(all_folds[[x]][,-1],lower.panel=panel.smooth, upper.panel=panel.cor,diag.panel=panel.hist, main=x))
+
+```
 
 ## Histograms of p-values 
 
@@ -549,6 +649,7 @@ max_rel_spec <- max(rel_spec1)
 # Distribution of lfc by celltypes
 To simulate a realistic variance by celltype we model the lfc by celltypes from the real underlying distribution. Most lfc follow a gamma distribution with varying parameter, but there seem to be a set of outstanding genes with a distinct higher lfc. To model them we use a second distribution for "type genes". We need this to cover the maxima, but in general this second distribution does not seem to be sufficient representing ct changes either. So reality still seems to be more complex than classifying cells into 2 groups ("type" and "not type").
 
+UB: it is not very consistent to use lmFit, eByes functions to get log2fold changes between the batches and pairwiseTTests function for log2fold chnages between cell types, I understand it is convinient to use the pairwiseTTest but maybe we should do lmFit here as well...
 ```{r lfc ct}
 # Determine lfc by celltype
 block <- colData(sce)[,batch]
@@ -587,7 +688,7 @@ lfc_ct_shape <- 0.55
 lfc_ct_scale <- 0.15
 
 signs <- sample(c(-1, 1), length(lfc_ct_all), TRUE, prob = c(0.5, 0.5))
-tgam_ct <- rtgamma(nrow(lfc_ct_real), lfc_ct_shape, lfc_ct_scale, a=min_lfc_ct, b=max_lfc_ct)*signs*0.5
+tgam_ct <- rtgamma(nrow(lfc_ct_real), lfc_ct_shape, lfc_ct_scale, a=min_lfc_ct, b=max_lfc_ct)*signs*0.5 #function not available for R 3.6
 lfc_sim_ct <- data.frame("lfc" = tgam_ct, "type" = rep("sim", nrow(lfc_ct_real)))
 
 
@@ -653,7 +754,7 @@ lfc_be_shape <- 0.62
 lfc_be_scale <- 0.1
 
 signs <- sample(c(-1, 1), nrow(lfc_dist), TRUE, prob = c(0.65, 0.35))
-tgam <- rtgamma(nrow(lfc_dist), lfc_be_shape, scale=lfc_be_scale, a=min_lfc_be, b=max_lfc_be)*signs
+tgam <- rtgamma(nrow(lfc_dist), lfc_be_shape, scale=lfc_be_scale, a=min_lfc_be, b=max_lfc_be)*signs #function not available for R 3.6
 lfc_sim <- data.frame("test" = tgam, "type" = rep("sim", nrow(lfc_dist)))
 
 #"batch genes"
@@ -672,6 +773,91 @@ lfc_batch_sim <- data.frame("test" = tnorm, "type" = rep("batch_sim", length(bat
 lfc_comb <- rbind(lfc_sim, lfc_dist, lfc_batch, lfc_batch_sim)
 ggplot(lfc_comb, aes(test, colour = type)) + geom_density()
    
+```
+
+#UB: corrleation of cell type differences and batch effect differences
+
+are the differences between the badge effects dependent on the differences between the cell types
+that would mean that batch effect should be simulated seprately for each cell type and in correlation to the differences between the cell types
+
+```{r ct_log2folds versus bt_log2folds,  fig.height=20}
+#caculate average batch effect (mean log2folds for the 3 evaluated comparisons between batches) in each cell type
+kids<-levels(clust)
+names(kids) <- kids
+
+log2folds <- lapply(kids, function(x) (lapply(cs, function(y) res$table[[y]][[x]][,c(1,3)])))                      
+
+avg_batch_effect <- function(x){
+B <- log2folds[[x]]
+new_name <- function(p){
+                        colnames(B[[p]])[2] <- paste0("logFC_", p)
+                        return(B[[p]])
+                        }
+file_new_names <- lapply(names(B),new_name)
+Folds <- Reduce(function(...){inner_join(..., by="gene")}, file_new_names)
+Avg_log2fold <- rowMeans(Folds[,2:ncol(Folds)])
+Avg_log2fold <- cbind(Folds, Avg_log2fold)
+colnames(Avg_log2fold)[5] <- paste0("Avg_log2fold_",x)
+return(Avg_log2fold[,c(1,5)])
+}
+
+Avg_batch <- lapply(names(log2folds), avg_batch_effect)
+
+#combine into one table
+
+Avg_batch_all <- Reduce(function(...){inner_join(..., by="gene")}, Avg_batch)
+
+#get folds of batch effect changes between all cell types pairs
+
+batch_folds <- lapply(kids, function(kid_1){
+ kid_2 <- kids[-which(kids %in% kid_1)]
+  lapply(kid_2, function(kid_3){
+    Avg_batch_all[, paste0("Avg_log2fold_",kid_1)]-Avg_batch_all[, paste0("Avg_log2fold_",kid_3)]})
+})
+
+#combine with log2folds of pairwise cell types comparisons
+
+combine_folds_ct_bt <- function(x){
+gene <- rownames(res_ct$statistics[[x]])
+ct_folds <- cbind(gene, res_ct$statistics[[x]])
+ct_folds <- as.data.frame(ct_folds[,1:2])
+colnames(ct_folds) <- c("gene", "logFC_cell_type")
+index_1 <- res_ct$pairs[x,"first"]
+index_2 <- res_ct$pairs[x, "second"]
+bt_folds <- as.data.frame(batch_folds[[index_1]][[index_2]])
+bt_folds <- cbind(Avg_batch_all$gene, bt_folds)
+colnames(bt_folds) <- c("gene", "logFC_batch")
+combined_folds <- inner_join(ct_folds,bt_folds, by="gene")
+return(combined_folds)}
+
+all_combined_folds <- lapply(1:42,combine_folds_ct_bt)
+
+my_plots <- lapply(1:42, function(x){
+    ggplot(all_combined_folds[[x]], aes_string(x="logFC_cell_type", y="logFC_batch")) +
+      geom_point(alpha=.3) +
+      ggtitle(paste0("cluster_",res_ct$pairs[x,"first"], "_vs_", res_ct$pairs[x, "second"] )) + 
+        geom_abline(slope = 1) })
+scater::multiplot(plotlist=my_plots, cols=6)
+```
+
+there doesn't seem to be a a correlation betwen differences in gene expression and differences in batch effects
+there could be still correlation in the magnitude of the effect - the number of genes with log2fold change above a given treshold
+
+```{r ct_log2folds versus bt_log2folds with treshold }
+#set a treshold for log2fold change for cell type and batch comaprisons
+
+tres_ct <- 1
+tres_bt <- 0.26
+
+#get number over the treshold and plot batch effect versus cell type effect numbers per comparison
+tres_ct_n <- sapply(1:42, function(x) length(which(abs(all_combined_folds[[x]][,"logFC_cell_type"])>=tres_ct)), simplify="vector")
+tres_bt_n <- sapply(1:42, function(x) length(which(abs(all_combined_folds[[x]][,"logFC_batch"])>=tres_bt)), simplify="vector")
+
+tres_bt_ct <- as.data.frame(cbind(tres_ct_n,tres_bt_n, res_ct$pairs))
+
+ggplot(tres_bt_ct, aes(x=tres_ct_n, y=tres_bt_n))+geom_point(alpha=.3) +geom_abline(slope = 1)
+
+        
 ```
 
 
